@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-members",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Importiere diese 84 Mitglieder aus meiner JSON-Datei und markiere nicht enthaltene Bestandsmitglieder als ausgetreten.",
+      "expected_output": "Der Agent führt zuerst einen Preview-Import aus und fordert vor der Bestandsabstimmung eine konkrete Bestätigung.",
+      "files": [],
+      "expectations": [
+        "Prüft Identität, Verein und bestehenden Mitgliederbestand.",
+        "Verwendet zunächst preview: true und fasst Änderungen und Warnungen zusammen.",
+        "Führt reconcile_absent_members erst nach ausdrücklicher Bestätigung aus."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Lege Familie Huber an und bestimme Anna Huber als verantwortliches Mitglied.",
+      "expected_output": "Der Agent löst Anna anhand des Namens auf, zeigt die gefundene Person und legt die Familie kontrolliert an.",
+      "files": [],
+      "expectations": [
+        "Liest Mitglieder und bestehende Familien vor der Anlage.",
+        "Verwendet die Member-ID und nicht die User-ID.",
+        "Prüft die angelegte Familie erneut."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Erstelle das Team Damen 1 für 2026/27, ordne Maria als Kapitänin zu und priorisiere die Sporthalle.",
+      "expected_output": "Der Agent löst Abteilung, Mitglied und Ressource auf, legt Team, Kaderrolle und Priorität nacheinander an und prüft alles.",
+      "files": [],
+      "expectations": [
+        "Liest Abteilungen, Mitglieder, Teams und Ressourcen zuerst.",
+        "Verwendet belegte Team-, Member- und Resource-Aktionen mit --json.",
+        "Meldet Team, Kapitänin und Ressourcen-Priorität nach erneuter Prüfung."
+      ]
+    }
+  ]
+}

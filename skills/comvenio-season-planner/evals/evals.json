@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-season-planner",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Plane das wöchentliche Darttraining mittwochs von September bis April, Ferien ausgenommen.",
+      "expected_output": "Der Agent klärt konkrete Ferienzeiträume, zeigt die erwarteten Termine und materialisiert erst nach Freigabe.",
+      "files": [],
+      "expectations": [
+        "Prüft Vorlagen, Serien, Zeitraum und Zeitzone.",
+        "Erfindet keine Ferien und verlangt konkrete Ausschlusszeiträume.",
+        "Zeigt Terminanzahl und prüft materialisierte Events erneut."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Erstelle die Heimspiele der Saison und reserviere dafür automatisch Halle und Equipment.",
+      "expected_output": "Der Agent trennt Events und Buchungen, prüft Ressourcen und fordert vor beiden großen Blöcken Freigaben ein.",
+      "files": [],
+      "expectations": [
+        "Liest Eventplanung, Objekte, Regeln und vorhandene Buchungen.",
+        "Materialisiert Events vor den Buchungen.",
+        "Berichtet Konflikte und Teilergebnisse ohne globalen Rollback zu behaupten."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Ändere die bestehende Trainingsserie dauerhaft von Mittwoch auf Donnerstag.",
+      "expected_output": "Der Agent zeigt bestehende Serie und Auswirkungen auf konkrete Termine und fordert vor der dauerhaften Änderung Bestätigung.",
+      "files": [],
+      "expectations": [
+        "Liest Serie, nächste Instanz und relevanten Zeitraum.",
+        "Unterscheidet Serienregel von bereits materialisierten Terminen.",
+        "Ändert erst nach Bestätigung und prüft den Folgestand."
+      ]
+    }
+  ]
+}

@@ -25,6 +25,7 @@ if (skillDirectories.length === 0) {
 
 for (const directoryName of skillDirectories) {
   const skillRoot = path.join(skillsRoot, directoryName);
+  const readmeFile = path.join(skillRoot, 'README.md');
   const skillFile = path.join(skillRoot, "SKILL.md");
   const evalFile = path.join(skillRoot, "evals", "evals.json");
 
@@ -34,6 +35,18 @@ for (const directoryName of skillDirectories) {
   }
 
   const content = fs.readFileSync(skillFile, "utf8");
+  if (!fs.existsSync(readmeFile)) {
+    errors.push(directoryName + ': README.md fehlt.');
+  } else {
+    const readme = fs.readFileSync(readmeFile, 'utf8');
+    if (!readme.startsWith('# ')) {
+      errors.push(directoryName + ': README.md braucht eine Kundenüberschrift.');
+    }
+    if (!readme.includes('Bestätigung') && !readme.includes('bestätig')) {
+      errors.push(directoryName + ': README.md erklärt die Freigabegrenzen nicht.');
+    }
+  }
+
   const frontmatter = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
   if (!frontmatter) {
     errors.push(`${directoryName}: gültiges YAML-Frontmatter fehlt.`);

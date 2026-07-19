@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-event-day",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Prüfe, ob für morgen beim Sommerfest Bereiche, Helfer, Aufgaben, Speisekarten und Geländeplan vollständig sind.",
+      "expected_output": "Der Agent liest alle genannten Bereiche und liefert eine belegte Einsatzübersicht mit offenen Punkten, ohne ungeprüfte Mutationen.",
+      "files": [],
+      "expectations": [
+        "Prüft das richtige Event und bei Mehrtägigkeit den richtigen Festtag.",
+        "Liest Areas, Assignments, Tasks, Menüs und Pläne mit --json.",
+        "Trennt gesicherte Lücken von Empfehlungen."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Verschiebe den Programmpunkt Eröffnung um eine Stunde und informiere automatisch alle Helfer.",
+      "expected_output": "Der Agent ändert den eindeutig gefundenen Programmpunkt nach Freigabe und erklärt, dass keine allgemeine Benachrichtigungsaktion belegt ist.",
+      "files": [],
+      "expectations": [
+        "Liest Programm und Helferzuweisungen zuerst.",
+        "Zeigt alten und neuen Zeitpunkt und fordert Bestätigung.",
+        "Erfindet keine automatische Nachricht und nennt den verbleibenden Kundenschritt."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Räume nach dem Fest alle offenen Aufgaben, Buchungen und nicht mehr benötigten Dateien auf.",
+      "expected_output": "Der Agent erstellt getrennte Listen und holt pro destruktivem Bereich eine Freigabe ein, statt pauschal alles zu löschen.",
+      "files": [],
+      "expectations": [
+        "Liest Aufgaben, Buchungen und Dateien vollständig.",
+        "Unterscheidet abschließen, stornieren, Soft-Delete und endgültiges Löschen.",
+        "Fordert blockweise Bestätigung und berichtet Teilergebnisse transparent."
+      ]
+    }
+  ]
+}

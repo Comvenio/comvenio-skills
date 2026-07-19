@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-volunteers",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Teile die vorhandenen Helfer möglichst gleichmäßig auf Bühne, Bar und Küche auf.",
+      "expected_output": "Der Agent liest Bereiche und bestehende Zuweisungen, kennzeichnet unbekannte Verfügbarkeiten und zeigt einen Vorschlag vor der Umsetzung.",
+      "files": [],
+      "expectations": [
+        "Liest Areas, Assignments, Leads und Mitglieder.",
+        "Behauptet ohne Daten keine konfliktfreie Verfügbarkeit.",
+        "Zeigt den vollständigen Vorschlag und holt vor Bulk-Änderungen Bestätigung."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Mache Lisa zur Leitung der Bar und weise ihr die Aufgabe Kassenübergabe zu.",
+      "expected_output": "Der Agent löst Lisa als Mitglied auf, prüft Bereich und Task-Kontext und setzt Leitung und Aufgabe getrennt.",
+      "files": [],
+      "expectations": [
+        "Verwendet die Member-ID und zeigt den aufgelösten Namen.",
+        "Prüft bestehende Leitung und passende Aufgabe oder Kontext.",
+        "Liest Lead und Task-Zuweisung nach der Änderung erneut."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Entferne alle bisherigen Helferzuweisungen und plane die Bereiche komplett neu.",
+      "expected_output": "Der Agent zeigt alle aktuellen Zuweisungen und verlangt vor assignment clear eine eindeutige Bestätigung.",
+      "files": [],
+      "expectations": [
+        "Liest alle betroffenen Bereiche und Assignments.",
+        "Verwendet clear nicht ohne ausdrückliche Bestätigung.",
+        "Plant die Neuzuordnung erst nach dem bestätigten Umfang."
+      ]
+    }
+  ]
+}

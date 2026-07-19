@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-club",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Aktualisiere Anschrift, E-Mail und Telefonnummer unseres Vereins.",
+      "expected_output": "Der Agent zeigt alten und neuen Stand der drei Felder, holt Freigabe ein und ändert keine weiteren Profildaten.",
+      "files": [],
+      "expectations": [
+        "Prüft Identität, Zielverein und aktuelles Profil.",
+        "Verwendet ein partielles Update nur für die genannten Felder.",
+        "Fordert Bestätigung und liest das Profil danach erneut."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Lege die Abteilung Bogensport unter der Hauptabteilung Sport an.",
+      "expected_output": "Der Agent liest den Abteilungsbaum, löst Sport eindeutig auf und legt Bogensport als Kind an.",
+      "files": [],
+      "expectations": [
+        "Liest den vollständigen Abteilungsbaum.",
+        "Verwendet die belegte Parent-Abteilungsbeziehung.",
+        "Prüft Position und Namen nach der Anlage erneut."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Stelle das öffentliche Design auf modern mit unseren Farben um und übernimm es direkt.",
+      "expected_output": "Der Agent liest Design und Homepage, zeigt einen Dry-Run und fordert vor der öffentlichen Änderung eine Freigabe.",
+      "files": [],
+      "expectations": [
+        "Verwendet club design zuerst mit --dry-run --json.",
+        "Fordert trotz 'direkt' eine Bestätigung für die öffentliche Wirkung, sofern Werte noch nicht vollständig gezeigt wurden.",
+        "Erzeugt Vorschau und Homepage-Verifikation nach dem Anwenden."
+      ]
+    }
+  ]
+}

@@ -6,7 +6,6 @@ description: >
   Spielplan, Zeiten, Ergebnisse, Sonderwertungen und Tabelle. Verwende diesen
   Skill immer bei Turnier, Meisterschaft, Mannschaften, Teilnehmern, Auslosung,
   Spielplan, Re-Draw, Ergebnis oder Platzierung.
-compatibility: Benötigt ein angemeldetes comvenio CLI mit den passenden Turnierrechten.
 ---
 
 # Comvenio Turniere

@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-sponsors",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Lege die Muster GmbH mit Logo als Sponsor an und ordne ihr das Gold-Paket für 1.500 Euro jährlich zu.",
+      "expected_output": "Der Agent prüft Bestand und Paket, legt Sponsor und Logo an, rechnet den Preis korrekt in Cent um und zeigt die Zuordnung vor Freigabe.",
+      "files": [],
+      "expectations": [
+        "Liest Sponsoren, Produkte und Abteilungen zuerst.",
+        "Behandelt das Logo öffentlich und Vertragsdaten privat.",
+        "Zeigt Preis und Laufzeit verständlich und prüft die Zuordnung erneut."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Hinterlege die neuen Konditionen 2027, ohne die alte Vertragsversion zu überschreiben.",
+      "expected_output": "Der Agent liest bestehende Versionen und ergänzt eine neue Vertragsversion mit eigener Gültigkeit.",
+      "files": [],
+      "expectations": [
+        "Liest Produkt und Vertragsversionen vollständig.",
+        "Legt eine neue Version an statt die alte zu überschreiben.",
+        "Fordert vor Preis- und Laufzeitwirkung Bestätigung."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Kündige den aktiven Vertrag zum Jahresende und entferne anschließend den Sponsor.",
+      "expected_output": "Der Agent trennt Kündigung und Sponsor-Löschung, zeigt Folgen und fordert für beide kritischen Schritte eine Bestätigung.",
+      "files": [],
+      "expectations": [
+        "Prüft aktive Zuordnungen und Dokumente zuerst.",
+        "Kündigt mit Enddatum, bevor eine Löschung erwogen wird.",
+        "Entfernt den Sponsor nicht ohne gesonderte Bestätigung."
+      ]
+    }
+  ]
+}

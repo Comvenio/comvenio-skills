@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-club-onboarding",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Richte unseren neuen Verein komplett ein: Profil, Abteilungen, Mitglieder, Teams, Räume und Homepage.",
+      "expected_output": "Der Agent erstellt zuerst eine Bestandsaufnahme und einen Etappenplan und holt für jede Etappe eine eigene Freigabe ein.",
+      "files": [],
+      "expectations": [
+        "Prüft alle vorhandenen Zielbereiche vor Änderungen.",
+        "Trennt Profil, Struktur, Import, Objekte und Homepage in Etappen.",
+        "Behauptet weder One-Shot-Transaktion noch globalen Rollback."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Importiere die Mitgliederliste und aktiviere anschließend direkt die öffentliche Homepage.",
+      "expected_output": "Der Agent zeigt zuerst Import-Preview und Homepage-Vorschau und verlangt getrennte Freigaben für echten Import und Veröffentlichung.",
+      "files": [],
+      "expectations": [
+        "Führt den Mitgliederimport zunächst mit preview: true aus.",
+        "Erzeugt eine Homepage-Vorschau vor apply.",
+        "Behandelt Import und öffentliche Homepage als getrennte kritische Etappen."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Übernimm die Struktur unseres alten Vereins, ändere aber nichts, bevor du mir jede Etappe gezeigt hast.",
+      "expected_output": "Der Agent erstellt ausschließlich eine Bestandsaufnahme und einen detaillierten Etappenplan ohne Mutation.",
+      "files": [],
+      "expectations": [
+        "Liest nur und führt keine schreibenden Befehle aus.",
+        "Zeigt Abhängigkeiten, mögliche Duplikate und kritische Schritte.",
+        "Kennzeichnet Rollen, Rechte und Domainverwaltung als nicht per CLI belegt."
+      ]
+    }
+  ]
+}

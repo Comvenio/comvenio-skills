@@ -43,6 +43,7 @@ CLI, werden Skill und Eval-Fälle im selben Arbeitsgang nachgezogen.
 ```text
 skills/<skill-name>/
 ├── SKILL.md
+├── README.md
 └── evals/
     └── evals.json
 ```
@@ -50,6 +51,8 @@ skills/<skill-name>/
 - Verzeichnisname und `name` im Frontmatter müssen übereinstimmen.
 - Die `description` benennt Aufgabe und Trigger deutlich.
 - `SKILL.md` bleibt unter 500 Zeilen.
+- `README.md` erklärt Kundennutzen, Beispiele, Sicherheitsgrenzen und bekannte
+  Einschränkungen ohne Backend- oder Infrastrukturdetails.
 - Jeder Skill enthält mindestens drei realistische Kunden-Testfälle.
 - Fachdetails gehören nur in den betroffenen Skill.
 

@@ -6,7 +6,6 @@ description: >
   Programm, Einladungen, Anmeldungen, Ressourcen und Veranstaltungsdesign.
   Verwende diesen Skill immer, wenn ein Kunde Events, Termine, Feste,
   Trainingsserien, Helferbereiche oder öffentliche Veranstaltungsseiten erwähnt.
-compatibility: Benötigt ein angemeldetes comvenio CLI mit den passenden Veranstaltungsrechten.
 ---
 
 # Comvenio Veranstaltungen

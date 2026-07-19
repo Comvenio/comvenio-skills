@@ -6,7 +6,6 @@ description: >
   Verwende diesen Skill immer bei Speisekarte, Getränkekarte, Essensliste,
   Rezept, Allergen, Zutatenbestand, Festküche, Einkauf oder wenn ein Kunde eine
   Karte aus einem Foto oder Text erstellen möchte.
-compatibility: Benötigt ein angemeldetes comvenio CLI mit Berechtigung für Speisekarten und Versorgung.
 ---
 
 # Comvenio Speisekarten und Einkauf

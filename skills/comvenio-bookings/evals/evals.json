@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-bookings",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Buche den Dart-Raum jeden Dienstag im August von 19 bis 21 Uhr für Max Muster.",
+      "expected_output": "Der Agent prüft Objekt, Regeln, Belegung und Mitglied, zeigt alle Termine und legt die Sammelbuchung erst nach Freigabe an.",
+      "files": [],
+      "expectations": [
+        "Prüft den richtigen Club, das Objekt und vorhandene Buchungen.",
+        "Löst Max Muster über die Member-ID auf und zeigt alle Termine.",
+        "Fordert vor der Bulk-Buchung Bestätigung und prüft das Ergebnis."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Zeige alle offenen Buchungsanfragen und genehmige die Anfrage für den Gymnastikraum.",
+      "expected_output": "Der Agent zeigt die passende Anfrage mit Antragsteller und Zeitraum und holt vor der Genehmigung eine eindeutige Freigabe ein.",
+      "files": [],
+      "expectations": [
+        "Liest pending Buchungen und die gewählte Buchung im Detail.",
+        "Prüft, dass genau eine Anfrage gemeint ist.",
+        "Führt approve erst nach Bestätigung aus und liest den Status erneut."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Lösche das Vereinsheim mitsamt allen Räumen und Objekten.",
+      "expected_output": "Der Agent ermittelt die gesamte Hierarchie und verlangt vor einer erzwungenen kaskadierenden Löschung eine klare Bestätigung.",
+      "files": [],
+      "expectations": [
+        "Zeigt betroffene Räume, Objekte und Regeln vor der Löschung.",
+        "Verwendet --force nicht ohne gesonderte Bestätigung.",
+        "Bietet keinen direkten API-Ausweg an."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-data",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Finde den letzten Sponsorenvertrag, lade ihn herunter und fasse ihn zusammen.",
+      "expected_output": "Der Agent sucht im passenden Kontext, lädt die gefundene Datei lokal herunter und fasst sie ohne unnötige Offenlegung zusammen.",
+      "files": [],
+      "expectations": [
+        "Prüft Club und fachlichen Ablagekontext.",
+        "Verwendet data search oder list, show und download mit --json.",
+        "Gibt keine vertraulichen Rohdaten oder URLs unnötig aus."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Räume den Papierkorb der Dart-Abteilung vollständig auf.",
+      "expected_output": "Der Agent zeigt Umfang und Folgen und leert den Papierkorb erst nach ausdrücklicher Bestätigung.",
+      "files": [],
+      "expectations": [
+        "Ermittelt den richtigen Kontext und Papierkorbumfang.",
+        "Kennzeichnet empty-trash als endgültige Aktion.",
+        "Fordert eine klare Bestätigung und prüft danach den Stand."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Erstelle einen geschützten Vorstandsordner und gib Lisa Schreibrechte.",
+      "expected_output": "Der Agent löst Lisa als Benutzerin auf, zeigt Ordner und Recht und setzt beides kontrolliert.",
+      "files": [],
+      "expectations": [
+        "Liest vorhandene Ordner und Benutzerbezug zuerst.",
+        "Verwendet nur belegte user-basierte Ordnerrechte.",
+        "Fordert vor der Rechtevergabe Bestätigung und liest die Rechte erneut."
+      ]
+    }
+  ]
+}

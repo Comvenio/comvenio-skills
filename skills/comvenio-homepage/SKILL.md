@@ -6,7 +6,6 @@ description: >
   Vorschau, responsive Qualitätsprüfung und kundeneigene Domains. Verwende
   diesen Skill immer bei Homepage, Website, öffentlichem Auftritt, Design,
   Vereinsdomain, DNS oder der Frage, warum eine Club-Seite nicht erreichbar ist.
-compatibility: Benötigt ein angemeldetes comvenio CLI und Berechtigung zur Verwaltung der öffentlichen Website.
 ---
 
 # Comvenio Vereins-Homepage

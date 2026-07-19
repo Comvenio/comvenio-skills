@@ -6,7 +6,6 @@ description: >
   Sammelanlagen und Abschluss. Verwende diesen Skill immer bei Aufgabe, To-do,
   Helfereinteilung, Zuständigkeit, Checkliste, Fälligkeit oder offenen Punkten
   aus Veranstaltung, Sitzung, Objekt oder Versorgung.
-compatibility: Benötigt ein angemeldetes comvenio CLI mit den passenden Aufgabenrechten.
 ---
 
 # Comvenio Aufgaben

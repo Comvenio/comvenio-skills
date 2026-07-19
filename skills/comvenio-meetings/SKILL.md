@@ -6,7 +6,6 @@ description: >
   Veröffentlichung mit dem Comvenio CLI. Verwende diesen Skill immer bei
   Vorstandssitzung, Mitgliederversammlung, TOP, Protokoll, Abstimmung,
   Entscheidung oder Beschluss.
-compatibility: Benötigt ein angemeldetes comvenio CLI mit den passenden Sitzungsrechten.
 ---
 
 # Comvenio Meetings und Protokolle

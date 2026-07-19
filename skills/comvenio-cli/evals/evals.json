@@ -19,7 +19,7 @@
       "files": [],
       "expectations": [
         "Fordert das Zugriffstoken nicht im Chat an.",
-        "Verweist auf Einstellungen → CLI-Zugriff und den lokalen Login-Befehl.",
+        "Verweist auf Mein Bereich → CLI-Zugriff und den lokalen Login-Befehl.",
         "Erklärt den nächsten Schritt ohne interne Infrastrukturbegriffe."
       ]
     },

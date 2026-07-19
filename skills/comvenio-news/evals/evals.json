@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-news",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Erstelle aus den Sommerfest-Fotos eine öffentliche News, veröffentliche sie aber noch nicht.",
+      "expected_output": "Der Agent wählt belegte Bilder, erstellt eine Vorschau und speichert einen Entwurf ohne Veröffentlichung.",
+      "files": [],
+      "expectations": [
+        "Liest vorhandene News und Event-Medien zuerst.",
+        "Verwendet Vorschau und anschließend --draft.",
+        "Veröffentlicht trotz öffentlicher Zielgruppe noch nicht."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Ändere bei unserer bereits veröffentlichten News Titel und Teaser, der übrige Inhalt soll gleich bleiben.",
+      "expected_output": "Der Agent liest die vollständige Live-News, zeigt die partielle Änderung und holt vor dem Update eine Freigabe ein.",
+      "files": [],
+      "expectations": [
+        "Liest die bestehende News vollständig.",
+        "Bewahrt den restlichen Inhalt unverändert.",
+        "Fordert wegen der Live-Änderung Bestätigung und verifiziert danach."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Erstelle einen Highlight-Clip mit zwei Partnern und veröffentliche die News sofort.",
+      "expected_output": "Der Agent zeigt Video- und News-Parameter, erstellt eine Vorschau und verlangt vor Upload und Veröffentlichung eine klare Bestätigung.",
+      "files": [],
+      "expectations": [
+        "Prüft Partnerdaten und Medienquellen.",
+        "Behandelt Video-Upload und News-Publikation als kritische Schritte.",
+        "Veröffentlicht nur nach eindeutiger Bestätigung und prüft den Live-Stand."
+      ]
+    }
+  ]
+}

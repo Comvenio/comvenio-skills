@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-plans",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Lege für das Sommerfest einen Geländeplan mit Bühne, Bar, Parkplatz und Toiletten an.",
+      "expected_output": "Der Agent findet das Event, legt einen Plan und die vier Elemente schrittweise an und zeigt den geprüften Stand.",
+      "files": [],
+      "expectations": [
+        "Prüft Event und bestehende Pläne zuerst.",
+        "Verwendet passende Zonen und Marker mit --json.",
+        "Liest den vollständigen Plan nach der Anlage erneut."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Erstelle aus dem bestehenden Plan eine freundliche illustrierte Besucherkarte mit exakten Beschriftungen.",
+      "expected_output": "Der Agent nutzt illustrate als Vorbereitung, lässt das Bild separat erzeugen und legt mit compose exakte Labels darüber.",
+      "files": [],
+      "expectations": [
+        "Behauptet nicht, dass plan illustrate selbst das Bild erzeugt.",
+        "Bewahrt die Layout-Referenz bei der Bildgenerierung.",
+        "Verwendet compose für echte Beschriftungen und nennt die Ausgabedatei."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Lösche den alten Fluchtplan und alle darin enthaltenen Bereiche.",
+      "expected_output": "Der Agent zeigt Plan und betroffene Elemente und fordert vor der Löschung eine eindeutige Bestätigung.",
+      "files": [],
+      "expectations": [
+        "Liest den vollständigen Fluchtplan zuerst.",
+        "Nennt die betroffenen Zonen und Marker.",
+        "Löscht erst nach Bestätigung und prüft die Planliste erneut."
+      ]
+    }
+  ]
+}

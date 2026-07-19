@@ -6,7 +6,6 @@ description: >
   Skill immer bei Fragen zu Comvenio im Terminal, CLI-Zugriff, Token,
   Berechtigungen, Vereinskontext, Fehlern oder wenn unklar ist, welcher
   Comvenio-Fachskill zuständig ist.
-compatibility: Benötigt das installierte comvenio CLI und ein persönliches Zugriffstoken aus Comvenio.
 ---
 
 # Comvenio CLI – Vereinsassistenz
@@ -51,7 +50,7 @@ Arbeitsdetails des Agenten.
    die Auswahl geklärt sein, bevor Daten geändert werden.
 
 Wenn noch kein Login besteht, bitte den Nutzer, in Comvenio unter
-**Einstellungen → CLI-Zugriff** ein persönliches Token zu erzeugen und diesen
+**Mein Bereich → CLI-Zugriff** ein persönliches Token zu erzeugen und diesen
 Befehl selbst lokal auszuführen:
 
 ```bash
@@ -84,16 +83,31 @@ Gehe bei jeder Fachaufgabe in dieser Reihenfolge vor:
 
 | Nutzerwunsch | Zuständiger Skill |
 |---|---|
+| Vereinsprofil, Einstellungen oder Abteilungen | `comvenio-club` |
+| Mitglieder, Familien, Import, Teams oder Kader | `comvenio-members` |
+| Gebäude, Räume, Objekte oder Buchungen | `comvenio-bookings` |
 | Veranstaltung, Training, Fest oder Terminserie | `comvenio-events` |
 | Öffentliche Website, Design oder eigene Domain | `comvenio-homepage` |
 | Sitzung, Tagesordnung, Protokoll oder Beschluss | `comvenio-meetings` |
 | Gericht, Getränk, Speisekarte oder Einkauf | `comvenio-supply` |
 | Aufgabe, Zuständigkeit oder Checkliste | `comvenio-tasks` |
 | Turnier, Auslosung, Spielplan oder Ergebnis | `comvenio-tournaments` |
+| Meldung, Bericht, Bild- oder Video-News | `comvenio-news` |
+| Datei, Ordner, Freigabe, Paper oder Export | `comvenio-data` |
+| Geländeplan, Besucherkarte, Zone oder Marker | `comvenio-plans` |
+| Sponsor, Paket, Vertrag oder Partnerlogo | `comvenio-sponsors` |
+| Gesamtcheck und Ablauf eines Veranstaltungstags | `comvenio-event-day` |
+| Helfereinteilung, Bereichsleitung oder Einsatzaufgabe | `comvenio-volunteers` |
+| Saison, regelmäßige Termine oder Ressourcenplanung | `comvenio-season-planner` |
+| Ersteinrichtung oder strukturierte Datenübernahme | `comvenio-club-onboarding` |
 
 Bleibt der Wunsch außerhalb dieser Bereiche, nutze
 `comvenio --help` und `comvenio schema --json`, um nur tatsächlich vorhandene
 Funktionen zu nennen.
+
+Rollen und Berechtigungen, Community- oder Channel-Moderation,
+ClubAgent-Administration und wesentliche Finanzabläufe sind derzeit nicht über
+das CLI abgedeckt. Eine eigene Domain wird in der Comvenio-Web-App angebunden.
 
 ## Fehler verständlich behandeln
 
