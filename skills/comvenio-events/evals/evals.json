@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-events",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Lege ab 2. September jeden Mittwoch von 19 bis 21 Uhr ein Darttraining für unsere Dart-Abteilung an, vorerst bis Ende Februar.",
+      "expected_output": "Der Agent erstellt nach Schema- und Kontextprüfung eine Vorlage, eine wöchentliche Serie und materialisiert den gewünschten Zeitraum.",
+      "files": [],
+      "expectations": [
+        "Prüft Verein, Abteilung, Schema und Event-Hilfe vor der Mutation.",
+        "Verwendet Vorlage → Serie → Materialisierung mit --json.",
+        "Bestätigt Zeitraum und erzeugte Termine verständlich."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Erstelle unser dreitägiges Gründungsfest mit Freitag, Samstag und Sonntag. Am Samstag gibt es Festumzug und Party. Veröffentliche noch nichts.",
+      "expected_output": "Der Agent plant ein Parent-Event mit drei Festtagen und ordnet das Samstagsprogramm dem richtigen Child-Event zu.",
+      "files": [],
+      "expectations": [
+        "Modelliert Parent- und Child-Events getrennt.",
+        "Hält den Stand als Entwurf oder geplant und veröffentlicht nicht.",
+        "Prüft die angelegte Struktur und nennt die Festtage beim Namen."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Lösch beim Sommerfest einfach alle Bereiche und setz nur Bar und Bühne neu.",
+      "expected_output": "Der Agent liest zuerst die Bereiche, schützt die Default-Area und verlangt vor weitreichendem Löschen eine eindeutige Bestätigung.",
+      "files": [],
+      "expectations": [
+        "Löscht die Default-Area nicht.",
+        "Liest den aktuellen Bereichsbestand vor Änderungen.",
+        "Fordert Bestätigung für den destruktiven Umfang und bietet einen sicheren additiven Ablauf an."
+      ]
+    }
+  ]
+}

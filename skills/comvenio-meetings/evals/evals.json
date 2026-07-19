@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-meetings",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Lege eine monatliche Vorstandssitzungsserie an und bereite für den nächsten Termin ein Protokoll mit den TOPs Kassenbericht, Sommerfest und Sonstiges vor.",
+      "expected_output": "Der Agent prüft bestehende Serien, erstellt bei Bedarf Serie und konkretes Protokoll und zeigt eine sortierte Tagesordnung.",
+      "files": [],
+      "expectations": [
+        "Prüft Verein, Meeting-Schema und bestehende Serien.",
+        "Trennt Sitzungsserie, konkretes Protokoll und Tagesordnung.",
+        "Verwendet JSON-Dateien und --json für die CLI-Schritte."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Wir behandeln gerade TOP 3. Eröffne die Abstimmung über 5.000 Euro Budget und trage gleich 12 Ja, 2 Nein und 1 Enthaltung ein.",
+      "expected_output": "Der Agent prüft aktuellen TOP, Anwesenheit und Abstimmungsart und verlangt Bestätigung für die Offline-Zähler.",
+      "files": [],
+      "expectations": [
+        "Prüft, dass TOP 3 aktuell behandelt wird.",
+        "Klären beziehungsweise prüfen Teilnehmer und Stimmberechtigung.",
+        "Setzt Offline-Ergebnisse nicht ohne eindeutige Bestätigung."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Veröffentliche das Protokoll von gestern sofort, auch wenn noch zwei Unterschriften fehlen.",
+      "expected_output": "Der Agent prüft den Protokollstatus und erklärt fehlende Validierungen, ohne den Freigabeprozess zu umgehen.",
+      "files": [],
+      "expectations": [
+        "Ruft den Validierungsstatus vor der Veröffentlichung ab.",
+        "Umgeht fehlende Bestätigungen nicht.",
+        "Veröffentlicht erst nach erfüllten Gates und Bestätigung."
+      ]
+    }
+  ]
+}

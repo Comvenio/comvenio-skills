@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-homepage",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Baue für unseren Schützenverein eine moderne öffentliche Website mit Start, Verein, Termine und Kontakt. Vereinsfarben sind dunkelgrün und gold. Zeig sie mir zuerst.",
+      "expected_output": "Der Agent liest Schema und Bestand, komponiert Inhalt und Design, erzeugt Vorschau und Audit und wartet vor Live-Anwendung auf Freigabe.",
+      "files": [],
+      "expectations": [
+        "Lädt Homepage- und Design-Schema sowie den aktuellen öffentlichen Bestand.",
+        "Verwendet Preview und verify homepage --audit mit --json.",
+        "Wendet weder Inhalte noch Design vor der menschlichen Freigabe live an."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Unsere bestehende Homepage soll nur neue Farben und einen besseren Startbereich bekommen. Die restlichen Seiten dürfen nicht verschwinden.",
+      "expected_output": "Der Agent liest den Bestand, erstellt eine additive Änderung und schützt die übrigen Seiten vor einem Vollersatz.",
+      "files": [],
+      "expectations": [
+        "Verwendet homepage show --public und einen Design-Trockenlauf.",
+        "Nutzt kein unbestätigtes --clear.",
+        "Prüft Vorschau und responsive Qualität vor der Änderung."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Ich möchte www.mein-schuetzenverein.de verbinden. Kannst du die Domain direkt in Cloudflare anlegen?",
+      "expected_output": "Der Agent führt kundenorientiert durch die Domainverwaltung und lässt Comvenio die Plattformseite automatisieren.",
+      "files": [],
+      "expectations": [
+        "Verweist auf Club-Hub → Design → Öffentliche Website → Domainverwaltung.",
+        "Fordert den Kunden nicht zu manuellen Cloudflare-Arbeiten oder zur Herausgabe von Zugangsdaten auf.",
+        "Verwendet verify url erst, nachdem Comvenio den Status Aktiv zeigt."
+      ]
+    }
+  ]
+}

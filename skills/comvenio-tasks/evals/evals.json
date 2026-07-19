@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-tasks",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Lege für unser Sommerfest die Aufgabe 'Bühne aufbauen' bis Freitag 16 Uhr an und weise sie Max Mustermann als Verantwortlichem zu.",
+      "expected_output": "Der Agent findet Veranstaltungskontext und Mitglied, legt die Aufgabe mit Fälligkeit an und prüft die Zuweisung.",
+      "files": [],
+      "expectations": [
+        "Findet oder erstellt den richtigen Task-Kontext.",
+        "Verwendet eine Member-ID für die Zuweisung.",
+        "Liest die Aufgabe nach dem Anlegen erneut und nennt Namen."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Erstelle für die Jahreshauptversammlung zehn Aufgaben aus dieser Liste, jeweils mit Checkliste und Verantwortlichem.",
+      "expected_output": "Der Agent bereitet eine geprüfte Bulk-Datei vor und zeigt dem Nutzer die Zusammenfassung vor der Anlage.",
+      "files": [],
+      "expectations": [
+        "Prüft Meeting-Kontext und alle Verantwortlichen.",
+        "Zeigt Titel, Anzahl und Fälligkeiten vor dem Bulk-Aufruf.",
+        "Verwendet task bulk mit --json und prüft die Ergebnisse."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Lösch alle erledigten Aufgaben vom letzten Jahr samt Kontexten.",
+      "expected_output": "Der Agent ermittelt zuerst den konkreten Bestand und verlangt vor der weitreichenden Löschung eine Bestätigung.",
+      "files": [],
+      "expectations": [
+        "Liest und grenzt die betroffenen Aufgaben und Kontexte ein.",
+        "Weist auf mögliche gemeinsame Nutzung von Kontexten hin.",
+        "Löscht erst nach Bestätigung des konkreten Umfangs."
+      ]
+    }
+  ]
+}

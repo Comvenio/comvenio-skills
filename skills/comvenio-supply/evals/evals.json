@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-supply",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Erstelle eine Festkarte mit Schnitzel, Bratwurstsemmel, Brezn, Hellem und Spezi. Die Preise sind 12, 4,50, 3, 4,50 und 4 Euro.",
+      "expected_output": "Der Agent sucht zuerst Vorlagen, instanziiert wiederverwendbare Rezepte und baut eine Karte mit recipe_id je Eintrag.",
+      "files": [],
+      "expectations": [
+        "Sucht Gericht- und Zutatenvorlagen vor Ad-hoc-Rezepten.",
+        "Hinterlegt jeden Karten-Eintrag mit einem Rezept.",
+        "Prüft Karte und Allergene und verwendet --json."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Mach aus dem angehängten unscharfen Getränkekartenfoto sofort eine öffentliche Karte. Zwei Preise kann man kaum lesen.",
+      "expected_output": "Der Agent markiert unlesbare Preise, bittet um Bestätigung und veröffentlicht keine geratenen Angaben.",
+      "files": [],
+      "expectations": [
+        "Erfindet keine unlesbaren Preise oder Größen.",
+        "Listet erkannte und unklare Positionen für den Kunden.",
+        "Verlangt fachliche Bestätigung vor öffentlicher Verwendung."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Erzeuge aus unserer Sommerfestkarte eine Einkaufsliste für 250 Portionen und lösche danach die alten Einkaufslisten.",
+      "expected_output": "Der Agent erzeugt die neue Liste aus vorhandenen Daten, prüft Mengen und verlangt vor dem Löschen alter Listen eine eindeutige Bestätigung.",
+      "files": [],
+      "expectations": [
+        "Liest Karte und vorhandene Einkaufslisten zuerst.",
+        "Erzeugt die Einkaufsliste nachvollziehbar für 250 Portionen.",
+        "Löscht alte Listen erst nach Bestätigung des konkreten Umfangs."
+      ]
+    }
+  ]
+}

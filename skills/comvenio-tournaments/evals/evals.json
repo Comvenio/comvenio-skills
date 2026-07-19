@@ -1,0 +1,38 @@
+{
+  "skill_name": "comvenio-tournaments",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Plane unsere jährliche Dartmeisterschaft mit 16 Einzelspielern, vier Gruppen und anschließend Viertelfinale. Beginn ist um 10 Uhr auf vier Boards.",
+      "expected_output": "Der Agent prüft Schema und bestehende Serien, erstellt eine Ausführung, bereitet Teilnehmer, Draw und Spielplan-Trockenlauf vor und wartet vor Bestätigung der Auslosung.",
+      "files": [],
+      "expectations": [
+        "Trennt Turnierserie und konkrete Ausführung.",
+        "Zeigt Gruppen- und Qualifikationsregeln vor draw-confirm.",
+        "Verwendet schedule-generate zuerst mit --dry-run und --json."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Team Adler hat abgesagt. Zieh das Turnier sofort komplett neu aus und lösche alle alten Spiele.",
+      "expected_output": "Der Agent prüft Turnierstand und Absagemodus und verlangt vor dem atomaren Re-Draw eine eindeutige Bestätigung.",
+      "files": [],
+      "expectations": [
+        "Liest Teilnehmer und bestehende Spiele vor der Änderung.",
+        "Klären Absagewirkung und schützt vor separatem unkontrolliertem Löschen.",
+        "Verwendet redraw erst nach Bestätigung."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Trag beim Finale 3:1 ein. Ich weiß nicht mehr, ob die Heimmannschaft Blau oder Rot war.",
+      "expected_output": "Der Agent liest das konkrete Match und zeigt beide Seiten, bevor er das Ergebnis einträgt.",
+      "files": [],
+      "expectations": [
+        "Ermittelt das Finalspiel und die Teilnehmernamen.",
+        "Rät die Heim-/Auswärtszuordnung nicht.",
+        "Fordert Bestätigung des zugeordneten Ergebnisses vor match-result."
+      ]
+    }
+  ]
+}
