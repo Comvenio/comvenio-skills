@@ -1,0 +1,65 @@
+name: Fehler melden
+description: Melden Sie ein reproduzierbares Problem mit einem Comvenio Skill.
+title: "[Fehler]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Vielen Dank für den Hinweis. Veröffentlichen Sie keine Zugriffstoken,
+        Passwörter oder personenbezogenen Vereinsdaten.
+  - type: input
+    id: skill
+    attributes:
+      label: Betroffener Skill
+      description: Zum Beispiel comvenio-events oder comvenio-members.
+      placeholder: comvenio-...
+    validations:
+      required: true
+  - type: dropdown
+    id: assistant
+    attributes:
+      label: Verwendeter KI-Assistent
+      options:
+        - Claude
+        - Codex
+        - Anderer kompatibler Assistent
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Was ist passiert?
+      description: Beschreiben Sie das sichtbare Verhalten ohne vertrauliche Daten.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Schritte zum Nachstellen
+      placeholder: |
+        1. Ich habe ... gefragt.
+        2. Der Assistent hat ...
+        3. Danach erschien ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Erwartetes Verhalten
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versionen
+      description: Skill-Version oder Commit und CLI-Version, sofern bekannt.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Datenschutz
+      options:
+        - label: Ich habe Tokens, Passwörter und personenbezogene Vereinsdaten entfernt.
+          required: true
+
