@@ -132,3 +132,16 @@ Fehler und Verbesserungsvorschläge können im
 [GitHub-Repository](https://github.com/Comvenio/comvenio-skills/issues)
 gemeldet werden. Bitte keine Zugriffstoken, Passwörter oder personenbezogenen
 Vereinsdaten in öffentliche Issues schreiben.
+
+Nutzen Sie das passende
+[Issue-Formular](https://github.com/Comvenio/comvenio-skills/issues/new/choose).
+Sicherheitsprobleme werden gemäß [SECURITY.md](SECURITY.md) ausschließlich
+privat gemeldet.
+
+## Mitwirken und Lizenz
+
+Hinweise für Beiträge stehen in [CONTRIBUTING.md](CONTRIBUTING.md). Änderungen
+werden im [CHANGELOG.md](CHANGELOG.md) dokumentiert.
+
+Die Comvenio Skills sind unter der
+[Apache License 2.0](LICENSE) veröffentlicht.
