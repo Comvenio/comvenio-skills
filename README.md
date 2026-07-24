@@ -12,12 +12,14 @@ vorbereiten und kritische Schritte erst nach Ihrer Freigabe ausführen.
 ## Voraussetzungen
 
 - Das offizielle `comvenio` CLI ist installiert.
-- Sie haben in Comvenio unter **Mein Bereich → CLI-Zugriff** ein persönliches
-  Zugriffstoken erstellt und das CLI damit verbunden.
+- Sie haben `comvenio login` ausgeführt und die Verbindung im geöffneten
+  Comvenio-Browserfenster bestätigt.
 - Ihr KI-Assistent unterstützt Agent Skills.
 
-Das persönliche Token gehört nur in den lokalen Login-Befehl. Senden Sie es
-nicht im Chat und speichern Sie es nicht in Projektdateien.
+Zugangsdaten werden nicht im Chat eingegeben. OAuth-Secrets liegen im
+geschützten Betriebssystemspeicher; die Skills lesen oder protokollieren sie
+nicht. Sie verwenden nur die für den angemeldeten Verein und die aktuellen
+Rechte sichtbaren `comvenio action`-Funktionen.
 
 ## Installation
 

@@ -9,9 +9,10 @@ Beispielwünsche:
 - „Welcher Skill hilft mir bei unserem Sommerfest?“
 - „Warum darf ich diese Änderung nicht ausführen?“
 
-Ihr persönliches Zugriffstoken geben Sie ausschließlich selbst in Ihrem lokalen
-Terminal ein. Der Assistent fordert es nicht im Chat an und gibt es nicht aus.
-Vor Änderungen prüft er Identität, Zielverein und vorhandene Daten.
+Die Anmeldung starten Sie mit `comvenio login` und bestätigen sie direkt im
+Comvenio-Browserfenster. Der Assistent fordert weder Passwort noch Token im Chat
+an. Vor Änderungen prüft er Identität, Zielverein und die im aktuellen
+OAuth-/RBAC-Kontext sichtbaren kanonischen Actions.
 
 Fehlt eine Funktion im CLI, benennt der Skill die Lücke. Er versucht keinen
 versteckten oder direkten Zugriff auf Comvenio. Kritische Änderungen benötigen

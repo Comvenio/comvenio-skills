@@ -30,6 +30,11 @@ CLI, werden Skill und Eval-Fälle im selben Arbeitsgang nachgezogen.
 - Keine direkten HTTP-Aufrufe oder versteckten Backend-Schnittstellen.
 - Für Agentenbefehle `--json` verwenden; Fehlercodes nicht als leere Ergebnisse
   behandeln.
+- Standard ist der browserbasierte OAuth-Login. Im OAuth-Modus werden
+  Fachoperationen über `comvenio action list|call|confirm` und nur über die dort
+  sichtbaren kanonischen Action-IDs ausgeführt. Die älteren
+  menschenfreundlichen Domain-Aliase sind ausschließlich Beispiele für den
+  expliziten Device-Token-Kompatibilitätsmodus.
 - Zugriffstoken nie lesen, protokollieren, committen oder im Chat anfordern.
 - Vor Mutationen den aktuellen Zustand lesen.
 - Bei Löschen, Zurücksetzen, Vollersatz, öffentlicher Freischaltung oder

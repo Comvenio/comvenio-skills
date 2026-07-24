@@ -9,6 +9,14 @@ description: >
 
 # Comvenio Vereins-Onboarding
 
+## Verbindlicher OAuth-Pfad
+
+Im Standardmodus zuerst `comvenio whoami --json` und `comvenio action list
+--json` ausführen. Fachoperationen ausschließlich mit der dort sichtbaren
+kanonischen Action-ID und ihrem `input_schema` über `comvenio action call`
+aufrufen. Die Domain-Aliase in den Beispielen gelten nur für den expliziten
+Device-Token-Kompatibilitätsmodus; niemals durch direkte HTTP-Aufrufe ersetzen.
+
 ## Ziel
 
 Richte einen Verein etappenweise ein. Jede Etappe erhält eine sichtbare

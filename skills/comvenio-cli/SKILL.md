@@ -26,7 +26,8 @@ Arbeitsdetails des Agenten.
 - Verwende für eigene CLI-Aufrufe immer `--json`, werte die Antwort aus und fasse
   sie verständlich zusammen.
 - Fordere niemals ein Zugriffstoken, Passwort oder andere Zugangsdaten im Chat
-  an. Der Nutzer gibt sein Token selbst in seinem Terminal ein.
+  an. Die interaktive Anmeldung findet ausschließlich im Comvenio-Browserflow
+  statt.
 - Verwende ausschließlich das `comvenio` CLI. Ein fehlender Befehl wird als
   Produktlücke benannt und nicht über eine technische Hintertür umgangen.
 
@@ -40,34 +41,64 @@ Arbeitsdetails des Agenten.
    comvenio whoami --json
    ```
 
-3. Prüfe den aktiven Verein:
+3. Prüfe die im aktuellen OAuth-/RBAC-Kontext freigegebenen Actions:
 
    ```bash
-   comvenio club info --json
+   comvenio action list --json
    ```
 
-4. Nenne dem Nutzer den erkannten Verein. Bei mehreren möglichen Vereinen muss
-   die Auswahl geklärt sein, bevor Daten geändert werden.
+4. Nenne dem Nutzer den durch `whoami` erkannten Verein. Der Verein wird beim
+   Login ausgewählt und darf nicht über eine freie Club-ID überschrieben werden.
 
-Wenn noch kein Login besteht, bitte den Nutzer, in Comvenio unter
-**Mein Bereich → CLI-Zugriff** ein persönliches Token zu erzeugen und diesen
-Befehl selbst lokal auszuführen:
+Wenn noch kein Login besteht, bitte den Nutzer, diesen Befehl selbst lokal
+auszuführen und die Anmeldung im geöffneten Comvenio-Browserfenster zu
+bestätigen:
 
 ```bash
-comvenio login --token cvn_IHR_TOKEN --json
+comvenio login --json
 ```
 
-Das Token darf weder in der Antwort wiederholt noch in einer Datei gespeichert
-werden.
+OAuth-Secrets liegen im geschützten Betriebssystemspeicher und dürfen weder
+gelesen noch in der Antwort wiedergegeben werden. Ein `cvn_`-Device-Token ist
+nur ein ausdrücklich gewählter Entwickler-/Automationsfallback.
+
+## OAuth-Action-Vertrag
+
+Im Standardmodus führt jeder Fachskill seine Operationen über die sichtbare
+kanonische Action aus:
+
+```bash
+comvenio action list --json
+comvenio action call <cai.action.id> --input '<json>' --json
+```
+
+- Wähle ausschließlich eine Action-ID aus `action list`; die Liste ist bereits
+  nach OAuth-Scopes, Verein und aktueller Backend-RBAC gefiltert.
+- Verwende das dort gelieferte `input_schema`. Erfinde keine Felder.
+- Übergib niemals `club_id`, Benutzer-ID oder Scopes. Diese Werte bindet
+  Comvenio serverseitig.
+- Verwende für wiederholte Schreibversuche denselben ausgegebenen
+  Idempotenzschlüssel.
+- Liefert eine kritische Action eine Vorschau, zeige sie dem Nutzer und verwende
+  nach eindeutiger Freigabe `comvenio action confirm` mit genau den
+  zurückgegebenen Nachweisen.
+- Fehlt ein benötigter Scope, führt der Nutzer `comvenio login --scopes
+  <kommagetrennte-scopes>` erneut aus und bestätigt den neuen Consent.
+
+Die Fachskill-Beispiele mit `comvenio event …`, `comvenio member …` und
+vergleichbaren Domain-Aliasen dokumentieren weiterhin den expliziten
+Device-Token-Kompatibilitätsmodus. Im OAuth-Modus werden sie anhand von
+`action list` auf die gleichwertige kanonische Action übertragen.
 
 ## Arbeitsvertrag
 
 Gehe bei jeder Fachaufgabe in dieser Reihenfolge vor:
 
 1. Erfasse das gewünschte Ergebnis in Vereinssprache.
-2. Ermittle die echte CLI-Syntax mit
-   `comvenio <domain> --help` und bei strukturierten Daten zusätzlich mit
-   `comvenio schema <domain> --json`.
+2. Ermittle im OAuth-Modus Action-ID und Eingabeschema mit
+   `comvenio action list --json`. Nutze `comvenio <domain> --help` und
+   `comvenio schema <domain> --json` nur ergänzend für den
+   Device-Token-Kompatibilitätsmodus.
 3. Lies die betroffenen bestehenden Daten.
 4. Zeige dem Nutzer kurz, was geändert werden soll und welche offenen
    Entscheidungen fehlen.
@@ -105,14 +136,14 @@ Bleibt der Wunsch außerhalb dieser Bereiche, nutze
 `comvenio --help` und `comvenio schema --json`, um nur tatsächlich vorhandene
 Funktionen zu nennen.
 
-Rollen und Berechtigungen, Community- oder Channel-Moderation,
-ClubAgent-Administration und wesentliche Finanzabläufe sind derzeit nicht über
-das CLI abgedeckt. Eine eigene Domain wird in der Comvenio-Web-App angebunden.
+Community- oder Channel-Moderation, ClubAgent-Administration und wesentliche
+Finanzabläufe sind derzeit nicht über das CLI abgedeckt. Eine eigene Domain wird
+in der Comvenio-Web-App angebunden.
 
 ## Fehler verständlich behandeln
 
-- Nicht angemeldet oder Token abgelaufen: Nutzer erzeugt bei Bedarf ein neues
-  Token und führt den Login selbst aus.
+- Nicht angemeldet oder OAuth-Sitzung abgelaufen: Nutzer führt `comvenio login`
+  erneut aus und bestätigt den Browserflow.
 - Fehlendes Recht: Benenne die betroffene Vereinsaktion. Behaupte nicht, dass
   eine technische Störung vorliegt.
 - Datensatz nicht gefunden: Prüfe zuerst Vereinskontext und Sichtbarkeit.
