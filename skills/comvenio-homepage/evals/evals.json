@@ -33,6 +33,17 @@
         "Fordert den Kunden nicht zu manuellen Cloudflare-Arbeiten oder zur Herausgabe von Zugangsdaten auf.",
         "Verwendet verify url erst, nachdem Comvenio den Status Aktiv zeigt."
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "Wir haben die neue Website veröffentlicht. In der Vorschau war oben die Navigation, auf der echten Seite fehlt sie komplett.",
+      "expected_output": "Der Agent erkennt den überlebenden Landing-Modus aus dem Zusammenführen von club design, prüft den Trockenlauf bzw. club settings und setzt landing ausdrücklich auf false, ohne HTML-Navigation nachzubauen.",
+      "files": [],
+      "expectations": [
+        "Prüft custom_template_config.landing im Live-Design (club settings oder Design-Trockenlauf).",
+        "Setzt \"landing\": false in der Design-Datei und wendet club design --file erneut an.",
+        "Baut keine Navigation in custom_html nach und prüft die Live-Seite danach im Bild."
+      ]
     }
   ]
 }

@@ -67,6 +67,13 @@ Komponiere:
 - `home.json` für Tabs, Sections und Widgets,
 - `design-settings.json` für Farben, Typografie und Flex-Template-Konfiguration.
 
+**Referenzqualität ist verbindlich.** Lies vor dem Entwurf
+[`references/qualitaetsrezept.md`](references/qualitaetsrezept.md) und halte dich
+an die Bauform: je Tab ein `custom_html`-Layout, alles Veränderliche als echter
+Widget-Slot, `contact_form` statt nachgebauter Formulare, `"landing": false`
+ausdrücklich in der Design-Datei, freigestellte Logos mit `"card_style": "none"`,
+Vereinslogo über `club logo-upload`, Mobilansicht ohne weggeblendete Hero-Grafik.
+
 Prüfe das Design zunächst ohne Schreiben:
 
 ```bash
@@ -104,9 +111,15 @@ Eine ausdrückliche Bestätigung ist vor dem Live-Schalten erforderlich. Für
 Homepage vollständig ersetzt werden soll.
 
 ```bash
-comvenio homepage apply --file home.json --json
+comvenio homepage show --public --json > sicherung-home.json   # vor jedem Apply
+comvenio club design --file design-settings.json --dry-run --json
 comvenio club design --file design-settings.json --json
+comvenio homepage apply --file home.json --json
 ```
+
+`club design` führt zusammen: Der Trockenlauf nennt, welche Live-Schlüssel
+erhalten bleiben. Warnt er vor `landing`, schreibe `"landing": false` in die Datei,
+sonst fehlen live Kopfzeile und Navigation.
 
 Verwende `homepage apply --clear` nur bei ausdrücklich bestätigtem Vollersatz.
 
@@ -122,6 +135,8 @@ Screenshots oder den Bericht, ohne interne Kennungen auszubreiten.
 
 ## Qualitätsregeln
 
+- Vorschau und Live-Seite sind an 390, 768, 1024 und 1440 px im Bild geprüft,
+  einschließlich Kopfzeile und Navigation.
 - Navigation und Buttons führen zu echten Zielen.
 - Mehrere verlangte Seiten werden nicht heimlich zu einem One-Pager.
 - Mobil, Tablet und Desktop sind geprüft.
