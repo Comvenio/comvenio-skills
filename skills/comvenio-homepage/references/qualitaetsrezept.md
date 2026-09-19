@@ -17,7 +17,7 @@ und Werte sind Beispiele (Verein „SV Musterdorf“, Klassenpräfix `.sv-`).
   | Rückblick / Ausschau | `events_list` mit `time_scope: past` bzw. `upcoming` |
   | Datum im Fließtext | `event_highlight` mit `layout: "date"` und `event_id` |
   | Vereinsabend einer Serie | `event_highlight` mit `series_id` |
-  | Vorstandschaft | `team` mit `group_id`, `show_avatar` |
+  | Vorstandschaft | `team` mit `group_id`, `show_avatar`, `position_order` (Ämter-IDs von oben nach unten), `highlighted_position_ids` |
   | Bilder / Downloads | `image_gallery` / `files` mit `file_ids` |
   | Einzelbild, Wappen | `image` mit `file_id` |
   | Video | `background_video` mit `video_file_id`, `poster_file_id` |
@@ -64,8 +64,11 @@ und Werte sind Beispiele (Verein „SV Musterdorf“, Klassenpräfix `.sv-`).
 
 ## 3. Logo und Wappen
 
-- Vereinslogo setzen: `comvenio club logo-upload --file wappen.png --json`.
-  Ein normaler `data upload` ersetzt das Logo nicht.
+- Vereinslogo setzen: `comvenio club logo-upload --file wappen.png --json`
+  (PNG/JPEG/GIF/WebP/SVG, höchstens 10 MB). Ein normaler `data upload` ersetzt das Logo nicht.
+- Bilder hochladen: `comvenio data upload ./bild.jpg --context club --public --json`
+  landet in der Standard-Abteilung und ist im DataShare sichtbar; `--department <id>`
+  wählt eine andere.
 - EPS/SVG vorher in ein PNG mit transparentem Hintergrund umwandeln,
   mindestens ~1000 px Kantenlänge.
 - Freigestelltes Wappen im Hero: `image`-Slot mit `file_id` und
@@ -121,6 +124,7 @@ Aufbau vorher im Vorschau-Bild prüfen (`comvenio verify url <vorschau-url> --js
 | Live fehlen Kopfzeile und Navigation | alter `landing: true` überlebt | `"landing": false` setzen, erneut `club design --file` |
 | Kasten um freigestelltes Logo | Kartenrahmen des Bild-Widgets | `"card_style": "none"` |
 | „Kein Bild konfiguriert“ nur bei einer Person | alter App-Stand im Browser | `Strg+Umschalt+R` |
+| Vorstand in falscher Reihenfolge (alphabetisch) | Ämter ohne eigene Reihenfolge im Organ | `position_order` im `team`-Slot, IDs aus `club position-list` |
 | Eigene CSS-Breite wirkt nicht | Selektor trifft den Slot nicht | Slot-Container ansprechen, Aufbau vorher ansehen |
 | Verifier Exit 4 nur auf einer Event-Seite | Kontrast im eingebetteten Event-Hub | getrennt melden, nicht per Homepage-CSS überdecken |
 | Viele „Nicht besetzt“ im Organ | Positionen ohne Zuordnung | Vereinsdaten pflegen lassen |
