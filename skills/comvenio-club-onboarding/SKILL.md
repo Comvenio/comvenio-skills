@@ -72,7 +72,9 @@ dem Vergleich der geplanten Werte gegen `cai.club.03.settings`, weil
 
 Rollen und Berechtigungen laufen über die Actions `cai.role.*` (Übersicht: `comvenio action list --json`, Ablauf: `comvenio help rollen-rechte`); kritische Änderungen gehen über Vorschau und `comvenio action confirm`.
 Die Verwaltung einer eigenen Domain ist nicht als Action belegt; sie geschieht in
-der Web-App. Erfinde dafür keine Befehle und nutze keine direkte Schnittstelle.
+der Web-App unter **Club-Hub → Design → Öffentliche Website →
+Domainverwaltung** (Ablauf: `comvenio-homepage`, Abschnitt „Eigene Domain“).
+Erfinde dafür keine Befehle und nutze keine direkte Schnittstelle.
 
 ## Schutzregeln
 

@@ -25,8 +25,13 @@ const COMMAND_SURFACE = {
 };
 
 // Marks a deliberate counter-example ("nicht mehr verfügbar"): on a line of its
-// own, it exempts the commands of the next fenced code block from the check.
+// own and directly followed (blank lines allowed) by a fenced code block, it
+// exempts the commands of that block from the check. A mark without such a
+// block is a finding of its own.
 const EXCEPTION_MARK = "<!-- klassisch-beispiel -->";
+
+// A comvenio command: program name, command and optional subcommand.
+const COMMAND_PATTERN = /(?<![\w-])comvenio\s+([a-z][a-z-]*)(?:\s+([a-z][a-z-]*))?/;
 
 // A missing or unreadable catalog is a tool failure (exit 2), never a green run.
 let knownActions;
@@ -53,89 +58,180 @@ function listFiles(directory) {
     .sort();
 }
 
-// Code segments of a file: fenced blocks and inline code in Markdown; every
-// line of a JSON file (eval texts are prose inside strings).
-function codeSegments(text, isJson) {
-  const lines = text.split(/\r?\n/);
-  const segments = [];
+// Joins shell continuation lines the way the shell does: a line ending in an
+// odd number of backslashes continues on the next line, and the backslash and
+// the line break are dropped. "cai.club.03.settings\" followed by "_other"
+// therefore becomes one identifier, "--device-\" followed by "token" one flag.
+// Returns logical lines, each with the number of its first physical line.
+function joinContinuations(lines, firstLine) {
+  const logical = [];
+  let current = null;
+  lines.forEach((line, index) => {
+    const text = current ? current.text + line : line;
+    const start = current ? current.line : firstLine + index;
+    const trailing = text.match(/\\+$/)?.[0].length ?? 0;
+    if (trailing % 2 === 1) {
+      current = { line: start, text: text.slice(0, -1) };
+    } else {
+      logical.push({ line: start, text });
+      current = null;
+    }
+  });
+  if (current) logical.push(current);
+  return logical;
+}
+
+// Splits a file into the text the checks see.
+// - commands: where a comvenio command may stand. Markdown: fenced blocks
+//   (continuations joined) and inline code; the program name is matched in any
+//   case there. JSON: backtick spans inside strings (any case) and the rest of
+//   each string, which is prose, so only the lower-case program name counts
+//   there ("Comvenio die Plattformseite" is a sentence, not a command).
+// - texts: everything the input, token and action checks read. Markdown: each
+//   prose line, and each fenced block as one text of its joined lines (a quoted
+//   --input may span lines). JSON: every string, decoded (escaped quotes
+//   resolved) and with continuations joined. `starts` holds the physical line
+//   of each logical line of a text.
+function scanFile(text, isJson, report) {
+  const commands = [];
+  const texts = [];
+
   if (isJson) {
-    lines.forEach((line, index) => segments.push({ line: index + 1, text: line, exempt: false }));
-    return segments;
+    let line = 1;
+    let position = 0;
+    for (const literal of text.matchAll(/"(?:[^"\\\r\n]|\\.)*"/g)) {
+      line += (text.slice(position, literal.index).match(/\n/g) ?? []).length;
+      position = literal.index;
+      let value;
+      try {
+        value = JSON.parse(literal[0]);
+      } catch {
+        value = literal[0].slice(1, -1);
+      }
+      const joined = joinContinuations(value.split(/\r?\n/), line)
+        .map((logical) => logical.text)
+        .join("\n");
+      texts.push({ starts: [line], text: joined });
+      for (const span of joined.matchAll(/`([^`]+)`/g)) {
+        commands.push({ line, text: span[1], exempt: false, anyCase: true });
+      }
+      commands.push({ line, text: joined.replace(/`[^`]*`/g, " "), exempt: false, anyCase: false });
+    }
+    return { commands, texts };
   }
-  let inFence = false;
-  let fenceExempt = false;
-  let pendingMark = false;
+
+  const lines = text.split(/\r?\n/);
+  let fence = null;
+  let pendingMark = null;
+  const flushFence = () => {
+    const logicals = joinContinuations(fence.body, fence.start);
+    for (const logical of logicals) {
+      commands.push({ ...logical, exempt: fence.exempt, anyCase: true });
+    }
+    texts.push({ starts: logicals.map((logical) => logical.line), text: logicals.map((logical) => logical.text).join("\n") });
+    fence = null;
+  };
+  const dropMark = () => {
+    report(pendingMark, "ausnahmemarke-ohne-block", EXCEPTION_MARK);
+    pendingMark = null;
+  };
   lines.forEach((line, index) => {
     const number = index + 1;
     if (/^\s*(```|~~~)/.test(line)) {
-      if (!inFence) {
-        inFence = true;
-        fenceExempt = pendingMark;
-        pendingMark = false;
+      if (!fence) {
+        fence = { exempt: pendingMark !== null, body: [], start: number + 1 };
+        pendingMark = null;
       } else {
-        inFence = false;
-        fenceExempt = false;
+        flushFence();
       }
       return;
     }
-    if (inFence) {
-      segments.push({ line: number, text: line, exempt: fenceExempt });
+    if (fence) {
+      fence.body.push(line);
       return;
     }
     if (line.trim() === EXCEPTION_MARK) {
-      pendingMark = true;
+      if (pendingMark !== null) dropMark();
+      pendingMark = number;
       return;
     }
+    if (pendingMark !== null && line.trim() !== "") dropMark();
+    texts.push({ starts: [number], text: line });
     for (const match of line.matchAll(/`([^`]+)`/g)) {
-      segments.push({ line: number, text: match[1], exempt: false });
+      commands.push({ line: number, text: match[1], exempt: false, anyCase: true });
     }
   });
-  return segments;
+  if (fence) flushFence();
+  if (pendingMark !== null) dropMark();
+  return { commands, texts };
+}
+
+// Payloads of every --input form: --input '…', --input "…" (escaped quotes
+// resolved), --input=… and an unquoted word. Each payload keeps the offset of
+// its first character in the text.
+function inputPayloads(text) {
+  const payloads = [];
+  for (const flag of text.matchAll(/--input(?:\s+|=)/g)) {
+    const offset = flag.index + flag[0].length;
+    const rest = text.slice(offset);
+    if (rest.startsWith("'")) {
+      const end = rest.indexOf("'", 1);
+      payloads.push({ offset: offset + 1, text: rest.slice(1, end < 0 ? undefined : end) });
+    } else if (rest.startsWith('"')) {
+      const quoted = rest.match(/^"((?:[^"\\]|\\.)*)/s)[1];
+      payloads.push({ offset: offset + 1, text: quoted.replace(/\\(["\\$`])/g, "$1") });
+    } else {
+      payloads.push({ offset, text: rest.match(/^\S*/)[0] });
+    }
+  }
+  return payloads;
 }
 
 function checkCommands(skill, file, text) {
   const relative = path.relative(repositoryRoot, file);
   const report = (line, art, fundtext) => errors.push(`${skill}: ${relative}:${line} ${art} ${fundtext}`);
-  const segments = codeSegments(text, file.endsWith(".json"));
+  const { commands, texts } = scanFile(text, file.endsWith(".json"), report);
 
-  for (const segment of segments) {
-    if (!segment.exempt) {
-      for (const match of segment.text.matchAll(/(?<![\w-])comvenio\s+([a-z][a-z-]*)(?:\s+([a-z][a-z-]*))?/g)) {
-        const [whole, command, subcommand] = match;
-        if (!Object.hasOwn(COMMAND_SURFACE, command)) {
-          report(segment.line, "befehl-ausserhalb-der-flaeche", whole.trim());
-          continue;
-        }
-        const allowed = COMMAND_SURFACE[command];
-        if (allowed && subcommand && !allowed.has(subcommand)) {
-          report(segment.line, "befehl-ausserhalb-der-flaeche", whole.trim());
-        }
+  for (const segment of commands) {
+    if (segment.exempt) continue;
+    const pattern = new RegExp(COMMAND_PATTERN.source, segment.anyCase ? "gi" : "g");
+    for (const match of segment.text.matchAll(pattern)) {
+      const whole = match[0].trim().replace(/\s+/g, " ");
+      const command = match[1].toLowerCase();
+      const subcommand = match[2]?.toLowerCase();
+      if (!Object.hasOwn(COMMAND_SURFACE, command)) {
+        report(segment.line, "befehl-ausserhalb-der-flaeche", whole);
+        continue;
+      }
+      const allowed = COMMAND_SURFACE[command];
+      if (allowed && subcommand && !allowed.has(subcommand)) {
+        report(segment.line, "befehl-ausserhalb-der-flaeche", whole);
       }
     }
   }
 
-  // --input may never carry club_id or confirmation; the sign-in binds the club
-  // and action confirm carries the confirmation.
-  const lineOf = (offset) => text.slice(0, offset).split(/\r?\n/).length;
-  for (const input of text.matchAll(/--input\s+'([^']*)'/g)) {
-    const start = input.index + input[0].indexOf("'") + 1;
-    for (const field of input[1].matchAll(/"(club_id|confirmation)"\s*:/g)) {
-      report(lineOf(start + field.index), "input-feld-verboten", field[1]);
+  for (const segment of texts) {
+    const lineAt = (offset) => {
+      const index = (segment.text.slice(0, offset).match(/\n/g) ?? []).length;
+      return segment.starts[Math.min(index, segment.starts.length - 1)];
+    };
+    // --input may never carry club_id or confirmation; the sign-in binds the
+    // club and action confirm carries the confirmation.
+    for (const payload of inputPayloads(segment.text)) {
+      for (const field of payload.text.matchAll(/\\?"(club_id|confirmation)\\?"\s*:/g)) {
+        report(lineAt(payload.offset), "input-feld-verboten", field[1]);
+      }
     }
-  }
-
-  const lines = text.split(/\r?\n/);
-  lines.forEach((line, index) => {
-    for (const match of line.matchAll(/--device-token|\bcvn_[A-Za-z0-9_]*|\bdevice[- _]?token\b/gi)) {
-      report(index + 1, "geraetetoken", match[0]);
+    for (const match of segment.text.matchAll(/--device-token|\bcvn_[A-Za-z0-9_]*|\bdevice[- _]?token\b/gi)) {
+      report(lineAt(match.index), "geraetetoken", match[0]);
     }
-    for (const match of line.matchAll(/(?<![\w.])cai\.[a-z][a-z0-9-]*(?:\.[a-z0-9_-]+)+/g)) {
+    for (const match of segment.text.matchAll(/(?<![\w.])cai\.[a-z][a-z0-9-]*(?:\.[a-z0-9_-]+)+/g)) {
       const id = match[0].replace(/[.-]+$/, "");
       if (!knownActions.has(id)) {
-        report(index + 1, "action-unbekannt", id);
+        report(lineAt(match.index), "action-unbekannt", id);
       }
     }
-  });
+  }
 }
 
 if (!fs.existsSync(skillsRoot)) {
