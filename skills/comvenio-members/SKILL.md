@@ -106,7 +106,7 @@ beauftragt, vor:
 - jedem Import (`comvenio action confirm` erst nach geprüfter Vorschau),
 - jeder Bestandsabstimmung, die fehlende Mitglieder als ausgetreten markiert.
 
-Rollen und Berechtigungen lassen sich derzeit nicht mit dem CLI verwalten.
+Rollen und Berechtigungen laufen über die Actions `cai.role.*` (Übersicht: `comvenio action list --json`, Ablauf: `comvenio help rollen-rechte`); kritische Änderungen gehen über Vorschau und `comvenio action confirm`.
 Provider-Synchronisationen werden nicht über technische Umwege ausgeführt.
 Verwende ausschließlich `comvenio`, für Agentenaufrufe `--json`, und wiederhole
 unklare Schreibvorgänge nicht automatisch.

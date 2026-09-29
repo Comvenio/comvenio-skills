@@ -63,7 +63,7 @@ Nur wenn keiner passt:
 
 ```bash
 comvenio action call cai.task.11.context_list_show_create_update_delete \
-  --input '{"operation":"create","context":{"context_type":"<typ>","context_id":"<fach-id>","is_default":false}}' --json
+  --input '{"operation":"create","context":{"context_type":"event","context_id":"<event-id>","is_default":false}}' --json
 ```
 
 Die zurückgegebene Context-ID wird bei der Aufgabe als `task_context_id`
@@ -74,7 +74,7 @@ Sitzung.
 
 ```bash
 comvenio action call cai.task.05.create \
-  --input '{"task":{"title":"<titel>","task_context_id":"<task-context-id>","description":"<beschreibung>","priority":"<priorität>","due_date":"<iso>"}}' --json
+  --input '{"task":{"title":"<titel>","task_context_id":"<task-context-id>","description":"<beschreibung>","priority":"medium","due_date":"2026-10-15T18:00:00+02:00"}}' --json
 
 comvenio action call cai.task.08.assign \
   --input '{"task_id":"<task-id>","assignment":{"member_id":"<member-id>","is_responsible":true}}' --json
@@ -122,7 +122,7 @@ Schließe eine Aufgabe mit der vorgesehenen Action ab:
 
 ```bash
 comvenio action call cai.task.09.done \
-  --input '{"task_id":"<task-id>","completed_at":"<iso>"}' --json
+  --input '{"task_id":"<task-id>","completed_at":"2026-10-15T20:00:00+02:00"}' --json
 ```
 
 Abgeschlossene oder abgebrochene Aufgaben werden nicht ohne Prüfung wieder auf

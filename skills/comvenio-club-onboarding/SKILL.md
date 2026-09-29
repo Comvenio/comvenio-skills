@@ -70,9 +70,9 @@ dem Vergleich der geplanten Werte gegen `cai.club.03.settings`, weil
 `cai.club.05.design` keinen Trockenlauf hat; Homepage-Inhalte beginnen mit
 `cai.homepage.01.preview` und enden mit `cai.verify.04.homepage`.
 
-Rollen und Berechtigungen sowie die Verwaltung einer eigenen Domain sind nicht
-als CLI-Aktionen belegt. Erfinde dafür keine Befehle und nutze keine direkte
-Schnittstelle.
+Rollen und Berechtigungen laufen über die Actions `cai.role.*` (Übersicht: `comvenio action list --json`, Ablauf: `comvenio help rollen-rechte`); kritische Änderungen gehen über Vorschau und `comvenio action confirm`.
+Die Verwaltung einer eigenen Domain ist nicht als Action belegt; sie geschieht in
+der Web-App. Erfinde dafür keine Befehle und nutze keine direkte Schnittstelle.
 
 ## Schutzregeln
 

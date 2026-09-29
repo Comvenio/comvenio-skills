@@ -69,7 +69,7 @@ sind Bestands- und Regelprüfung besonders wichtig.
 
 ```bash
 comvenio action call cai.booking.01.list \
-  --input '{"operation":"list","from":"<beginn>","to":"<ende>","timezone":"Europe/Berlin"}' --json
+  --input '{"operation":"list","from":"2026-10-01T00:00:00+02:00","to":"2026-10-31T23:59:59+01:00","timezone":"Europe/Berlin"}' --json
 comvenio action call cai.booking.02.show \
   --input '{"reservation_id":"<reservation-id>","timezone":"Europe/Berlin"}' --json
 ```

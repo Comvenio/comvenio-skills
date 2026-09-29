@@ -13,5 +13,5 @@ Der Assistent liest den aktuellen Stand und ändert nur die beauftragten Werte.
 Offizielle Kontaktdaten, sensible Einstellungen, Abteilungslöschungen und
 öffentliche Designänderungen benötigen Ihre eindeutige Bestätigung.
 
-Rollen und Berechtigungen werden derzeit nicht mit dem CLI verwaltet. Für die
+Rollen und Berechtigungen laufen über die Actions `cai.role.*`. Für die
 Inhalte der öffentlichen Website gibt es den eigenen Homepage-Skill.

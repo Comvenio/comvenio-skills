@@ -42,7 +42,7 @@ personenbezogene Daten nur aus, wenn sie für den Auftrag erforderlich sind.
 
 ```bash
 comvenio action call cai.data.01.list \
-  --input '{"context_type":"<context>","context_id":"<id>","limit":50,"offset":0}' --json
+  --input '{"context_type":"event","context_id":"<event-id>","limit":50,"offset":0}' --json
 comvenio action call cai.data.02.show --input '{"file_id":"<file-id>"}' --json
 comvenio action call cai.data.06.upload --file ./datei.pdf \
   --input '{"context_type":"<context>","context_id":"<id>","visibility":"private"}' --json

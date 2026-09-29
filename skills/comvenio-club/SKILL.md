@@ -49,7 +49,7 @@ mehreren Vereinen muss der Zielverein eindeutig sein.
 comvenio action call cai.club.02.update \
   --input '{"changes":{"email_address":"vorstand@beispielverein.de"}}' --json
 comvenio action call cai.club.04.settings_update \
-  --input '{"settings":{"locale_settings":{"<feld>":"<wert>"}}}' --json
+  --input '{"settings":{"locale_settings":{"timezone":"Europe/Berlin"}}}' --json
 ```
 
 Verwende als Grundlage immer den aktuellen Stand und zeige exakt, welche Felder
@@ -79,7 +79,7 @@ comvenio action confirm \
   --idempotency-key <idempotency-key>
 ```
 
-Rollen und Berechtigungen können derzeit nicht über das CLI verwaltet werden.
+Rollen und Berechtigungen laufen über die Actions `cai.role.*` (Übersicht: `comvenio action list --json`, Ablauf: `comvenio help rollen-rechte`); kritische Änderungen gehen über Vorschau und `comvenio action confirm`.
 
 ## Design
 
