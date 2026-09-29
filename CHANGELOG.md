@@ -22,8 +22,16 @@ dokumentiert. Die Einträge folgen
   Action-ID im Katalog stehen; Geräte-Token sowie `club_id` oder
   `confirmation` in `--input` sind Funde. Ein fehlender Katalog beendet die
   Prüfung mit Exit 2. Markierte Gegenbeispiele (`<!-- klassisch-beispiel -->`)
-  sind ausgenommen.
-- Fixture-Tests für die Befehlsprüfung, Teil von `npm test`.
+  sind ausgenommen, wenn der Codeblock unmittelbar auf die Marke folgt und als
+  „nicht mehr verfügbar“ gekennzeichnet ist (Zeile vor der Marke oder Kommentar
+  in der ersten Blockzeile); sonst ist die Marke selbst ein Fund. Shell-Fortsetzungszeilen werden vor der
+  Prüfung zusammengeführt, der Programmname wird in Code ohne Rücksicht auf
+  Groß-/Kleinschreibung erkannt, und `--input` wird in jeder Schreibweise
+  geprüft.
+- Der Katalog-Sync schreibt nichts, wenn einem Themenartikel der generierte
+  Abschnitt fehlt, ein Abschnitt weder eine Action noch „Noch keine Action“
+  nennt oder eine Action-Zeile nicht lesbar ist.
+- Fixture-Tests für die Befehlsprüfung und den Katalog-Sync, Teil von `npm test`.
 
 ### Changed
 
