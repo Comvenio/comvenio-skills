@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "validate": "node scripts/validate-skills.mjs",
-    "test": "npm run validate"
+    "test:fixtures": "node scripts/test-validate-skills.mjs",
+    "sync:catalog": "node scripts/sync-action-catalog.mjs",
+    "test": "npm run validate && npm run test:fixtures"
   },
   "engines": {
     "node": ">=20"

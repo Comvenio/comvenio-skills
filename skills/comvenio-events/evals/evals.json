@@ -4,11 +4,11 @@
     {
       "id": 1,
       "prompt": "Lege ab 2. September jeden Mittwoch von 19 bis 21 Uhr ein Darttraining für unsere Dart-Abteilung an, vorerst bis Ende Februar.",
-      "expected_output": "Der Agent erstellt nach Schema- und Kontextprüfung eine Vorlage, eine wöchentliche Serie und materialisiert den gewünschten Zeitraum.",
+      "expected_output": "Der Agent erstellt nach Schema- und Kontextprüfung eine wöchentliche Serie und materialisiert den gewünschten Zeitraum.",
       "files": [],
       "expectations": [
-        "Prüft Verein, Abteilung, Schema und Event-Hilfe vor der Mutation.",
-        "Verwendet Vorlage → Serie → Materialisierung mit --json.",
+        "Prüft Verein, Abteilung und das input_schema aus comvenio action list vor der Mutation.",
+        "Verwendet cai.event.08.series_list_show_create_materialize_promote_recurring_promote_yearly_n mit create und materialize sowie --json.",
         "Bestätigt Zeitraum und erzeugte Termine verständlich."
       ]
     },

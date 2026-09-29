@@ -18,7 +18,7 @@
       "expected_output": "Der Agent zeigt zuerst Import-Preview und Homepage-Vorschau und verlangt getrennte Freigaben für echten Import und Veröffentlichung.",
       "files": [],
       "expectations": [
-        "Führt den Mitgliederimport zunächst mit preview: true aus.",
+        "Zeigt zuerst die Vorschau von cai.member.06.import und bestätigt erst nach Freigabe mit comvenio action confirm.",
         "Erzeugt eine Homepage-Vorschau vor apply.",
         "Behandelt Import und öffentliche Homepage als getrennte kritische Etappen."
       ]
@@ -31,7 +31,7 @@
       "expectations": [
         "Liest nur und führt keine schreibenden Befehle aus.",
         "Zeigt Abhängigkeiten, mögliche Duplikate und kritische Schritte.",
-        "Kennzeichnet Rollen, Rechte und Domainverwaltung als nicht per CLI belegt."
+        "Nutzt für Rollen und Rechte die Actions cai.role.* und kennzeichnet die Domainverwaltung als Web-App-Weg."
       ]
     }
   ]

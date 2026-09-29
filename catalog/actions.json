@@ -1,0 +1,5904 @@
+{
+  "quelle": "comvenio-cli docs/*.md, Abschnitt „Befehle und Actions“",
+  "quelle_ref": "origin/main",
+  "quelle_commit": "3028118d608e023a8286338de9fe8da90d0f2302",
+  "erzeugt_am": "2026-09-29",
+  "anzahl": 378,
+  "actions": [
+    {
+      "id": "cai.booking.01.list",
+      "bereich": "booking",
+      "teilaktionen": [
+        "list",
+        "list_object"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "booking.read"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.booking.02.show",
+      "bereich": "booking",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "booking.read"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.booking.03.create",
+      "bereich": "booking",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "booking.write",
+        "object.read"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.booking.04.update",
+      "bereich": "booking",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "booking.write",
+        "object.read"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.booking.05.approve",
+      "bereich": "booking",
+      "teilaktionen": [
+        "approve"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "booking.write"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.booking.06.reject",
+      "bereich": "booking",
+      "teilaktionen": [
+        "reject"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "booking.write"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.booking.07.cancel",
+      "bereich": "booking",
+      "teilaktionen": [
+        "cancel"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "booking.write"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.booking.08.delete",
+      "bereich": "booking",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "booking.write"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.booking.09.bulk",
+      "bereich": "booking",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "booking.write",
+        "object.read"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.booking.10.participant_list_show_add_add_groups_update_remove",
+      "bereich": "booking",
+      "teilaktionen": [
+        "list",
+        "show",
+        "add",
+        "add_groups",
+        "update",
+        "remove"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "booking.read",
+        "booking.write"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.booking.11.link_list_club_add_remove",
+      "bereich": "booking",
+      "teilaktionen": [
+        "list",
+        "club",
+        "add",
+        "remove"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "booking.read",
+        "booking.write"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.booking.12.stats_object_guests",
+      "bereich": "booking",
+      "teilaktionen": [
+        "object",
+        "guests"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "booking.read"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.club.02.update",
+      "bereich": "club",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/auth-club.md"
+    },
+    {
+      "id": "cai.club.03.settings",
+      "bereich": "club",
+      "teilaktionen": [
+        "settings"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/auth-club.md"
+    },
+    {
+      "id": "cai.club.04.settings_update",
+      "bereich": "club",
+      "teilaktionen": [
+        "settings-update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/auth-club.md"
+    },
+    {
+      "id": "cai.club.05.design",
+      "bereich": "club",
+      "teilaktionen": [
+        "design"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/auth-club.md"
+    },
+    {
+      "id": "cai.club.06.department_list",
+      "bereich": "club",
+      "teilaktionen": [
+        "department-list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/auth-club.md"
+    },
+    {
+      "id": "cai.club.07.department_show",
+      "bereich": "club",
+      "teilaktionen": [
+        "department-show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/auth-club.md"
+    },
+    {
+      "id": "cai.club.08.department_add",
+      "bereich": "club",
+      "teilaktionen": [
+        "department-add"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/auth-club.md"
+    },
+    {
+      "id": "cai.club.09.department_update",
+      "bereich": "club",
+      "teilaktionen": [
+        "department-update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/auth-club.md"
+    },
+    {
+      "id": "cai.club.10.department_delete",
+      "bereich": "club",
+      "teilaktionen": [
+        "department-delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/auth-club.md"
+    },
+    {
+      "id": "cai.club.11.weekly_preview_create",
+      "bereich": "weekly-preview",
+      "teilaktionen": [
+        "weekly-preview-create"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "club.write"
+      ],
+      "artikel": "docs/wochenvorschau.md"
+    },
+    {
+      "id": "cai.club.12.weekly_preview_list",
+      "bereich": "weekly-preview",
+      "teilaktionen": [
+        "weekly-preview-list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/wochenvorschau.md"
+    },
+    {
+      "id": "cai.data.01.list",
+      "bereich": "data",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "files.read"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.02.show",
+      "bereich": "data",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "files.read"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.03.update",
+      "bereich": "data",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.04.url",
+      "bereich": "data",
+      "teilaktionen": [
+        "reference"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "files.read"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.05.download",
+      "bereich": "data",
+      "teilaktionen": [
+        "download"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "files.read",
+        "files.export"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.06.upload",
+      "bereich": "data",
+      "teilaktionen": [
+        "upload"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "files.import",
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.07.delete",
+      "bereich": "data",
+      "teilaktionen": [
+        "soft_delete",
+        "hard_delete"
+      ],
+      "risiko": [
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.08.restore",
+      "bereich": "data",
+      "teilaktionen": [
+        "restore"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.09.move",
+      "bereich": "data",
+      "teilaktionen": [
+        "move"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.10.visibility",
+      "bereich": "data",
+      "teilaktionen": [
+        "private",
+        "public"
+      ],
+      "risiko": [
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.11.stats",
+      "bereich": "data",
+      "teilaktionen": [
+        "stats"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "files.read"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.12.empty_trash",
+      "bereich": "data",
+      "teilaktionen": [
+        "empty"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.13.area_media",
+      "bereich": "data",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "files.read"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.14.area_shares",
+      "bereich": "data",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "files.read"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.15.area_share_add",
+      "bereich": "data",
+      "teilaktionen": [
+        "add"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.16.area_share_remove",
+      "bereich": "data",
+      "teilaktionen": [
+        "remove"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.17.children",
+      "bereich": "data",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "files.read"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.18.search",
+      "bereich": "data",
+      "teilaktionen": [
+        "search"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "files.read"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.19.breadcrumb",
+      "bereich": "data",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "files.read"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.20.folder_create",
+      "bereich": "data",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.21.folder_rename",
+      "bereich": "data",
+      "teilaktionen": [
+        "rename"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.22.folder_move",
+      "bereich": "data",
+      "teilaktionen": [
+        "move"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.23.folder_protect",
+      "bereich": "data",
+      "teilaktionen": [
+        "protect"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.24.folder_delete",
+      "bereich": "data",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.25.folder_restore",
+      "bereich": "data",
+      "teilaktionen": [
+        "restore"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.26.folder_rights",
+      "bereich": "data",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "files.read"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.27.folder_right_add",
+      "bereich": "data",
+      "teilaktionen": [
+        "add"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.28.folder_right_bulk",
+      "bereich": "data",
+      "teilaktionen": [
+        "bulk"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.29.folder_right_delete",
+      "bereich": "data",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "files.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.30.papers",
+      "bereich": "data",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "content.read"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.31.paper_show",
+      "bereich": "data",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "content.read"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.32.paper_add",
+      "bereich": "data",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "content.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.33.paper_update",
+      "bereich": "data",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "content.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.34.paper_delete",
+      "bereich": "data",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "content.write"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.data.35.export_members_bookings",
+      "bereich": "data",
+      "teilaktionen": [
+        "members",
+        "bookings"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "member.read.details",
+        "files.export",
+        "booking.read"
+      ],
+      "artikel": "docs/dateien.md"
+    },
+    {
+      "id": "cai.event.01.list",
+      "bereich": "event",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "event.read"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.02.show",
+      "bereich": "event",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "event.read"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.03.create",
+      "bereich": "event",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.04.update",
+      "bereich": "event",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.05.publish",
+      "bereich": "event",
+      "teilaktionen": [
+        "publish"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.06.delete",
+      "bereich": "event",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.07.template_list_create_clone_instantiate",
+      "bereich": "event",
+      "teilaktionen": [
+        "list",
+        "create",
+        "clone",
+        "instantiate"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.08.series_list_show_create_materialize_promote_recurring_promote_yearly_n",
+      "bereich": "event",
+      "teilaktionen": [
+        "list",
+        "show",
+        "create",
+        "update",
+        "delete",
+        "materialize",
+        "materialize_next",
+        "promote_recurring",
+        "promote_yearly"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.09.area_list_add_show_update_delete_bulk_copy",
+      "bereich": "event",
+      "teilaktionen": [
+        "list",
+        "add",
+        "show",
+        "update",
+        "delete",
+        "bulk",
+        "copy"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.10.assignment_list_add_remove_clear",
+      "bereich": "event",
+      "teilaktionen": [
+        "list",
+        "add",
+        "remove",
+        "clear"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.11.lead_list_add_update_delete",
+      "bereich": "event",
+      "teilaktionen": [
+        "list",
+        "add",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.12.area_note_list_add_update_delete",
+      "bereich": "event",
+      "teilaktionen": [
+        "list",
+        "add",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.13.program_list_add_update_delete_reorder",
+      "bereich": "event",
+      "teilaktionen": [
+        "list",
+        "add",
+        "update",
+        "delete",
+        "reorder"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.14.contact_list_add_update_delete",
+      "bereich": "event",
+      "teilaktionen": [
+        "list",
+        "add",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.15.resource_list_add_set_remove_link_show_link_update_link_delete_usage_u",
+      "bereich": "event",
+      "teilaktionen": [
+        "list",
+        "add",
+        "set",
+        "remove",
+        "link_show",
+        "link_update",
+        "link_delete",
+        "usage",
+        "usage_batch"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.16.attachment_list_show_add_update_delete",
+      "bereich": "event",
+      "teilaktionen": [
+        "list",
+        "show",
+        "add",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.17.tag_category_and_assignment_workflows",
+      "bereich": "event",
+      "teilaktionen": [
+        "category_list",
+        "category_show",
+        "category_add",
+        "category_update",
+        "category_delete",
+        "tag_list",
+        "tag_show",
+        "tag_add",
+        "tag_update",
+        "tag_delete",
+        "assigned",
+        "assignment_list",
+        "assign",
+        "unassign",
+        "clear"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.18.sponsor_and_sponsor_program_workflows",
+      "bereich": "event",
+      "teilaktionen": [
+        "link_list",
+        "link_add",
+        "link_delete",
+        "tier_list",
+        "tier_add",
+        "tier_update",
+        "tier_delete",
+        "tier_sync",
+        "program_by_sponsor",
+        "program_by_item",
+        "program_add",
+        "program_delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.19.invitation_and_club_invitation_workflows",
+      "bereich": "event",
+      "teilaktionen": [
+        "member_mine",
+        "member_list",
+        "member_show",
+        "member_add",
+        "member_add_groups",
+        "member_add_departments",
+        "member_add_org_groups",
+        "member_update",
+        "member_status",
+        "member_delete",
+        "member_notified",
+        "club_list",
+        "club_attending",
+        "club_incoming",
+        "club_accepted",
+        "club_show",
+        "club_add",
+        "club_external",
+        "club_self_join",
+        "club_update",
+        "club_respond",
+        "club_delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.20.registration_list_add_stats_show_update_adjust_delete_aggregate",
+      "bereich": "event",
+      "teilaktionen": [
+        "list",
+        "add",
+        "stats",
+        "show",
+        "update",
+        "adjust",
+        "delete",
+        "aggregate"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.22.design_theme_and_asset_workflows",
+      "bereich": "event",
+      "teilaktionen": [
+        "theme_show",
+        "theme_set",
+        "theme_delete",
+        "asset_list",
+        "asset_upload",
+        "asset_delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write",
+        "files.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.23.copy_set_reset",
+      "bereich": "event",
+      "teilaktionen": [
+        "set",
+        "reset"
+      ],
+      "risiko": [
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.24.dj_settings_and_request_workflows",
+      "bereich": "event",
+      "teilaktionen": [
+        "settings",
+        "requests",
+        "settings_set",
+        "request_status",
+        "reset"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.25.external_sync_workflows",
+      "bereich": "event",
+      "teilaktionen": [
+        "list",
+        "add",
+        "show",
+        "update",
+        "delete",
+        "matches",
+        "run",
+        "stats",
+        "provider_run"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.26.instance_previous_next_compare_clone_next",
+      "bereich": "event",
+      "teilaktionen": [
+        "previous",
+        "next",
+        "compare",
+        "clone_next"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.27.child_list_create_invitation_summary",
+      "bereich": "event",
+      "teilaktionen": [
+        "list",
+        "create",
+        "invitation_summary"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.event.28.menu_list_assign_unassign",
+      "bereich": "event",
+      "teilaktionen": [
+        "list",
+        "assign",
+        "unassign"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.finance.01.plan_list",
+      "bereich": "finance",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "finance.read"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.02.plan_show",
+      "bereich": "finance",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "finance.read"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.03.plan_create",
+      "bereich": "finance",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.04.plan_update",
+      "bereich": "finance",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.05.plan_close",
+      "bereich": "finance",
+      "teilaktionen": [
+        "close"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.07.plan_copy",
+      "bereich": "finance",
+      "teilaktionen": [
+        "copy"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.08.position_list",
+      "bereich": "finance",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "finance.read"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.09.position_create",
+      "bereich": "finance",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.10.position_show",
+      "bereich": "finance",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "finance.read"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.11.position_update",
+      "bereich": "finance",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.12.position_delete",
+      "bereich": "finance",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.13.position_import_shopping",
+      "bereich": "finance",
+      "teilaktionen": [
+        "import"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.14.summary",
+      "bereich": "finance",
+      "teilaktionen": [
+        "total",
+        "by_department"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "finance.read"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.15.entry_list",
+      "bereich": "finance",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "finance.read"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.16.entry_create",
+      "bereich": "finance",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.17.entry_show",
+      "bereich": "finance",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "finance.read"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.18.entry_update",
+      "bereich": "finance",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.19.entry_delete",
+      "bereich": "finance",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.20.entry_approve",
+      "bereich": "finance",
+      "teilaktionen": [
+        "approve"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.21.plan_period",
+      "bereich": "finance",
+      "teilaktionen": [
+        "list",
+        "create",
+        "show",
+        "update",
+        "positions",
+        "position_create",
+        "summary",
+        "journal",
+        "entries_without_receipt",
+        "sphere_report",
+        "audit_check",
+        "audit_labels",
+        "audit_label_set",
+        "dashboard"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.22.plan_lifecycle",
+      "bereich": "finance",
+      "teilaktionen": [
+        "close",
+        "next_period"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.23.settings",
+      "bereich": "finance",
+      "teilaktionen": [
+        "show",
+        "update"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.24.money_account",
+      "bereich": "finance",
+      "teilaktionen": [
+        "list",
+        "create",
+        "update",
+        "opening",
+        "opening_versions",
+        "cash_book",
+        "reconciliation",
+        "grants",
+        "grant_set",
+        "grant_revoke",
+        "transfers",
+        "transfer_show",
+        "transfer_create",
+        "transfer_reverse",
+        "booking_accounts"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.25.entry_correction",
+      "bereich": "finance",
+      "teilaktionen": [
+        "entry_create",
+        "entry_create_unplanned",
+        "reverse",
+        "receipt",
+        "versions",
+        "receipt_scan_create",
+        "receipt_candidates",
+        "receipt_attach",
+        "receipt_book",
+        "receipt_reject",
+        "receipt_event_set",
+        "receipt_withdraw",
+        "receipt_file",
+        "position_link_set",
+        "position_link_remove",
+        "tax_sphere",
+        "objection_create",
+        "objections",
+        "objection_withdraw"
+      ],
+      "risiko": [
+        "ändern",
+        "ändern mit Bestätigung",
+        "lesen"
+      ],
+      "scopes": [
+        "finance.write",
+        "finance.read"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.26.cash_report",
+      "bereich": "finance",
+      "teilaktionen": [
+        "list",
+        "create",
+        "show",
+        "submit",
+        "reject",
+        "entries",
+        "approve_entries",
+        "approve",
+        "tax_report"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.27.department_transfer",
+      "bereich": "finance",
+      "teilaktionen": [
+        "list",
+        "account_choices",
+        "show",
+        "create",
+        "confirm",
+        "reject",
+        "withdraw",
+        "reverse"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.28.plan_result",
+      "bereich": "finance",
+      "teilaktionen": [
+        "result",
+        "open_items",
+        "open_item_create",
+        "open_item_update",
+        "open_item_delete",
+        "resolutions",
+        "resolution_create",
+        "resolution_update",
+        "resolution_delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.29.procedure_doc",
+      "bereich": "finance",
+      "teilaktionen": [
+        "show",
+        "version",
+        "save"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.30.audit_export",
+      "bereich": "finance",
+      "teilaktionen": [
+        "list",
+        "create",
+        "download"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.31.finance_views",
+      "bereich": "finance",
+      "teilaktionen": [
+        "receipt_inbox",
+        "receipt_scan",
+        "event",
+        "event_reconciliation",
+        "series_comparison",
+        "department_history",
+        "link_options",
+        "event_links",
+        "event_link_view",
+        "location_links",
+        "analysis_ranking",
+        "analysis_target",
+        "object"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "finance.read"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.32.investment_plan",
+      "bereich": "finance",
+      "teilaktionen": [
+        "list",
+        "create",
+        "show",
+        "update",
+        "delete",
+        "dashboard",
+        "feasibility",
+        "funding_summary",
+        "loan_details"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.33.investment_item",
+      "bereich": "finance",
+      "teilaktionen": [
+        "list",
+        "create",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.34.investment_funding",
+      "bereich": "finance",
+      "teilaktionen": [
+        "list",
+        "create",
+        "update",
+        "delete",
+        "loan_show",
+        "loan_create",
+        "loan_update"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.35.investment_scenario",
+      "bereich": "finance",
+      "teilaktionen": [
+        "list",
+        "create",
+        "from_template",
+        "show",
+        "update",
+        "delete",
+        "auto_generate",
+        "cashflow_list",
+        "cashflow_create",
+        "cashflow_update",
+        "cashflow_delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.36.budget_organigram",
+      "bereich": "finance",
+      "teilaktionen": [
+        "tree",
+        "frame_set",
+        "frame_versions",
+        "statement",
+        "rubrics",
+        "rubric_create",
+        "rubric_update",
+        "rubric_delete",
+        "position_split"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern mit Bestätigung",
+        "ändern"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.37.budget_season",
+      "bereich": "finance",
+      "teilaktionen": [
+        "seasons",
+        "season_tree",
+        "season_frame_set",
+        "season_frame_versions",
+        "frame_proposal"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.38.entry_detail",
+      "bereich": "finance",
+      "teilaktionen": [
+        "entry",
+        "open_items"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "finance.read"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.finance.39.budget_period",
+      "bereich": "finance",
+      "teilaktionen": [
+        "show",
+        "set",
+        "tree",
+        "frame_set",
+        "frame_versions",
+        "statement",
+        "window_position_create",
+        "window_position_update"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "finance.read",
+        "finance.write"
+      ],
+      "artikel": "docs/finanzen.md"
+    },
+    {
+      "id": "cai.homepage.01.preview",
+      "bereich": "homepage",
+      "teilaktionen": [
+        "preview"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.write"
+      ],
+      "artikel": "docs/homepage.md"
+    },
+    {
+      "id": "cai.homepage.02.apply",
+      "bereich": "homepage",
+      "teilaktionen": [
+        "apply"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "club.write"
+      ],
+      "artikel": "docs/homepage.md"
+    },
+    {
+      "id": "cai.homepage.03.show",
+      "bereich": "homepage",
+      "teilaktionen": [
+        "private",
+        "public"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read",
+        "public.read"
+      ],
+      "artikel": "docs/homepage.md"
+    },
+    {
+      "id": "cai.homepage.04.screenshot",
+      "bereich": "homepage",
+      "teilaktionen": [
+        "screenshot"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.write"
+      ],
+      "artikel": "docs/homepage.md"
+    },
+    {
+      "id": "cai.ingredient-category.01.list",
+      "bereich": "ingredient-category",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient-category.02.roots",
+      "bereich": "ingredient-category",
+      "teilaktionen": [
+        "roots"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient-category.03.tree",
+      "bereich": "ingredient-category",
+      "teilaktionen": [
+        "tree"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient-category.04.by_ingredient",
+      "bereich": "ingredient-category",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient-category.05.show",
+      "bereich": "ingredient-category",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient-category.06.create",
+      "bereich": "ingredient-category",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient-category.07.update",
+      "bereich": "ingredient-category",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient-category.08.delete",
+      "bereich": "ingredient-category",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient-category.09.assign",
+      "bereich": "ingredient-category",
+      "teilaktionen": [
+        "assign"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient-category.10.unassign",
+      "bereich": "ingredient-category",
+      "teilaktionen": [
+        "unassign"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient-category.11.init",
+      "bereich": "ingredient-category",
+      "teilaktionen": [
+        "initialize"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient.01.list",
+      "bereich": "ingredient",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient.02.show",
+      "bereich": "ingredient",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient.03.create",
+      "bereich": "ingredient",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient.04.update",
+      "bereich": "ingredient",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.ingredient.05.delete",
+      "bereich": "ingredient",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.meeting.01.series_list_show_create_update_delete",
+      "bereich": "meeting",
+      "teilaktionen": [
+        "list",
+        "show",
+        "create",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "meeting.read",
+        "meeting.write"
+      ],
+      "artikel": "docs/meetings.md"
+    },
+    {
+      "id": "cai.meeting.02.protocol_list_show_create_update_delete_advance_revert_updates_validat",
+      "bereich": "meeting",
+      "teilaktionen": [
+        "list",
+        "show",
+        "create",
+        "update",
+        "delete",
+        "advance",
+        "revert",
+        "updates",
+        "validation",
+        "publish"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "meeting.read",
+        "meeting.write"
+      ],
+      "artikel": "docs/meetings.md"
+    },
+    {
+      "id": "cai.meeting.03.agenda_list_show_create_update_delete_reorder_start_complete_skip_appr",
+      "bereich": "meeting",
+      "teilaktionen": [
+        "list",
+        "show",
+        "create",
+        "update",
+        "delete",
+        "reorder",
+        "start",
+        "complete",
+        "skip",
+        "approve"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "meeting.read",
+        "meeting.write"
+      ],
+      "artikel": "docs/meetings.md"
+    },
+    {
+      "id": "cai.meeting.04.note_list_list_protocol_create_update_delete",
+      "bereich": "meeting",
+      "teilaktionen": [
+        "list",
+        "list_protocol",
+        "create",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "meeting.read",
+        "meeting.write"
+      ],
+      "artikel": "docs/meetings.md"
+    },
+    {
+      "id": "cai.meeting.05.participant_list_add_update_remove_validate_unvalidate",
+      "bereich": "meeting",
+      "teilaktionen": [
+        "list",
+        "add",
+        "update",
+        "remove",
+        "validate",
+        "unvalidate"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "meeting.read",
+        "meeting.write"
+      ],
+      "artikel": "docs/meetings.md"
+    },
+    {
+      "id": "cai.meeting.06.decision_create_agenda_update_cancel_option_add_options_add_promote",
+      "bereich": "meeting",
+      "teilaktionen": [
+        "create",
+        "agenda",
+        "update",
+        "cancel",
+        "option_add",
+        "options_add",
+        "promote"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung",
+        "lesen"
+      ],
+      "scopes": [
+        "meeting.write",
+        "meeting.read"
+      ],
+      "artikel": "docs/meetings.md"
+    },
+    {
+      "id": "cai.meeting.07.voting_open_close_results_eligible_tally",
+      "bereich": "meeting",
+      "teilaktionen": [
+        "open",
+        "close",
+        "results",
+        "eligible",
+        "tally"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung",
+        "lesen"
+      ],
+      "scopes": [
+        "meeting.write",
+        "meeting.read"
+      ],
+      "artikel": "docs/meetings.md"
+    },
+    {
+      "id": "cai.meeting.08.vote_cast_cast_bulk_proxy_proxy_bulk_option_retract_retract",
+      "bereich": "meeting",
+      "teilaktionen": [
+        "cast",
+        "cast_bulk",
+        "proxy",
+        "proxy_bulk",
+        "option_retract",
+        "retract"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "meeting.write"
+      ],
+      "artikel": "docs/meetings.md"
+    },
+    {
+      "id": "cai.meeting.09.resolution_list_list_protocol_show_history_create_update_approve_decli",
+      "bereich": "meeting",
+      "teilaktionen": [
+        "list",
+        "list_protocol",
+        "show",
+        "history",
+        "create",
+        "update",
+        "approve",
+        "decline",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "meeting.read",
+        "meeting.write"
+      ],
+      "artikel": "docs/meetings.md"
+    },
+    {
+      "id": "cai.meeting.10.entry_list_show_show_agenda_create_update_delete",
+      "bereich": "meeting",
+      "teilaktionen": [
+        "list",
+        "show",
+        "show_agenda",
+        "create",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "meeting.read",
+        "meeting.write"
+      ],
+      "artikel": "docs/meetings.md"
+    },
+    {
+      "id": "cai.meeting.11.attachment_list_add_remove",
+      "bereich": "meeting",
+      "teilaktionen": [
+        "list",
+        "add",
+        "remove"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "meeting.read",
+        "meeting.write",
+        "files.write"
+      ],
+      "artikel": "docs/meetings.md"
+    },
+    {
+      "id": "cai.member.01.list",
+      "bereich": "member",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "member.read.basic"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.02.show",
+      "bereich": "member",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "member.read.details"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.03.add",
+      "bereich": "member",
+      "teilaktionen": [
+        "add"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.04.update",
+      "bereich": "member",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.05.remove",
+      "bereich": "member",
+      "teilaktionen": [
+        "remove"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.06.import",
+      "bereich": "member",
+      "teilaktionen": [
+        "import"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "files.import"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.07.family_list",
+      "bereich": "member",
+      "teilaktionen": [
+        "family-list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "member.read.details"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.08.family_show",
+      "bereich": "member",
+      "teilaktionen": [
+        "family-show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "member.read.details"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.09.family_add",
+      "bereich": "member",
+      "teilaktionen": [
+        "family-add"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.10.family_update",
+      "bereich": "member",
+      "teilaktionen": [
+        "family-update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.11.family_delete",
+      "bereich": "member",
+      "teilaktionen": [
+        "family-delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.12.status_list",
+      "bereich": "member",
+      "teilaktionen": [
+        "status-list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "member.read.basic"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.13.status_show",
+      "bereich": "member",
+      "teilaktionen": [
+        "status-show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "member.read.details"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.14.status_add",
+      "bereich": "member",
+      "teilaktionen": [
+        "status-add"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.15.status_update",
+      "bereich": "member",
+      "teilaktionen": [
+        "status-update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.16.status_delete",
+      "bereich": "member",
+      "teilaktionen": [
+        "status-delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.17.period_list",
+      "bereich": "member",
+      "teilaktionen": [
+        "period-list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "member.read.basic"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.18.period_show",
+      "bereich": "member",
+      "teilaktionen": [
+        "period-show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "member.read.details"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.19.period_add",
+      "bereich": "member",
+      "teilaktionen": [
+        "period-add"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.20.period_update",
+      "bereich": "member",
+      "teilaktionen": [
+        "period-update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.member.21.period_delete",
+      "bereich": "member",
+      "teilaktionen": [
+        "period-delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.menu.01.create",
+      "bereich": "menu",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.menu.02.list",
+      "bereich": "menu",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.menu.03.show",
+      "bereich": "menu",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.menu.04.add_item",
+      "bereich": "menu",
+      "teilaktionen": [
+        "add"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.menu.05.update_item",
+      "bereich": "menu",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.menu.06.delete_item",
+      "bereich": "menu",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.menu.07.delete",
+      "bereich": "menu",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.menu.08.style",
+      "bereich": "menu",
+      "teilaktionen": [
+        "style"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.menu.09.apply",
+      "bereich": "menu",
+      "teilaktionen": [
+        "apply"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.menu.10.export",
+      "bereich": "menu",
+      "teilaktionen": [
+        "export"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.read",
+        "files.export"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.news.01.list",
+      "bereich": "news",
+      "teilaktionen": [
+        "private",
+        "public"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "content.read",
+        "public.read"
+      ],
+      "artikel": "docs/vereinsnews.md"
+    },
+    {
+      "id": "cai.news.02.show",
+      "bereich": "news",
+      "teilaktionen": [
+        "private",
+        "public"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "content.read",
+        "public.read"
+      ],
+      "artikel": "docs/vereinsnews.md"
+    },
+    {
+      "id": "cai.news.03.create",
+      "bereich": "news",
+      "teilaktionen": [
+        "draft",
+        "publish"
+      ],
+      "risiko": [
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "content.write"
+      ],
+      "artikel": "docs/vereinsnews.md"
+    },
+    {
+      "id": "cai.news.04.update",
+      "bereich": "news",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "content.write"
+      ],
+      "artikel": "docs/vereinsnews.md"
+    },
+    {
+      "id": "cai.news.05.delete",
+      "bereich": "news",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "content.write"
+      ],
+      "artikel": "docs/vereinsnews.md"
+    },
+    {
+      "id": "cai.news.06.apply",
+      "bereich": "news",
+      "teilaktionen": [
+        "draft",
+        "publish"
+      ],
+      "risiko": [
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "content.write"
+      ],
+      "artikel": "docs/vereinsnews.md"
+    },
+    {
+      "id": "cai.news.07.preview",
+      "bereich": "news",
+      "teilaktionen": [
+        "preview"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "content.write"
+      ],
+      "artikel": "docs/vereinsnews.md"
+    },
+    {
+      "id": "cai.news.08.publish",
+      "bereich": "news",
+      "teilaktionen": [
+        "publish"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "content.write"
+      ],
+      "artikel": "docs/vereinsnews.md"
+    },
+    {
+      "id": "cai.news.09.video_slideshow_result_teaser",
+      "bereich": "news",
+      "teilaktionen": [
+        "render",
+        "render_and_upload"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern"
+      ],
+      "scopes": [
+        "content.read",
+        "files.export",
+        "content.write",
+        "files.import"
+      ],
+      "artikel": "docs/vereinsnews.md"
+    },
+    {
+      "id": "cai.object.01.list",
+      "bereich": "object",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "object.read"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.object.02.show",
+      "bereich": "object",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "object.read"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.object.03.create",
+      "bereich": "object",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "object.write"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.object.04.update",
+      "bereich": "object",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "object.write"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.object.05.delete",
+      "bereich": "object",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "object.write"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.object.06.building_list_show_create_update_delete",
+      "bereich": "object",
+      "teilaktionen": [
+        "list",
+        "show",
+        "create",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "object.read",
+        "object.write"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.object.07.room_list_show_create_update_delete",
+      "bereich": "object",
+      "teilaktionen": [
+        "list",
+        "show",
+        "create",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "object.read",
+        "object.write"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.object.08.booking_rule_list_show_create_bulk_update_delete",
+      "bereich": "object",
+      "teilaktionen": [
+        "list",
+        "list_object",
+        "show",
+        "create",
+        "bulk",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "object.read",
+        "object.write"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.object.09.task_rule_list_show_create_update_delete",
+      "bereich": "object",
+      "teilaktionen": [
+        "list",
+        "list_object",
+        "show",
+        "create",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "object.read",
+        "object.write"
+      ],
+      "artikel": "docs/buchungen-objekte.md"
+    },
+    {
+      "id": "cai.plan.01.list",
+      "bereich": "plan",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "event.read"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.plan.02.show",
+      "bereich": "plan",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "event.read"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.plan.03.create",
+      "bereich": "plan",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.plan.04.update",
+      "bereich": "plan",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.plan.05.delete",
+      "bereich": "plan",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.plan.06.zone_list_create_update_delete_link_unlink",
+      "bereich": "plan",
+      "teilaktionen": [
+        "list",
+        "create",
+        "update",
+        "delete",
+        "link",
+        "unlink"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.plan.07.table_create_duplicate_update_delete",
+      "bereich": "plan",
+      "teilaktionen": [
+        "create",
+        "duplicate",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.plan.08.marker_create_update_delete",
+      "bereich": "plan",
+      "teilaktionen": [
+        "create",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.plan.09.guest_list_add_update_delete",
+      "bereich": "plan",
+      "teilaktionen": [
+        "list",
+        "add",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.plan.10.detail",
+      "bereich": "plan",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.plan.11.export",
+      "bereich": "plan",
+      "teilaktionen": [
+        "export"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "files.export",
+        "event.read"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.plan.12.illustrate",
+      "bereich": "plan",
+      "teilaktionen": [
+        "illustrate"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "files.export",
+        "event.read"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.plan.13.compose",
+      "bereich": "plan",
+      "teilaktionen": [
+        "compose"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "files.write",
+        "event.write"
+      ],
+      "artikel": "docs/veranstaltungen.md"
+    },
+    {
+      "id": "cai.recipe.01.create",
+      "bereich": "recipe",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.recipe.02.from_template",
+      "bereich": "recipe",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.recipe.03.list",
+      "bereich": "recipe",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.recipe.04.show",
+      "bereich": "recipe",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.recipe.05.update",
+      "bereich": "recipe",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.recipe.06.delete",
+      "bereich": "recipe",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.role.01.list",
+      "bereich": "role",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/rollen-rechte.md"
+    },
+    {
+      "id": "cai.role.02.show",
+      "bereich": "role",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/rollen-rechte.md"
+    },
+    {
+      "id": "cai.role.03.create",
+      "bereich": "role",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/rollen-rechte.md"
+    },
+    {
+      "id": "cai.role.04.update",
+      "bereich": "role",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/rollen-rechte.md"
+    },
+    {
+      "id": "cai.role.05.delete",
+      "bereich": "role",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/rollen-rechte.md"
+    },
+    {
+      "id": "cai.role.06.permission_defs",
+      "bereich": "role",
+      "teilaktionen": [
+        "permission-defs"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/rollen-rechte.md"
+    },
+    {
+      "id": "cai.role.07.permission_set",
+      "bereich": "role",
+      "teilaktionen": [
+        "permission set"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/rollen-rechte.md"
+    },
+    {
+      "id": "cai.role.08.permissions_show_apply",
+      "bereich": "role",
+      "teilaktionen": [
+        "permissions show|apply"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/rollen-rechte.md"
+    },
+    {
+      "id": "cai.role.09.assign",
+      "bereich": "role",
+      "teilaktionen": [
+        "assign"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/rollen-rechte.md"
+    },
+    {
+      "id": "cai.role.10.unassign",
+      "bereich": "role",
+      "teilaktionen": [
+        "unassign"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/rollen-rechte.md"
+    },
+    {
+      "id": "cai.role.11.assignments",
+      "bereich": "role",
+      "teilaktionen": [
+        "assignments"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/rollen-rechte.md"
+    },
+    {
+      "id": "cai.role.12.position_link",
+      "bereich": "role",
+      "teilaktionen": [
+        "position-link"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/rollen-rechte.md"
+    },
+    {
+      "id": "cai.role.13.position_unlink",
+      "bereich": "role",
+      "teilaktionen": [
+        "position-unlink"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/rollen-rechte.md"
+    },
+    {
+      "id": "cai.role.14.position_list",
+      "bereich": "role",
+      "teilaktionen": [
+        "position-list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/rollen-rechte.md"
+    },
+    {
+      "id": "cai.schema.01.list_domains",
+      "bereich": "schema",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/cli-reference.md"
+    },
+    {
+      "id": "cai.schema.02.show_domain_schema",
+      "bereich": "schema",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/cli-reference.md"
+    },
+    {
+      "id": "cai.shopping.01.list",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.02.active",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.03.completed",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.04.by_context",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.05.by_context_type",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.06.show",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "show",
+        "export"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern"
+      ],
+      "scopes": [
+        "supply.read",
+        "files.export"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.07.create",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.08.update",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.09.delete",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.10.item_add",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "add"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.11.item_update",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.12.item_delete",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.13.purchased",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "set"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.14.generate_from_recipe",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "generate"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write",
+        "files.export"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.15.generate_from_menu",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "generate"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write",
+        "files.export"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.procurement.activate",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "activate"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.procurement.add",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "add"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.procurement.list",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.procurement.purchase",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "purchase"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.procurement.template_create",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.procurement.template_deactivate",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "deactivate"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.procurement.template_update",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "supply.write"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.shopping.procurement.templates",
+      "bereich": "shopping",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.sponsor.01.list",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "sponsor.read"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.02.show",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "sponsor.read"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.03.add",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "add"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "sponsor.write"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.04.update",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "update",
+        "move_department"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "sponsor.write"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.05.delete",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "sponsor.write"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.06.logo",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "set"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "sponsor.write",
+        "files.read"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.07.product_list",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "sponsor.read"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.08.product_add",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "add"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "sponsor.write"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.09.product_update",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "update",
+        "move_department"
+      ],
+      "risiko": [
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "sponsor.write"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.10.product_delete",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "sponsor.write"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.11.contract_list",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "sponsor.read"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.12.contract_add",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "add"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "sponsor.write",
+        "files.read"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.13.contract_update",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "update",
+        "replace_file"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "sponsor.write",
+        "files.read"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.14.contract_delete",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "sponsor.write"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.15.assignment_list",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "sponsor.read"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.16.assign",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "assign"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "sponsor.write"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.17.assignment_update",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "sponsor.write"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.18.cancel",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "cancel"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "sponsor.write"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.19.doc_list",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "sponsor.read",
+        "files.read"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.20.doc_upload",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "upload"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "sponsor.write",
+        "files.import",
+        "files.write"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.21.responsible_list",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "sponsor.read",
+        "member.read.basic"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.22.responsible_add",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "add"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "sponsor.write"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.23.responsible_update",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "sponsor.write"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.sponsor.24.responsible_remove",
+      "bereich": "sponsor",
+      "teilaktionen": [
+        "remove"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "sponsor.write"
+      ],
+      "artikel": "docs/sponsoring.md"
+    },
+    {
+      "id": "cai.task.01.list",
+      "bereich": "task",
+      "teilaktionen": [
+        "list",
+        "mine"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "task.read"
+      ],
+      "artikel": "docs/aufgaben.md"
+    },
+    {
+      "id": "cai.task.02.show",
+      "bereich": "task",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "task.read"
+      ],
+      "artikel": "docs/aufgaben.md"
+    },
+    {
+      "id": "cai.task.03.show_subtasks",
+      "bereich": "task",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "task.read"
+      ],
+      "artikel": "docs/aufgaben.md"
+    },
+    {
+      "id": "cai.task.04.show_chain",
+      "bereich": "task",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "task.read"
+      ],
+      "artikel": "docs/aufgaben.md"
+    },
+    {
+      "id": "cai.task.05.create",
+      "bereich": "task",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "task.write"
+      ],
+      "artikel": "docs/aufgaben.md"
+    },
+    {
+      "id": "cai.task.06.bulk",
+      "bereich": "task",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "task.write"
+      ],
+      "artikel": "docs/aufgaben.md"
+    },
+    {
+      "id": "cai.task.07.update",
+      "bereich": "task",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "task.write"
+      ],
+      "artikel": "docs/aufgaben.md"
+    },
+    {
+      "id": "cai.task.08.assign",
+      "bereich": "task",
+      "teilaktionen": [
+        "assign"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "task.write"
+      ],
+      "artikel": "docs/aufgaben.md"
+    },
+    {
+      "id": "cai.task.09.done",
+      "bereich": "task",
+      "teilaktionen": [
+        "complete"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "task.write"
+      ],
+      "artikel": "docs/aufgaben.md"
+    },
+    {
+      "id": "cai.task.10.delete",
+      "bereich": "task",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "task.write"
+      ],
+      "artikel": "docs/aufgaben.md"
+    },
+    {
+      "id": "cai.task.11.context_list_show_create_update_delete",
+      "bereich": "task",
+      "teilaktionen": [
+        "list",
+        "show",
+        "create",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "task.read",
+        "task.write"
+      ],
+      "artikel": "docs/aufgaben.md"
+    },
+    {
+      "id": "cai.task.12.assignment_list_show_update_delete",
+      "bereich": "task",
+      "teilaktionen": [
+        "list",
+        "show",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "task.read",
+        "task.write"
+      ],
+      "artikel": "docs/aufgaben.md"
+    },
+    {
+      "id": "cai.task.13.note_list_add_update_delete",
+      "bereich": "task",
+      "teilaktionen": [
+        "list",
+        "add",
+        "update",
+        "delete"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "task.read",
+        "task.write"
+      ],
+      "artikel": "docs/aufgaben.md"
+    },
+    {
+      "id": "cai.task.14.checklist_list_add_update_toggle_delete_reorder",
+      "bereich": "task",
+      "teilaktionen": [
+        "list",
+        "add",
+        "update",
+        "toggle",
+        "delete",
+        "reorder"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern",
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "task.read",
+        "task.write"
+      ],
+      "artikel": "docs/aufgaben.md"
+    },
+    {
+      "id": "cai.team.01.list",
+      "bereich": "team",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.team.02.show",
+      "bereich": "team",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.team.03.create",
+      "bereich": "team",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.team.04.update",
+      "bereich": "team",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.team.05.delete",
+      "bereich": "team",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.team.06.member_list_add_update_remove",
+      "bereich": "team",
+      "teilaktionen": [
+        "member list|add|update|remove"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.team.07.resource_list_add_update_remove",
+      "bereich": "team",
+      "teilaktionen": [
+        "resource list|add|update|remove"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.01.list",
+      "bereich": "team",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.02.show",
+      "bereich": "team",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.03.create",
+      "bereich": "team",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.04.update",
+      "bereich": "team",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.05.archive",
+      "bereich": "team",
+      "teilaktionen": [
+        "archive"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.06.season_list",
+      "bereich": "team",
+      "teilaktionen": [
+        "season list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.07.season_create",
+      "bereich": "team",
+      "teilaktionen": [
+        "season create"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.08.season_correct",
+      "bereich": "team",
+      "teilaktionen": [
+        "season update"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.09.season_activate",
+      "bereich": "team",
+      "teilaktionen": [
+        "season activate"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.10.season_complete",
+      "bereich": "team",
+      "teilaktionen": [
+        "season complete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.11.roster_list",
+      "bereich": "team",
+      "teilaktionen": [
+        "roster show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.12.roster_add",
+      "bereich": "team",
+      "teilaktionen": [
+        "roster add"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.13.roster_update",
+      "bereich": "team",
+      "teilaktionen": [
+        "roster update"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.14.roster_remove",
+      "bereich": "team",
+      "teilaktionen": [
+        "roster remove"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.15.roster_carry_over_preview",
+      "bereich": "team",
+      "teilaktionen": [
+        "roster carry-over --preview"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.16.roster_carry_over",
+      "bereich": "team",
+      "teilaktionen": [
+        "roster carry-over"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.17.competition_list",
+      "bereich": "team",
+      "teilaktionen": [
+        "competition list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.18.competition_create",
+      "bereich": "team",
+      "teilaktionen": [
+        "competition create"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.19.competition_update",
+      "bereich": "team",
+      "teilaktionen": [
+        "competition update"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.20.competition_delete",
+      "bereich": "team",
+      "teilaktionen": [
+        "competition delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.21.ical_list",
+      "bereich": "team",
+      "teilaktionen": [
+        "ical list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.22.ical_create",
+      "bereich": "team",
+      "teilaktionen": [
+        "ical create"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.23.ical_preview",
+      "bereich": "team",
+      "teilaktionen": [
+        "ical preview"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.24.ical_activate",
+      "bereich": "team",
+      "teilaktionen": [
+        "ical activate"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.25.ical_deactivate",
+      "bereich": "team",
+      "teilaktionen": [
+        "ical deactivate"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.26.sync_now",
+      "bereich": "team",
+      "teilaktionen": [
+        "sync now"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.27.sync_runs",
+      "bereich": "team",
+      "teilaktionen": [
+        "sync runs"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.28.clarification_list",
+      "bereich": "team",
+      "teilaktionen": [
+        "sync clarifications"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.29.clarification_resolve",
+      "bereich": "team",
+      "teilaktionen": [
+        "sync resolve"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.30.termin_list",
+      "bereich": "team",
+      "teilaktionen": [
+        "termin list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.teams.31.termin_create",
+      "bereich": "team",
+      "teilaktionen": [
+        "termin create"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "admin.write"
+      ],
+      "artikel": "docs/mitglieder-teams.md"
+    },
+    {
+      "id": "cai.template.01.dish",
+      "bereich": "template",
+      "teilaktionen": [
+        "list",
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.template.02.ingredient",
+      "bereich": "template",
+      "teilaktionen": [
+        "list",
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read"
+      ],
+      "artikel": "docs/speisekarten.md"
+    },
+    {
+      "id": "cai.tournament.01.series_list",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "event.read"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.02.series_show",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "event.read"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.03.series_create",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.04.series_update",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.05.series_delete",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.06.execution_create",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.07.execution_link",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "link"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.08.list",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "event.read"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.09.show",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "event.read"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.10.update",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "update"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.11.delete",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.12.status",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "set"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.13.participants",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "event.read"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.14.mannschaft",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.15.participant",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.16.participant_withdraw",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "withdraw"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.17.participant_reinstate",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "reinstate"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.18.participant_remove",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "remove"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.19.start",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "start"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.20.matches",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "list"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.21.matches_clear",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "clear"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.22.reset",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "reset"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.23.redraw",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "redraw"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.24.standings",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "show"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "event.read"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.25.preview",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "export"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.read",
+        "files.export"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.26.draw",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "create"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.27.draw_confirm",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "confirm"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.28.schedule_generate",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "generate"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.29.match_schedule",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "set"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.30.match_delete",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "delete"
+      ],
+      "risiko": [
+        "ändern mit Bestätigung"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.31.match_result",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "set"
+      ],
+      "risiko": [
+        "ändern"
+      ],
+      "scopes": [
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.tournament.32.deadline",
+      "bereich": "tournament",
+      "teilaktionen": [
+        "show",
+        "set_deadline",
+        "set_policy"
+      ],
+      "risiko": [
+        "lesen",
+        "ändern"
+      ],
+      "scopes": [
+        "event.read",
+        "event.write"
+      ],
+      "artikel": "docs/turniere.md"
+    },
+    {
+      "id": "cai.verify.01.url",
+      "bereich": "verify",
+      "teilaktionen": [
+        "verify"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read",
+        "files.export"
+      ],
+      "artikel": "docs/cli-reference.md"
+    },
+    {
+      "id": "cai.verify.02.event",
+      "bereich": "verify",
+      "teilaktionen": [
+        "verify"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "event.read",
+        "files.export"
+      ],
+      "artikel": "docs/cli-reference.md"
+    },
+    {
+      "id": "cai.verify.03.menu",
+      "bereich": "verify",
+      "teilaktionen": [
+        "verify"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "supply.read",
+        "files.export"
+      ],
+      "artikel": "docs/cli-reference.md"
+    },
+    {
+      "id": "cai.verify.04.homepage",
+      "bereich": "verify",
+      "teilaktionen": [
+        "live",
+        "preview"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read",
+        "files.export",
+        "club.write"
+      ],
+      "artikel": "docs/cli-reference.md"
+    },
+    {
+      "id": "cai.verify.05.news",
+      "bereich": "verify",
+      "teilaktionen": [
+        "verify"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "content.read",
+        "files.export"
+      ],
+      "artikel": "docs/cli-reference.md"
+    },
+    {
+      "id": "cai.verify.06.certificate",
+      "bereich": "verify",
+      "teilaktionen": [
+        "verify"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "member.read.details",
+        "files.export"
+      ],
+      "artikel": "docs/cli-reference.md"
+    },
+    {
+      "id": "cai.whoami.01.whoami",
+      "bereich": "whoami",
+      "teilaktionen": [
+        "whoami"
+      ],
+      "risiko": [
+        "lesen"
+      ],
+      "scopes": [
+        "club.read"
+      ],
+      "artikel": "docs/auth-club.md"
+    }
+  ]
+}

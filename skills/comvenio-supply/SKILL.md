@@ -10,13 +10,16 @@ description: >
 
 # Comvenio Speisekarten und Einkauf
 
-## Verbindlicher OAuth-Pfad
+## Verbindlicher Arbeitsweg
 
-Im Standardmodus zuerst `comvenio whoami --json` und `comvenio action list
---json` ausführen. Fachoperationen ausschließlich mit der dort sichtbaren
-kanonischen Action-ID und ihrem `input_schema` über `comvenio action call`
-aufrufen. Die Domain-Aliase in den Beispielen gelten nur für den expliziten
-Device-Token-Kompatibilitätsmodus; niemals durch direkte HTTP-Aufrufe ersetzen.
+Zuerst `comvenio whoami --json` und `comvenio action list --json` ausführen.
+Fachoperationen laufen ausschließlich über
+`comvenio action call <action-id> --input '<json>' --json` mit einer dort
+sichtbaren Action-ID und ihrem `input_schema`; Teilaktionen wählt das Feld
+`"operation"`. `club_id` gehört nie in `--input`, der Verein kommt aus der
+Anmeldung. Kritische Actions liefern eine Vorschau und werden erst nach
+Freigabe mit `comvenio action confirm` ausgeführt. Fehlt eine Action, nennt der
+Skill den Weg in der Comvenio-Web-App; niemals direkte HTTP-Aufrufe.
 
 ## Ziel
 
@@ -43,12 +46,13 @@ Ein Eintrag ohne Rezept kann unvollständige Allergeninformationen haben und in
 
 ```bash
 comvenio whoami --json
-comvenio club info --json
-comvenio schema menu --json
-comvenio menu --help
-comvenio recipe --help
-comvenio shopping --help
+comvenio action list --json
+comvenio action call cai.schema.02.show_domain_schema --input '{"domain":"menu"}' --json
 ```
+
+Rezepte laufen über `cai.recipe.*`, Karten über `cai.menu.*` und
+Einkaufslisten über `cai.shopping.*`; maßgeblich ist jeweils das
+`input_schema` aus `comvenio action list --json`.
 
 Kläre:
 
@@ -67,22 +71,33 @@ Preise, Mengen oder Zutaten.
 Suche für jedes Gericht und wichtige Zutaten:
 
 ```bash
-comvenio template dish --search "<gericht>" --json
-comvenio template ingredient --search "<zutat>" --json
+comvenio action call cai.template.01.dish \
+  --input '{"operation":"list","search":"<gericht>"}' --json
+comvenio action call cai.template.02.ingredient \
+  --input '{"operation":"list","search":"<zutat>"}' --json
 ```
 
-Passende Gerichtsvorlage:
+Passende Gerichtsvorlage (kritisch, läuft über Vorschau und Freigabe):
 
 ```bash
-comvenio recipe from-template <template-id> --price <preis> --json
+comvenio action call cai.recipe.02.from_template \
+  --input '{"template_id":"<template-id>","custom_price":<preis>}' --json
+comvenio action confirm \
+  --preview-id <preview-id> \
+  --confirmation-token <confirmation-token> \
+  --idempotency-key <idempotency-key>
 ```
 
 Fehlt eine Gerichtsvorlage, lege ein Rezept mit exakt geprüften
 Zutatenbezeichnungen an:
 
 ```bash
-comvenio recipe create --name "<name>" --type food --price <preis> \
-  --ingredients "<zutat>:<menge>:<einheit>" --json
+comvenio action call cai.recipe.01.create \
+  --input '{"name":"<name>","type_of_recipe":"food","selling_price":<preis>,"ingredients":[{"name":"<zutat>","quantity":<menge>,"unit":"<einheit>"}]}' --json
+comvenio action confirm \
+  --preview-id <preview-id> \
+  --confirmation-token <confirmation-token> \
+  --idempotency-key <idempotency-key>
 ```
 
 Gültige Einheiten und Werte werden immer aus dem aktuellen Schema gelesen.
@@ -93,14 +108,16 @@ Insbesondere werden keine ähnlich klingenden Einheiten geraten.
 Sicherer Standardweg:
 
 ```bash
-comvenio menu create --name "<kartenname>" --category "<kategorie>" --json
-comvenio menu add-item <menu-id> --recipe <recipe-id> \
-  --name "<anzeige>" --price <preis> --json
-comvenio menu show <menu-id> --json
+comvenio action call cai.menu.01.create \
+  --input '{"menu":{"name":"<kartenname>","category":"<kategorie>"}}' --json
+comvenio action call cai.menu.04.add_item \
+  --input '{"menu_id":"<menu-id>","item":{"recipe_id":"<recipe-id>","name":"<anzeige>","selling_price":<preis>}}' --json
+comvenio action call cai.menu.03.show --input '{"menu_id":"<menu-id>"}' --json
 ```
 
-Für viele bereits aufgelöste Rezepte kann der Agent eine deklarative Datei
-erstellen und `comvenio menu apply --file menu.json --json` verwenden. Jeder
+Für viele bereits aufgelöste Rezepte kann der Agent die ganze Karte deklarativ
+mit `cai.menu.09.apply` anlegen (kritisch, Vorschau und
+`comvenio action confirm`). Jeder
 Eintrag soll weiterhin eine `recipe_id` besitzen.
 
 Das gleiche Rezept kann auf mehreren Karten mit anderem Anzeigenamen oder Preis
@@ -124,9 +141,10 @@ Gestaltung verändert nur das Aussehen, nicht strukturierte Preise oder
 Allergene:
 
 ```bash
-comvenio menu style <menu-id> --css <datei>
-comvenio menu show <menu-id> --json
-comvenio verify menu <menu-id> --json
+comvenio action call cai.menu.08.style \
+  --input '{"menu_id":"<menu-id>","design":{"template":"modern","accentColor":"#006846"}}' --json
+comvenio action call cai.menu.03.show --input '{"menu_id":"<menu-id>"}' --json
+comvenio action call cai.verify.03.menu --input '{"menu_id":"<menu-id>"}' --json
 ```
 
 Zeige die Prüfung und hole vor einer öffentlichen Verwendung die fachliche
@@ -139,10 +157,12 @@ Lege eine Einkaufsliste für den passenden Kontext an oder generiere sie aus
 vorhandenen Rezepten beziehungsweise einer Karte:
 
 ```bash
-comvenio shopping generate-from-recipe <recipe-id> \
-  --portions <anzahl> --name "<name>" --json
-comvenio shopping generate-from-menu <menu-id> --name "<name>" --json
-comvenio shopping show <list-id> --json
+comvenio action call cai.shopping.14.generate_from_recipe \
+  --input '{"recipe_id":"<recipe-id>","portions":<anzahl>,"name":"<name>"}' --json
+comvenio action call cai.shopping.15.generate_from_menu \
+  --input '{"menu_id":"<menu-id>","name":"<name>"}' --json
+comvenio action call cai.shopping.06.show \
+  --input '{"operation":"show","shopping_list_id":"<shopping-list-id>"}' --json
 ```
 
 Prüfe Mengen, Einheiten und Veranstaltungskontext, bevor die Liste als aktiv

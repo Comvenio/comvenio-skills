@@ -59,46 +59,55 @@ comvenio login --json
 ```
 
 OAuth-Secrets liegen im geschützten Betriebssystemspeicher und dürfen weder
-gelesen noch in der Antwort wiedergegeben werden. Ein `cvn_`-Device-Token ist
-nur ein ausdrücklich gewählter Entwickler-/Automationsfallback.
+gelesen noch in der Antwort wiedergegeben werden. `comvenio login` ist der
+einzige Anmeldeweg; kopierte Zugriffstoken gibt es nicht.
 
-## OAuth-Action-Vertrag
+## Action-Vertrag
 
-Im Standardmodus führt jeder Fachskill seine Operationen über die sichtbare
-kanonische Action aus:
+Jeder Fachskill führt seine Operationen über die sichtbare kanonische Action
+aus:
 
 ```bash
 comvenio action list --json
-comvenio action call <cai.action.id> --input '<json>' --json
+comvenio action call <action-id> --input '<json>' --json
 ```
 
 - Wähle ausschließlich eine Action-ID aus `action list`; die Liste ist bereits
   nach OAuth-Scopes, Verein und aktueller Backend-RBAC gefiltert.
 - Verwende das dort gelieferte `input_schema`. Erfinde keine Felder.
+- Actions mit mehreren Teilaktionen wählen sie über das Feld `"operation"`,
+  zum Beispiel `{"operation":"list","event_id":"<event-id>"}`.
 - Übergib niemals `club_id`, Benutzer-ID oder Scopes. Diese Werte bindet
   Comvenio serverseitig.
 - Verwende für wiederholte Schreibversuche denselben ausgegebenen
   Idempotenzschlüssel.
 - Liefert eine kritische Action eine Vorschau, zeige sie dem Nutzer und verwende
   nach eindeutiger Freigabe `comvenio action confirm` mit genau den
-  zurückgegebenen Nachweisen.
+  zurückgegebenen Nachweisen. Die Bestätigung gehört nie in `--input`:
+
+  ```bash
+  comvenio action confirm \
+    --preview-id <preview-id> \
+    --confirmation-token <confirmation-token> \
+    --idempotency-key <idempotency-key>
+  ```
+
 - Fehlt ein benötigter Scope, führt der Nutzer `comvenio login --scopes
   <kommagetrennte-scopes>` erneut aus und bestätigt den neuen Consent.
 
-Die Fachskill-Beispiele mit `comvenio event …`, `comvenio member …` und
-vergleichbaren Domain-Aliasen dokumentieren weiterhin den expliziten
-Device-Token-Kompatibilitätsmodus. Im OAuth-Modus werden sie anhand von
-`action list` auf die gleichwertige kanonische Action übertragen.
+Die früheren Domänenbefehle des CLI (etwa für Veranstaltungen oder Mitglieder)
+gibt es nicht mehr; sie enden mit einem Fehler und dem Verweis auf
+`comvenio action list`. Verwende immer die gleichwertige Action. Gibt es für
+einen Schritt keine Action, nenne den Weg in der Comvenio-Web-App.
 
 ## Arbeitsvertrag
 
 Gehe bei jeder Fachaufgabe in dieser Reihenfolge vor:
 
 1. Erfasse das gewünschte Ergebnis in Vereinssprache.
-2. Ermittle im OAuth-Modus Action-ID und Eingabeschema mit
-   `comvenio action list --json`. Nutze `comvenio <domain> --help` und
-   `comvenio schema <domain> --json` nur ergänzend für den
-   Device-Token-Kompatibilitätsmodus.
+2. Ermittle Action-ID und Eingabeschema mit `comvenio action list --json`.
+   Zusätzliche Feld- und Wertebeschreibungen liefert
+   `cai.schema.02.show_domain_schema` mit `{"domain":"<bereich>"}`.
 3. Lies die betroffenen bestehenden Daten.
 4. Zeige dem Nutzer kurz, was geändert werden soll und welche offenen
    Entscheidungen fehlen.
@@ -132,9 +141,9 @@ Gehe bei jeder Fachaufgabe in dieser Reihenfolge vor:
 | Saison, regelmäßige Termine oder Ressourcenplanung | `comvenio-season-planner` |
 | Ersteinrichtung oder strukturierte Datenübernahme | `comvenio-club-onboarding` |
 
-Bleibt der Wunsch außerhalb dieser Bereiche, nutze
-`comvenio --help` und `comvenio schema --json`, um nur tatsächlich vorhandene
-Funktionen zu nennen.
+Bleibt der Wunsch außerhalb dieser Bereiche, nutze `comvenio help` und
+`comvenio action list --json`, um nur tatsächlich vorhandene Funktionen zu
+nennen.
 
 Community- oder Channel-Moderation, ClubAgent-Administration und wesentliche
 Finanzabläufe sind derzeit nicht über das CLI abgedeckt. Eine eigene Domain wird
@@ -149,8 +158,9 @@ in der Comvenio-Web-App angebunden.
 - Datensatz nicht gefunden: Prüfe zuerst Vereinskontext und Sichtbarkeit.
 - Vorübergehender Fehler: Wiederhole nur lesende Aufrufe. Schreibende Befehle
   werden nicht blind wiederholt.
-- Fehlender CLI-Befehl: Erkläre, dass dieser Ablauf derzeit nicht per CLI
-  unterstützt wird. Keine alternative Backend-Verbindung anbieten.
+- Fehlende Action: Erkläre, dass dieser Ablauf derzeit nicht per CLI
+  unterstützt wird, und nenne den Weg in der Comvenio-Web-App. Keine
+  alternative Backend-Verbindung anbieten.
 
 ## Antwortformat
 

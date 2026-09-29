@@ -7,9 +7,9 @@
       "expected_output": "Der Agent prüft bestehende Serien, erstellt bei Bedarf Serie und konkretes Protokoll und zeigt eine sortierte Tagesordnung.",
       "files": [],
       "expectations": [
-        "Prüft Verein, Meeting-Schema und bestehende Serien.",
+        "Prüft Verein, das input_schema der Sitzungs-Actions und bestehende Serien.",
         "Trennt Sitzungsserie, konkretes Protokoll und Tagesordnung.",
-        "Verwendet JSON-Dateien und --json für die CLI-Schritte."
+        "Verwendet comvenio action call mit den cai.meeting-Actions, --input und --json für die CLI-Schritte."
       ]
     },
     {

@@ -15,12 +15,12 @@
     {
       "id": 2,
       "prompt": "Erstelle aus dem bestehenden Plan eine freundliche illustrierte Besucherkarte mit exakten Beschriftungen.",
-      "expected_output": "Der Agent nutzt illustrate als Vorbereitung, lässt das Bild separat erzeugen und legt mit compose exakte Labels darüber.",
+      "expected_output": "Der Agent nutzt cai.plan.12.illustrate als Vorbereitung, lässt das Bild separat erzeugen und legt mit cai.plan.13.compose exakte Labels darüber.",
       "files": [],
       "expectations": [
-        "Behauptet nicht, dass plan illustrate selbst das Bild erzeugt.",
+        "Behauptet nicht, dass cai.plan.12.illustrate selbst das Bild erzeugt.",
         "Bewahrt die Layout-Referenz bei der Bildgenerierung.",
-        "Verwendet compose für echte Beschriftungen und nennt die Ausgabedatei."
+        "Verwendet cai.plan.13.compose für echte Beschriftungen und nennt die Ausgabedatei."
       ]
     },
     {

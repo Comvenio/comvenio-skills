@@ -14,6 +14,7 @@ Comvenio-Browserfenster. Der Assistent fordert weder Passwort noch Token im Chat
 an. Vor Änderungen prüft er Identität, Zielverein und die im aktuellen
 OAuth-/RBAC-Kontext sichtbaren kanonischen Actions.
 
-Fehlt eine Funktion im CLI, benennt der Skill die Lücke. Er versucht keinen
-versteckten oder direkten Zugriff auf Comvenio. Kritische Änderungen benötigen
+Fehlt eine Funktion im CLI, benennt der Skill die Lücke und nennt den Weg in
+der Comvenio-Web-App. Er versucht keinen versteckten oder direkten Zugriff auf
+Comvenio. Kritische Änderungen benötigen
 Ihre eindeutige Bestätigung.

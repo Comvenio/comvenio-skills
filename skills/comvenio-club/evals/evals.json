@@ -26,10 +26,10 @@
     {
       "id": 3,
       "prompt": "Stelle das öffentliche Design auf modern mit unseren Farben um und übernimm es direkt.",
-      "expected_output": "Der Agent liest Design und Homepage, zeigt einen Dry-Run und fordert vor der öffentlichen Änderung eine Freigabe.",
+      "expected_output": "Der Agent liest Design und Homepage, zeigt die geplanten Designwerte neben dem aktuellen Stand und fordert vor der öffentlichen Änderung eine Freigabe.",
       "files": [],
       "expectations": [
-        "Verwendet club design zuerst mit --dry-run --json.",
+        "Liest den aktuellen Stand mit cai.club.03.settings und wendet cai.club.05.design erst nach Freigabe an.",
         "Fordert trotz 'direkt' eine Bestätigung für die öffentliche Wirkung, sofern Werte noch nicht vollständig gezeigt wurden.",
         "Erzeugt Vorschau und Homepage-Verifikation nach dem Anwenden."
       ]

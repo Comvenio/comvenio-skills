@@ -32,7 +32,10 @@ Ein geänderter Skill benötigt:
 - eine kundenorientierte `README.md`,
 - eine eindeutige `SKILL.md`,
 - mindestens drei realistische Fälle in `evals/evals.json`,
-- ausschließlich Aufrufe des offiziellen `comvenio` CLI.
+- ausschließlich Aufrufe des offiziellen `comvenio` CLI über
+  `comvenio action list|call|confirm` mit Action-IDs aus
+  `catalog/actions.json`; klassische Domänenbefehle werden von `npm test`
+  abgelehnt.
 
 ## Pull Requests
 
