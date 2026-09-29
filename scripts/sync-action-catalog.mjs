@@ -15,7 +15,8 @@
 //
 // The sync never writes a partial catalog: a topic article (kategorie: thema)
 // without the generated section, or a line in a section that names an action
-// but cannot be parsed, aborts the run before anything is written.
+// but cannot be parsed, or a topic section with neither an action line nor the
+// line "Noch keine Action", aborts the run before anything is written.
 
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
@@ -100,7 +101,8 @@ const problems = [];
 const actions = new Map();
 for (const name of listArticles().sort()) {
   const text = readArticle(name);
-  if (category(text) === "thema" && !text.includes(GEN_START)) {
+  const isTopic = category(text) === "thema";
+  if (isTopic && !text.includes(GEN_START)) {
     problems.push(`docs/${name}: Themenartikel ohne Abschnitt „Befehle und Actions“ (${GEN_START}).`);
   }
   let offset = 0;
@@ -114,6 +116,8 @@ for (const name of listArticles().sort()) {
     }
     const firstLine = text.slice(0, start).split(/\r?\n/).length;
     let area = null;
+    let entries = 0;
+    let declaredEmpty = false;
     text
       .slice(start, end)
       .split(/\r?\n/)
@@ -124,6 +128,7 @@ for (const name of listArticles().sort()) {
           return;
         }
         // Indentation and the list marker (- or *) are tolerated.
+        if (/Noch keine Action/.test(line)) declaredEmpty = true;
         const entry = line.match(/^\s*[-*]\s+`(cai\.[^`]+)`\s+—\s+(.+?)\s+\((.+?)\)(?:\s+·\s+Scopes:\s+(.+?))?\s*$/);
         if (!entry) {
           // A line that names an action but does not parse would silently drop
@@ -133,6 +138,7 @@ for (const name of listArticles().sort()) {
           }
           return;
         }
+        entries += 1;
         const [, id, operationText, riskText, scopeText] = entry;
         const risks = parseRisks(riskText);
         if (!risks) {
@@ -148,6 +154,11 @@ for (const name of listArticles().sort()) {
           artikel: `docs/${name}`,
         });
       });
+    // A topic section lists at least one action or says "Noch keine Action";
+    // an empty section would silently drop that topic from the catalog.
+    if (isTopic && entries === 0 && !declaredEmpty) {
+      problems.push(`docs/${name}:${firstLine}: Abschnitt „Befehle und Actions“ ohne Action-Zeile und ohne „Noch keine Action“.`);
+    }
     offset = end + GEN_END.length;
   }
 }

@@ -95,6 +95,28 @@ const cases = [
       `${skillFile}:19 befehl-ausserhalb-der-flaeche comvenio club info`,
     ],
   },
+  {
+    name: "K1-1b klassischer Befehl im JSON-Fließtext mit Großschreibung",
+    prepare: (root) => copyCase("tc-10-json-klassisch", root),
+    exitCode: 1,
+    expect: [`${evalFile}:4 befehl-ausserhalb-der-flaeche Comvenio club info`],
+    reject: ["Comvenio lässt"],
+  },
+  {
+    name: "K1-3b Ausnahmemarke vor einem Block ohne Kennzeichnung",
+    prepare: (root) => copyCase("tc-11-marke-ohne-kennzeichnung", root),
+    exitCode: 1,
+    expect: [
+      `${skillFile}:16 ausnahmemarke-ohne-kennzeichnung <!-- klassisch-beispiel -->`,
+      `${skillFile}:18 befehl-ausserhalb-der-flaeche comvenio club info`,
+    ],
+  },
+  {
+    name: "K1-3b Kennzeichnung als Kommentar im Block",
+    prepare: (root) => copyCase("tc-11-kennzeichnung-kommentar", root),
+    exitCode: 0,
+    expect: [],
+  },
 ];
 
 // Sync cases: exit code, expected output, and whether (and with which action
@@ -128,6 +150,13 @@ const syncCases = [
     expect: ["docs/verein.md:13: Action-Zeile nicht lesbar"],
     written: null,
   },
+  {
+    name: "K1-4b Themenabschnitt ohne Action und ohne „Noch keine Action“",
+    caseName: "sync-leerer-abschnitt",
+    exitCode: 2,
+    expect: ["docs/aufgaben.md:8: Abschnitt „Befehle und Actions“ ohne Action-Zeile"],
+    written: null,
+  },
 ];
 
 // Overlays every file of a case folder onto the example skill.
@@ -150,6 +179,11 @@ for (const testCase of cases) {
     for (const text of testCase.expect) {
       if (!output.includes(text)) {
         failures.push(`${testCase.name}: Ausgabe enthält „${text}“ nicht\n${output}`);
+      }
+    }
+    for (const text of testCase.reject ?? []) {
+      if (output.includes(text)) {
+        failures.push(`${testCase.name}: Ausgabe enthält „${text}“ (Fehlalarm)\n${output}`);
       }
     }
   } finally {

@@ -26,9 +26,25 @@ const COMMAND_SURFACE = {
 
 // Marks a deliberate counter-example ("nicht mehr verfügbar"): on a line of its
 // own and directly followed (blank lines allowed) by a fenced code block, it
-// exempts the commands of that block from the check. A mark without such a
-// block is a finding of its own.
+// exempts the commands of that block from the check. The block must be labelled
+// as such: the last non-blank line before the mark (a heading or a sentence)
+// or the first line of the block (a comment) says "nicht mehr verfügbar". A
+// mark without a following block, or before an unlabelled block, is a finding
+// of its own; an unlabelled block is checked like any other.
 const EXCEPTION_MARK = "<!-- klassisch-beispiel -->";
+const UNAVAILABLE_LABEL = /nicht mehr verfügbar/i;
+const UNAVAILABLE_COMMENT = /^\s*(?:#|\/\/|<!--).*nicht mehr verfügbar/i;
+
+// Command names of the removed classic domain commands. In JSON prose (eval
+// texts) the program name is matched in any case only in front of one of them,
+// so "Comvenio lässt …" stays a sentence while "Comvenio club info" is found.
+const LEGACY_COMMANDS = new Set([
+  "club", "member", "members", "team", "event", "booking", "object", "task", "template",
+  "recipe", "ingredient", "ingredient-category", "shopping", "menu", "homepage", "role",
+  "plan", "tournament", "sponsor", "news", "data", "meeting", "verify", "schema", "zone",
+  "task-zones", "function", "automation", "channel", "forum", "marketplace",
+  "weekly-preview", "series",
+]);
 
 // A comvenio command: program name, command and optional subcommand.
 const COMMAND_PATTERN = /(?<![\w-])comvenio\s+([a-z][a-z-]*)(?:\s+([a-z][a-z-]*))?/;
@@ -85,8 +101,9 @@ function joinContinuations(lines, firstLine) {
 // - commands: where a comvenio command may stand. Markdown: fenced blocks
 //   (continuations joined) and inline code; the program name is matched in any
 //   case there. JSON: backtick spans inside strings (any case) and the rest of
-//   each string, which is prose, so only the lower-case program name counts
-//   there ("Comvenio die Plattformseite" is a sentence, not a command).
+//   each string, which is prose: there the lower-case program name counts, and
+//   any other spelling only in front of a removed classic command
+//   (LEGACY_COMMANDS, "agent approval").
 // - texts: everything the input, token and action checks read. Markdown: each
 //   prose line, and each fenced block as one text of its joined lines (a quoted
 //   --input may span lines). JSON: every string, decoded (escaped quotes
@@ -123,26 +140,33 @@ function scanFile(text, isJson, report) {
   const lines = text.split(/\r?\n/);
   let fence = null;
   let pendingMark = null;
+  let lastProse = "";
   const flushFence = () => {
+    let exempt = false;
+    if (fence.mark) {
+      exempt = fence.mark.labelled || UNAVAILABLE_COMMENT.test(fence.body[0] ?? "");
+      if (!exempt) report(fence.mark.line, "ausnahmemarke-ohne-kennzeichnung", EXCEPTION_MARK);
+    }
     const logicals = joinContinuations(fence.body, fence.start);
     for (const logical of logicals) {
-      commands.push({ ...logical, exempt: fence.exempt, anyCase: true });
+      commands.push({ ...logical, exempt, anyCase: true });
     }
     texts.push({ starts: logicals.map((logical) => logical.line), text: logicals.map((logical) => logical.text).join("\n") });
     fence = null;
   };
   const dropMark = () => {
-    report(pendingMark, "ausnahmemarke-ohne-block", EXCEPTION_MARK);
+    report(pendingMark.line, "ausnahmemarke-ohne-block", EXCEPTION_MARK);
     pendingMark = null;
   };
   lines.forEach((line, index) => {
     const number = index + 1;
     if (/^\s*(```|~~~)/.test(line)) {
       if (!fence) {
-        fence = { exempt: pendingMark !== null, body: [], start: number + 1 };
+        fence = { mark: pendingMark, body: [], start: number + 1 };
         pendingMark = null;
       } else {
         flushFence();
+        lastProse = "";
       }
       return;
     }
@@ -152,10 +176,11 @@ function scanFile(text, isJson, report) {
     }
     if (line.trim() === EXCEPTION_MARK) {
       if (pendingMark !== null) dropMark();
-      pendingMark = number;
+      pendingMark = { line: number, labelled: UNAVAILABLE_LABEL.test(lastProse) };
       return;
     }
     if (pendingMark !== null && line.trim() !== "") dropMark();
+    if (line.trim() !== "") lastProse = line;
     texts.push({ starts: [number], text: line });
     for (const match of line.matchAll(/`([^`]+)`/g)) {
       commands.push({ line: number, text: match[1], exempt: false, anyCase: true });
@@ -194,11 +219,16 @@ function checkCommands(skill, file, text) {
 
   for (const segment of commands) {
     if (segment.exempt) continue;
-    const pattern = new RegExp(COMMAND_PATTERN.source, segment.anyCase ? "gi" : "g");
+    const pattern = new RegExp(COMMAND_PATTERN.source, "gi");
     for (const match of segment.text.matchAll(pattern)) {
       const whole = match[0].trim().replace(/\s+/g, " ");
       const command = match[1].toLowerCase();
       const subcommand = match[2]?.toLowerCase();
+      // Prose: only the literal "comvenio command" (lower-case program and
+      // command word, as before) or any spelling in front of a removed command.
+      const literal = /^comvenio\s+[a-z]/.test(match[0]);
+      const legacy = LEGACY_COMMANDS.has(command) || (command === "agent" && subcommand === "approval");
+      if (!segment.anyCase && !literal && !legacy) continue;
       if (!Object.hasOwn(COMMAND_SURFACE, command)) {
         report(segment.line, "befehl-ausserhalb-der-flaeche", whole);
         continue;
