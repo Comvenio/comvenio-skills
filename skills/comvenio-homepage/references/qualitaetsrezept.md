@@ -53,22 +53,26 @@ und Werte sind Beispiele (Verein „SV Musterdorf“, Klassenpräfix `.sv-`).
 }
 ```
 
-- **`"landing": false` immer ausdrücklich setzen.** `club design` führt zusammen;
+- **`"landing": false` immer ausdrücklich setzen.** `cai.club.05.design` führt zusammen;
   ein alter `landing: true` bleibt sonst aktiv und blendet live Kopfzeile und
   Navigation aus — die Vorschau zeigt sie trotzdem.
-- Der Trockenlauf `club design --file … --dry-run --json` nennt die Live-Schlüssel,
-  die erhalten bleiben. Diese Liste lesen und bewusst entscheiden.
+- `cai.club.05.design` hat keinen Trockenlauf. Vorher die Live-Schlüssel aus
+  `design_settings` von `cai.club.03.settings` lesen; was in der Eingabe fehlt,
+  bleibt erhalten. Diese Liste lesen und bewusst entscheiden.
 - Eigene Klassen mit Vereinspräfix, Farben als CSS-Variablen.
 - Serifen-Überschriften, ruhige Grotesk für Text, Sektionen 80–110 px Abstand,
   eine Akzentfarbe für Knöpfe und Kicker.
 
 ## 3. Logo und Wappen
 
-- Vereinslogo setzen: `comvenio club logo-upload --file wappen.png --json`
-  (PNG/JPEG/GIF/WebP/SVG, höchstens 10 MB). Ein normaler `data upload` ersetzt das Logo nicht.
-- Bilder hochladen: `comvenio data upload ./bild.jpg --context club --public --json`
-  landet in der Standard-Abteilung und ist im DataShare sichtbar; `--department <id>`
-  wählt eine andere.
+- Vereinslogo setzen: Dafür gibt es keine Action. Der Verein lädt das Logo in der
+  Comvenio-Web-App unter **Admin Bereich → Einstellungen** hoch
+  (PNG/JPEG/GIF/WebP/SVG, höchstens 10 MB). Ein normaler Datei-Upload ersetzt das
+  Logo nicht.
+- Bilder hochladen:
+  `comvenio action call cai.data.06.upload --file ./bild.jpg --input '{"context_type":"club","visibility":"public"}' --json`
+  landet in der Standard-Abteilung und ist im DataShare sichtbar; `department_id`
+  in `--input` wählt eine andere.
 - EPS/SVG vorher in ein PNG mit transparentem Hintergrund umwandeln,
   mindestens ~1000 px Kantenlänge.
 - Freigestelltes Wappen im Hero: `image`-Slot mit `file_id` und
@@ -97,17 +101,21 @@ und Werte sind Beispiele (Verein „SV Musterdorf“, Klassenpräfix `.sv-`).
 
 Widgets rendern in den Slot hinein; nicht jedes trägt eine bestimmte Klasse.
 Regeln über den eigenen Container schreiben (`.sv-hero-mark > div`) und den echten
-Aufbau vorher im Vorschau-Bild prüfen (`comvenio verify url <vorschau-url> --json`).
+Aufbau vorher im Vorschau-Bild prüfen (`cai.homepage.04.screenshot` mit der
+`preview_id` der Vorschau).
 
 ## 6. Prüfen
 
-1. `comvenio homepage preview --file home.json --design-file design.json --ttl-hours 24 --json`
+1. `comvenio action call cai.homepage.01.preview --input '{"tabs":[<tabs>],"clear_existing":true}' --json`,
+   danach `cai.homepage.04.screenshot` mit der `preview_id`.
 2. Bilder an **390, 768, 1024 und 1440 px** ansehen: Kopfzeile, Navigation, Hero,
    Sektionen, Formular.
-3. `comvenio verify homepage --file home.json --design-file design.json --audit --json`;
+3. `comvenio action call cai.verify.04.homepage --input '{"operation":"preview","tabs":[<tabs>],"audit":true}' --json`;
    Kontrastbefunde aus eingebetteten Event-Seiten getrennt nennen.
-4. Nach Freigabe: Live-Stand sichern (`homepage show --public`, `club info`),
-   `club design --file`, `homepage apply --clear`, dann dieselben Breiten live prüfen.
+4. Nach Freigabe: Live-Stand sichern (`cai.homepage.03.show` mit
+   `"operation":"public"`, `cai.club.03.settings`), `cai.club.05.design`,
+   `cai.homepage.02.apply` mit `"clear_existing":true` und
+   `comvenio action confirm`, dann dieselben Breiten live prüfen.
 
 ## 7. Datenschutz
 
@@ -121,10 +129,10 @@ Aufbau vorher im Vorschau-Bild prüfen (`comvenio verify url <vorschau-url> --js
 
 | Fehlerbild | Ursache | Abhilfe |
 |---|---|---|
-| Live fehlen Kopfzeile und Navigation | alter `landing: true` überlebt | `"landing": false` setzen, erneut `club design --file` |
+| Live fehlen Kopfzeile und Navigation | alter `landing: true` überlebt | `"landing": false` setzen, erneut `cai.club.05.design` |
 | Kasten um freigestelltes Logo | Kartenrahmen des Bild-Widgets | `"card_style": "none"` |
 | „Kein Bild konfiguriert“ nur bei einer Person | alter App-Stand im Browser | `Strg+Umschalt+R` |
-| Vorstand in falscher Reihenfolge (alphabetisch) | Ämter ohne eigene Reihenfolge im Organ | `position_order` im `team`-Slot, IDs aus `club position-list` |
+| Vorstand in falscher Reihenfolge (alphabetisch) | Ämter ohne eigene Reihenfolge im Organ | `position_order` im `team`-Slot, IDs aus `cai.role.14.position_list` |
 | Eigene CSS-Breite wirkt nicht | Selektor trifft den Slot nicht | Slot-Container ansprechen, Aufbau vorher ansehen |
 | Verifier Exit 4 nur auf einer Event-Seite | Kontrast im eingebetteten Event-Hub | getrennt melden, nicht per Homepage-CSS überdecken |
 | Viele „Nicht besetzt“ im Organ | Positionen ohne Zuordnung | Vereinsdaten pflegen lassen |

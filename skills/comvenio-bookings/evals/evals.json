@@ -18,7 +18,7 @@
       "expected_output": "Der Agent zeigt die passende Anfrage mit Antragsteller und Zeitraum und holt vor der Genehmigung eine eindeutige Freigabe ein.",
       "files": [],
       "expectations": [
-        "Liest pending Buchungen und die gewählte Buchung im Detail.",
+        "Liest offene Anfragen aus cai.booking.01.list und die gewählte Buchung mit cai.booking.02.show im Detail.",
         "Prüft, dass genau eine Anfrage gemeint ist.",
         "Führt approve erst nach Bestätigung aus und liest den Status erneut."
       ]
@@ -30,7 +30,7 @@
       "files": [],
       "expectations": [
         "Zeigt betroffene Räume, Objekte und Regeln vor der Löschung.",
-        "Verwendet --force nicht ohne gesonderte Bestätigung.",
+        "Löscht nicht mit \"force\": true ohne gesonderte Bestätigung.",
         "Bietet keinen direkten API-Ausweg an."
       ]
     }

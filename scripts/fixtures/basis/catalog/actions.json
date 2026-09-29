@@ -1,0 +1,8 @@
+{
+  "quelle": "Testkatalog für die Prüf-Fixtures",
+  "anzahl": 2,
+  "actions": [
+    { "id": "cai.club.03.settings", "bereich": "club", "teilaktionen": ["settings"], "risiko": ["lesen"], "scopes": ["club.read"] },
+    { "id": "cai.club.10.department_delete", "bereich": "club", "teilaktionen": ["department-delete"], "risiko": ["ändern mit Bestätigung"], "scopes": ["admin.write"] }
+  ]
+}

@@ -9,13 +9,16 @@ description: >
 
 # Comvenio Saisonplanung
 
-## Verbindlicher OAuth-Pfad
+## Verbindlicher Arbeitsweg
 
-Im Standardmodus zuerst `comvenio whoami --json` und `comvenio action list
---json` ausführen. Fachoperationen ausschließlich mit der dort sichtbaren
-kanonischen Action-ID und ihrem `input_schema` über `comvenio action call`
-aufrufen. Die Domain-Aliase in den Beispielen gelten nur für den expliziten
-Device-Token-Kompatibilitätsmodus; niemals durch direkte HTTP-Aufrufe ersetzen.
+Zuerst `comvenio whoami --json` und `comvenio action list --json` ausführen.
+Fachoperationen laufen ausschließlich über
+`comvenio action call <action-id> --input '<json>' --json` mit einer dort
+sichtbaren Action-ID und ihrem `input_schema`; Teilaktionen wählt das Feld
+`"operation"`. `club_id` gehört nie in `--input`, der Verein kommt aus der
+Anmeldung. Kritische Actions liefern eine Vorschau und werden erst nach
+Freigabe mit `comvenio action confirm` ausgeführt. Fehlt eine Action, nennt der
+Skill den Weg in der Comvenio-Web-App; niemals direkte HTTP-Aufrufe.
 
 ## Ziel
 
@@ -27,14 +30,19 @@ prüfbaren Etappen angelegt.
 
 ```bash
 comvenio whoami --json
-comvenio club info --json
-comvenio event template list --json
-comvenio event series list --json
+comvenio action list --json
+comvenio action call cai.event.07.template_list_create_clone_instantiate \
+  --input '{"operation":"list"}' --json
+comvenio action call cai.event.08.series_list_show_create_materialize_promote_recurring_promote_yearly_n \
+  --input '{"operation":"list"}' --json
 ```
 
 Kläre Zeitzone, Beginn, Ende, Wochentage, Uhrzeit, Dauer, Ferien und Ausnahmen,
 Abteilung, Sichtbarkeit sowie benötigte Räume oder Geräte. Lies vorhandene
-Vorlagen, Serien, Buchungsregeln, Belegung und Ressourcennutzung.
+Vorlagen, Serien, Buchungsregeln
+(`cai.object.08.booking_rule_list_show_create_bulk_update_delete`), Belegung
+(`cai.booking.01.list`) und Ressourcennutzung (Teilaktion `usage` von
+`cai.event.15.resource_list_add_set_remove_link_show_link_update_link_delete_usage_u`).
 
 ## Planung zeigen
 
@@ -53,9 +61,12 @@ sein.
 
 ## Serie umsetzen
 
-Der belegte Ablauf ist Vorlage → Serie → Materialisierung. `materialize` ist für
-dasselbe Fenster idempotent, erzeugt aber reale Termine. Lies danach mit
-`event list --start --end` und `event series next` den erzeugten Stand.
+Der belegte Ablauf ist Serie mit Wiederholungsregel → Materialisierung, beide
+über `cai.event.08.series_list_show_create_materialize_promote_recurring_promote_yearly_n`
+(Teilaktionen `create` und `materialize`). `materialize` ist für dasselbe
+Fenster idempotent, erzeugt aber reale Termine und läuft deshalb über Vorschau
+und `comvenio action confirm`. Lies danach mit `cai.event.01.list` (`range`
+über den Zeitraum) und der Teilaktion `show` der Serie den erzeugten Stand.
 
 Jährliche Veranstaltungen werden als manuell geplante Jahrestermine behandelt,
 nicht wie eine normale automatische Wochenserie. Buchungen und Aufgaben werden

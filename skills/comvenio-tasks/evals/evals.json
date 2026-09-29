@@ -20,7 +20,7 @@
       "expectations": [
         "Prüft Meeting-Kontext und alle Verantwortlichen.",
         "Zeigt Titel, Anzahl und Fälligkeiten vor dem Bulk-Aufruf.",
-        "Verwendet task bulk mit --json und prüft die Ergebnisse."
+        "Verwendet cai.task.06.bulk mit --json, bestätigt über comvenio action confirm und prüft die Ergebnisse."
       ]
     },
     {

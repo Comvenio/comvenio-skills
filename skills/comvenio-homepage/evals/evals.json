@@ -8,7 +8,7 @@
       "files": [],
       "expectations": [
         "Lädt Homepage- und Design-Schema sowie den aktuellen öffentlichen Bestand.",
-        "Verwendet Preview und verify homepage --audit mit --json.",
+        "Verwendet cai.homepage.01.preview und cai.verify.04.homepage mit audit und --json.",
         "Wendet weder Inhalte noch Design vor der menschlichen Freigabe live an."
       ]
     },
@@ -18,8 +18,8 @@
       "expected_output": "Der Agent liest den Bestand, erstellt eine additive Änderung und schützt die übrigen Seiten vor einem Vollersatz.",
       "files": [],
       "expectations": [
-        "Verwendet homepage show --public und einen Design-Trockenlauf.",
-        "Nutzt kein unbestätigtes --clear.",
+        "Liest den Bestand mit cai.homepage.03.show (public) und vergleicht die Designwerte mit cai.club.03.settings.",
+        "Nutzt kein unbestätigtes clear_existing: true.",
         "Prüft Vorschau und responsive Qualität vor der Änderung."
       ]
     },
@@ -31,17 +31,17 @@
       "expectations": [
         "Verweist auf Club-Hub → Design → Öffentliche Website → Domainverwaltung.",
         "Fordert den Kunden nicht zu manuellen Cloudflare-Arbeiten oder zur Herausgabe von Zugangsdaten auf.",
-        "Verwendet verify url erst, nachdem Comvenio den Status Aktiv zeigt."
+        "Verwendet cai.verify.01.url erst, nachdem Comvenio den Status Aktiv zeigt."
       ]
     },
     {
       "id": 4,
       "prompt": "Wir haben die neue Website veröffentlicht. In der Vorschau war oben die Navigation, auf der echten Seite fehlt sie komplett.",
-      "expected_output": "Der Agent erkennt den überlebenden Landing-Modus aus dem Zusammenführen von club design, prüft den Trockenlauf bzw. club settings und setzt landing ausdrücklich auf false, ohne HTML-Navigation nachzubauen.",
+      "expected_output": "Der Agent erkennt den überlebenden Landing-Modus aus dem Zusammenführen von cai.club.05.design, prüft die Live-Einstellungen mit cai.club.03.settings und setzt landing ausdrücklich auf false, ohne HTML-Navigation nachzubauen.",
       "files": [],
       "expectations": [
-        "Prüft custom_template_config.landing im Live-Design (club settings oder Design-Trockenlauf).",
-        "Setzt \"landing\": false in der Design-Datei und wendet club design --file erneut an.",
+        "Prüft custom_template_config.landing im Live-Design (cai.club.03.settings).",
+        "Setzt \"landing\": false in design_settings und wendet cai.club.05.design erneut an.",
         "Baut keine Navigation in custom_html nach und prüft die Live-Seite danach im Bild."
       ]
     }

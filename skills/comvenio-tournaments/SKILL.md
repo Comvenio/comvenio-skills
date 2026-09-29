@@ -10,13 +10,16 @@ description: >
 
 # Comvenio Turniere
 
-## Verbindlicher OAuth-Pfad
+## Verbindlicher Arbeitsweg
 
-Im Standardmodus zuerst `comvenio whoami --json` und `comvenio action list
---json` ausführen. Fachoperationen ausschließlich mit der dort sichtbaren
-kanonischen Action-ID und ihrem `input_schema` über `comvenio action call`
-aufrufen. Die Domain-Aliase in den Beispielen gelten nur für den expliziten
-Device-Token-Kompatibilitätsmodus; niemals durch direkte HTTP-Aufrufe ersetzen.
+Zuerst `comvenio whoami --json` und `comvenio action list --json` ausführen.
+Fachoperationen laufen ausschließlich über
+`comvenio action call <action-id> --input '<json>' --json` mit einer dort
+sichtbaren Action-ID und ihrem `input_schema`; Teilaktionen wählt das Feld
+`"operation"`. `club_id` gehört nie in `--input`, der Verein kommt aus der
+Anmeldung. Kritische Actions liefern eine Vorschau und werden erst nach
+Freigabe mit `comvenio action confirm` ausgeführt. Fehlt eine Action, nennt der
+Skill den Weg in der Comvenio-Web-App; niemals direkte HTTP-Aufrufe.
 
 ## Ziel
 
@@ -28,10 +31,10 @@ Ergebnisse vor versehentlichen Vollersatz- oder Reset-Aktionen.
 
 ```bash
 comvenio whoami --json
-comvenio club info --json
-comvenio schema tournament --json
-comvenio tournament --help
+comvenio action list --json
 ```
+
+Maßgeblich ist das `input_schema` der jeweiligen `cai.tournament.*`-Action.
 
 Kläre:
 
@@ -56,24 +59,26 @@ Serie → Ausführung → Anmeldung → Teilnehmer → Auslosung → Spielplan �
 ### Serie und Ausführung
 
 ```bash
-comvenio tournament series-list --json
-comvenio tournament series-create --file series.json --json
-comvenio tournament execution-create <series-id> --file execution.json --json
-comvenio tournament show <tournament-id> --json
+comvenio action call cai.tournament.01.series_list --input '{"limit":50,"offset":0}' --json
+comvenio action call cai.tournament.03.series_create \
+  --input '{"series":{<serie nach input_schema>}}' --json
+comvenio action call cai.tournament.06.execution_create \
+  --input '{"series_id":"<series-id>","execution":{<ausführung nach input_schema>}}' --json
+comvenio action call cai.tournament.09.show --input '{"tournament_id":"<tournament-id>"}' --json
 ```
 
 Lege keine zweite Serie an, wenn eine vorhandene Serie fachlich passt. Eine
-konkrete Austragung wird als Ausführung der Serie erstellt und kann mit einer
-Veranstaltung verbunden werden.
+konkrete Austragung wird als Ausführung der Serie erstellt und kann mit
+`cai.tournament.07.execution_link` mit einer Veranstaltung verbunden werden.
 
 ### Teilnehmer
 
 ```bash
-comvenio tournament participants <tournament-id> --json
-comvenio tournament participant <tournament-id> \
-  --name "<name>" --kind individual --json
-comvenio tournament mannschaft <tournament-id> \
-  --name "<name>" --seed <nummer> --json
+comvenio action call cai.tournament.13.participants --input '{"tournament_id":"<tournament-id>"}' --json
+comvenio action call cai.tournament.15.participant \
+  --input '{"tournament_id":"<tournament-id>","name":"<name>","participant_kind":"individual"}' --json
+comvenio action call cai.tournament.14.mannschaft \
+  --input '{"tournament_id":"<tournament-id>","name":"<name>","participant_kind":"team","seed":<nummer>}' --json
 ```
 
 Ein Turnierteilnehmer ist nicht automatisch ein Comvenio-Team. `team`,
@@ -83,24 +88,35 @@ Prüfe Namen, Teilnahmeart und Setzpositionen vor der Auslosung.
 
 ## Auslosung
 
-Erstelle eine nachvollziehbare Draw-Datei aus dem aktuellen Teilnehmerbestand:
+Erstelle einen nachvollziehbaren `draw_plan` aus dem aktuellen
+Teilnehmerbestand:
 
 ```bash
-comvenio tournament draw <tournament-id> --file draw.json --json
+comvenio action call cai.tournament.26.draw \
+  --input '{"tournament_id":"<tournament-id>","draw_plan":{"strategy":"seeded"}}' --json
 ```
 
 Zeige dem Nutzer Gruppen, feste Zuordnungen, Qualifikationsregeln und
 Platzierungsmodus. Erst nach Bestätigung:
 
 ```bash
-comvenio tournament draw-confirm <tournament-id> --json
+comvenio action call cai.tournament.27.draw_confirm --input '{"tournament_id":"<tournament-id>"}' --json
+comvenio action confirm \
+  --preview-id <preview-id> \
+  --confirmation-token <confirmation-token> \
+  --idempotency-key <idempotency-key>
 ```
 
-`draw-confirm` ergänzt materialisierte Spiele. Für eine vollständige
-Neuauslosung ist der vorgesehene Workflow:
+`cai.tournament.27.draw_confirm` ergänzt materialisierte Spiele. Für eine
+vollständige Neuauslosung ist der vorgesehene Workflow:
 
 ```bash
-comvenio tournament redraw <tournament-id> --file draw.json --json
+comvenio action call cai.tournament.23.redraw \
+  --input '{"tournament_id":"<tournament-id>","draw_plan":{"strategy":"seeded"}}' --json
+comvenio action confirm \
+  --preview-id <preview-id> \
+  --confirmation-token <confirmation-token> \
+  --idempotency-key <idempotency-key>
 ```
 
 Ein Re-Draw verändert den bestehenden Spielplan weitreichend und benötigt immer
@@ -111,37 +127,36 @@ eine eindeutige Bestätigung.
 Erzeuge zuerst einen Trockenlauf:
 
 ```bash
-comvenio tournament schedule-generate <tournament-id> \
-  --match-minutes <minuten> \
-  --break-minutes <minuten> \
-  --field-count <anzahl> \
-  --first-kickoff <iso> \
-  --dry-run \
-  --json
+comvenio action call cai.tournament.28.schedule_generate \
+  --input '{"tournament_id":"<tournament-id>","match_minutes":<minuten>,"break_minutes":<minuten>,"field_count":<anzahl>,"first_kickoff":"<iso>","dry_run":true}' --json
 ```
 
 Prüfe Überschneidungen, Pausen, Felder und Endzeit. Wende den Plan erst danach
-ohne `--dry-run` an. Einzelne Spiele können gezielt terminiert werden.
+mit `"dry_run":false` an; die Action läuft über Vorschau und
+`comvenio action confirm`. Einzelne Spiele terminiert
+`cai.tournament.29.match_schedule` gezielt.
 
 ## Ergebnisse
 
 Lies vor jedem Ergebnis das konkrete Spiel und nenne beide Teilnehmer:
 
 ```bash
-comvenio tournament matches <tournament-id> --json
-comvenio tournament match-result <match-id> --home <zahl> --away <zahl> --json
-comvenio tournament standings <tournament-id> --json
+comvenio action call cai.tournament.20.matches --input '{"tournament_id":"<tournament-id>"}' --json
+comvenio action call cai.tournament.31.match_result \
+  --input '{"match_id":"<match-id>","score_home":<zahl>,"score_away":<zahl>}' --json
+comvenio action call cai.tournament.24.standings --input '{"tournament_id":"<tournament-id>"}' --json
 ```
 
-Für Satzresultate und Sonderwertungen verwende ausschließlich die Syntax aus
-`comvenio tournament --help`. Bei Walkover, Nichtantritt oder Aufgabe müssen
+Für Satzresultate und Sonderwertungen verwende ausschließlich die Felder aus
+dem `input_schema` von `cai.tournament.31.match_result` (`score`,
+`result_type`, `winner_side_id`). Bei Walkover, Nichtantritt oder Aufgabe müssen
 Gewinner und vorhandener Teilstand fachlich geklärt sein.
 
 ## Vorschau und Prüfung
 
 ```bash
-comvenio tournament preview <tournament-id> --json
-comvenio tournament standings <tournament-id> --json
+comvenio action call cai.tournament.25.preview --input '{"tournament_id":"<tournament-id>"}' --json
+comvenio action call cai.tournament.24.standings --input '{"tournament_id":"<tournament-id>"}' --json
 ```
 
 Zeige dem Nutzer vor Start beziehungsweise Veröffentlichung die Vorschau von
@@ -152,8 +167,9 @@ Teilnehmern, Gruppen und Spielplan.
 Eine ausdrückliche Bestätigung ist erforderlich, sofern nicht bereits eindeutig
 beauftragt, vor:
 
-- `draw-confirm` und insbesondere `redraw`,
-- `reset`, `matches-clear` oder Löschen eines Spiels,
+- `cai.tournament.27.draw_confirm` und insbesondere `cai.tournament.23.redraw`,
+- `cai.tournament.22.reset`, `cai.tournament.21.matches_clear` oder Löschen
+  eines Spiels,
 - Entfernen oder Zurückziehen eines Teilnehmers,
 - Löschen einer Serie oder Ausführung,
 - Eintragen oder Korrigieren eines Ergebnisses mit unklarer Zuordnung,
@@ -163,7 +179,7 @@ Weitere Regeln:
 
 - Verwende ausschließlich das `comvenio` CLI.
 - Setze für Agentenaufrufe `--json`.
-- Nutze vor dem Spielplan immer den Trockenlauf.
+- Nutze vor dem Spielplan immer den Trockenlauf (`"dry_run":true`).
 - Wiederhole Mutationen nach einem unklaren Fehler nicht blind.
 - Berichte Namen, Uhrzeiten, Felder und Ergebnisse statt roher IDs.
 

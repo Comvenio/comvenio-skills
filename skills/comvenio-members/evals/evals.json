@@ -8,7 +8,7 @@
       "files": [],
       "expectations": [
         "Prüft Identität, Verein und bestehenden Mitgliederbestand.",
-        "Verwendet zunächst preview: true und fasst Änderungen und Warnungen zusammen.",
+        "Zeigt zuerst die Vorschau von cai.member.06.import und fasst Änderungen und Warnungen vor comvenio action confirm zusammen.",
         "Führt reconcile_absent_members erst nach ausdrücklicher Bestätigung aus."
       ]
     },

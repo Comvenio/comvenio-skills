@@ -10,13 +10,16 @@ description: >
 
 # Comvenio Veranstaltungen
 
-## Verbindlicher OAuth-Pfad
+## Verbindlicher Arbeitsweg
 
-Im Standardmodus zuerst `comvenio whoami --json` und `comvenio action list
---json` ausführen. Fachoperationen ausschließlich mit der dort sichtbaren
-kanonischen Action-ID und ihrem `input_schema` über `comvenio action call`
-aufrufen. Die Domain-Aliase in den Beispielen gelten nur für den expliziten
-Device-Token-Kompatibilitätsmodus; niemals durch direkte HTTP-Aufrufe ersetzen.
+Zuerst `comvenio whoami --json` und `comvenio action list --json` ausführen.
+Fachoperationen laufen ausschließlich über
+`comvenio action call <action-id> --input '<json>' --json` mit einer dort
+sichtbaren Action-ID und ihrem `input_schema`; Teilaktionen wählt das Feld
+`"operation"`. `club_id` gehört nie in `--input`, der Verein kommt aus der
+Anmeldung. Kritische Actions liefern eine Vorschau und werden erst nach
+Freigabe mit `comvenio action confirm` ausgeführt. Fehlt eine Action, nennt der
+Skill den Weg in der Comvenio-Web-App; niemals direkte HTTP-Aufrufe.
 
 ## Ziel
 
@@ -26,14 +29,14 @@ mehrtägige Festtage fachlich auseinander.
 
 ## Vor dem ersten Befehl
 
-1. Prüfe Identität und Verein mit `comvenio whoami --json` und
-   `comvenio club info --json`.
-2. Lade den aktuellen Vertrag:
+1. Prüfe Identität und Verein mit `comvenio whoami --json`.
+2. Lade die sichtbaren Actions und ihre Eingabeschemata:
 
    ```bash
-   comvenio schema event --json
-   comvenio event --help
+   comvenio action list --json
    ```
+
+   Maßgeblich ist das `input_schema` der jeweiligen `cai.event.*`-Action.
 
 3. Kläre nur die fachlich fehlenden Angaben:
    - Titel und Art der Veranstaltung,
@@ -43,8 +46,9 @@ mehrtägige Festtage fachlich auseinander.
    - Abteilung und verantwortliche Person,
    - Ort sowie gewünschte Anmeldung oder Einladung.
 
-Erfinde keine Enum-Werte oder IDs. Ermittle Abteilungen, Mitglieder und
-bestehende Veranstaltungen lesend über das CLI.
+Erfinde keine Enum-Werte oder IDs. Ermittle Abteilungen
+(`cai.club.06.department_list`), Mitglieder (`cai.member.01.list`) und
+bestehende Veranstaltungen (`cai.event.01.list`) lesend über das CLI.
 
 ## Passenden Veranstaltungsweg wählen
 
@@ -53,45 +57,59 @@ bestehende Veranstaltungen lesend über das CLI.
 Lies zuerst ähnliche Termine. Lege dann einen Entwurf oder geplanten Termin an:
 
 ```bash
-comvenio event list --json
-comvenio event create --file event.json --json
-comvenio event show <event-id> --json
+comvenio action call cai.event.01.list \
+  --input '{"range":{"from":"2026-09-01","to":"2026-10-01","timezone":"Europe/Berlin"}}' --json
+comvenio action call cai.event.03.create --input '{"event":<event nach input_schema>}' --json
+comvenio action call cai.event.02.show --input '{"event_id":"<event-id>"}' --json
 ```
 
-Veröffentliche erst, wenn Inhalt, Sichtbarkeit und Zeitpunkt stimmen:
+Veröffentliche erst, wenn Inhalt, Sichtbarkeit und Zeitpunkt stimmen. Die
+Veröffentlichung ist kritisch und läuft über Vorschau und Freigabe:
 
 ```bash
-comvenio verify event <event-id> --json
-comvenio event publish <event-id> --public --json
+comvenio action call cai.verify.02.event --input '{"event_id":"<event-id>"}' --json
+comvenio action call cai.event.05.publish \
+  --input '{"event_id":"<event-id>","make_public":true}' --json
+comvenio action confirm \
+  --preview-id <preview-id> \
+  --confirmation-token <confirmation-token> \
+  --idempotency-key <idempotency-key>
 ```
 
-`publish` bestätigt die Veranstaltung; es gibt keinen eigenen Status
+`cai.event.05.publish` bestätigt die Veranstaltung; es gibt keinen eigenen Status
 `published`.
 
 ### Wiederkehrendes Training
 
-Verwende den vorgesehenen Dreischritt:
+Lege eine Serie mit Wiederholungsregel an und erzeuge danach die konkreten
+Termine für einen Zeitraum. Wiederverwendbare Vorlagen verwaltet
+`cai.event.07.template_list_create_clone_instantiate`.
 
 ```bash
-comvenio event template create --file template.json --json
-comvenio event series create <template-id> --start-time <iso> \
-  --frequency weekly --weekdays <tage> --duration-minutes <minuten> --json
-comvenio event series materialize <series-id> \
-  --start <iso> --end <iso> --json
+comvenio action call cai.event.08.series_list_show_create_materialize_promote_recurring_promote_yearly_n \
+  --input '{"operation":"create","series":{"name":"Darttraining","department_id":"<department-id>","event_type":"training","visibility_scope":"member","timezone":"Europe/Berlin","rrule":"FREQ=WEEKLY;BYDAY=WE","dtstart":"2026-09-02T19:00:00+02:00","duration_minutes":120}}' --json
+comvenio action call cai.event.08.series_list_show_create_materialize_promote_recurring_promote_yearly_n \
+  --input '{"operation":"materialize","series_id":"<series-id>","range":{"from":"2026-09-01","to":"2027-01-01","timezone":"Europe/Berlin"}}' --json
+comvenio action confirm \
+  --preview-id <preview-id> \
+  --confirmation-token <confirmation-token> \
+  --idempotency-key <idempotency-key>
 ```
 
-Kläre den Zeitraum der konkreten Termine. `materialize` kann für dasselbe
+Kläre den Zeitraum der konkreten Termine. `materialize` ist kritisch und kann für dasselbe
 Zeitfenster erneut ausgeführt werden, ohne vorhandene Termine zu duplizieren.
 
 ### Jährliche Veranstaltung
 
-Nutze eine jährlich geplante Serie und lege jeden nächsten Termin bewusst an.
+Nutze eine jährlich geplante Serie (Teilaktion `promote_yearly` an einem
+bestehenden Termin) und lege jeden nächsten Termin bewusst an
+(`materialize_next`).
 Verwende keine wöchentliche Regel nur deshalb, weil das Ereignis wiederkehrt.
 
 ### Mehrtägiges Fest
 
 Modelliere das Gesamtfest als öffentliches Parent-Event und jeden Festtag als
-Child-Event. Programm, Galerie und tagesbezogene Inhalte gehören an den
+Child-Event (`cai.event.27.child_list_create_invitation_summary`). Programm, Galerie und tagesbezogene Inhalte gehören an den
 jeweiligen Festtag. Zeige dem Nutzer das Gesamtfest als eine zusammengehörige
 Veranstaltung.
 
@@ -99,19 +117,25 @@ Veranstaltung.
 
 - Lies vorhandene Bereiche vor Änderungen.
 - Die automatisch angelegte Default-Area wird niemals gelöscht.
-- Verwende für mehrere Bereiche oder komplexe Daten eine JSON-Datei.
+- Mehrere Bereiche legt die Teilaktion `bulk` von
+  `cai.event.09.area_list_add_show_update_delete_bulk_copy` in einem Aufruf an.
 - Programmpunkte eines mehrtägigen Fests gehören an den Festtag.
-- `resource add` ergänzt Ressourcen. `resource set` ersetzt die vollständige
-  Menge und ist nur zulässig, wenn alle Ziele bekannt sind.
-- Dateien werden zuerst mit `comvenio data upload ... --json` hochgeladen und
-  danach fachlich als Anhang verknüpft.
+- In `cai.event.15.resource_list_add_set_remove_link_show_link_update_link_delete_usage_u`
+  ergänzt `add` Ressourcen. `set` ersetzt die vollständige Menge und ist nur
+  zulässig, wenn alle Ziele bekannt sind.
+- Dateien werden zuerst mit `cai.data.06.upload` hochgeladen (Skill
+  `comvenio-data`) und danach mit
+  `cai.event.16.attachment_list_show_add_update_delete` als Anhang verknüpft.
 
 Typische Prüfungen:
 
 ```bash
-comvenio event area list <event-id> --json
-comvenio event program list <event-id> --json
-comvenio event registration stats <event-id> --json
+comvenio action call cai.event.09.area_list_add_show_update_delete_bulk_copy \
+  --input '{"operation":"list","event_id":"<event-id>"}' --json
+comvenio action call cai.event.13.program_list_add_update_delete_reorder \
+  --input '{"operation":"list","event_id":"<event-id>"}' --json
+comvenio action call cai.event.20.registration_list_add_stats_show_update_adjust_delete_aggregate \
+  --input '{"operation":"stats","event_id":"<event-id>"}' --json
 ```
 
 ## Einladungen und Anmeldungen
@@ -122,6 +146,10 @@ Unterscheide:
 - andere Comvenio-Vereine einladen,
 - externe Vereine per E-Mail einladen,
 - Teilnehmer manuell anmelden.
+
+Einladungen laufen über
+`cai.event.19.invitation_and_club_invitation_workflows` (Teilaktionen
+`member_*` und `club_*`), Anmeldungen über `cai.event.20.registration_list_add_stats_show_update_adjust_delete_aggregate`.
 
 Prüfe Empfänger und Sichtbarkeit vor dem Versand. Gib dem Kunden eine
 verständliche Zusammenfassung nach Namen und Anzahl, nicht nur technische IDs.
@@ -143,7 +171,7 @@ Schreibende Befehle werden bei unklarem Ausgang nicht blind wiederholt.
 ## Abschluss
 
 Lies die Veranstaltung erneut und nutze bei öffentlichen Events
-`comvenio verify event <event-id> --json`. Berichte:
+`cai.verify.02.event` mit `{"event_id":"<event-id>"}`. Berichte:
 
 - welche Veranstaltung oder Serie angelegt beziehungsweise geändert wurde,
 - welche Termine und Sichtbarkeit gelten,

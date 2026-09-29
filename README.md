@@ -114,8 +114,9 @@ Kennungen.
 - Zugangstoken, Passwörter und interne Infrastruktur werden weder angefordert
   noch ausgegeben.
 
-Fehlt für einen gewünschten Ablauf ein CLI-Befehl, erklärt der Assistent die
-Lücke. Er umgeht sie nicht über versteckte technische Schnittstellen.
+Fehlt für einen gewünschten Ablauf eine Action, erklärt der Assistent die
+Lücke und nennt den Weg in der Comvenio-Web-App. Er umgeht sie nicht über
+versteckte technische Schnittstellen.
 
 Derzeit nicht per CLI unterstützt sind insbesondere Rollen und Berechtigungen,
 Community- oder Channel-Moderation, ClubAgent-Administration und wesentliche

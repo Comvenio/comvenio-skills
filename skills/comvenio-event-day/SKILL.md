@@ -9,13 +9,16 @@ description: >
 
 # Comvenio Veranstaltungstag
 
-## Verbindlicher OAuth-Pfad
+## Verbindlicher Arbeitsweg
 
-Im Standardmodus zuerst `comvenio whoami --json` und `comvenio action list
---json` ausführen. Fachoperationen ausschließlich mit der dort sichtbaren
-kanonischen Action-ID und ihrem `input_schema` über `comvenio action call`
-aufrufen. Die Domain-Aliase in den Beispielen gelten nur für den expliziten
-Device-Token-Kompatibilitätsmodus; niemals durch direkte HTTP-Aufrufe ersetzen.
+Zuerst `comvenio whoami --json` und `comvenio action list --json` ausführen.
+Fachoperationen laufen ausschließlich über
+`comvenio action call <action-id> --input '<json>' --json` mit einer dort
+sichtbaren Action-ID und ihrem `input_schema`; Teilaktionen wählt das Feld
+`"operation"`. `club_id` gehört nie in `--input`, der Verein kommt aus der
+Anmeldung. Kritische Actions liefern eine Vorschau und werden erst nach
+Freigabe mit `comvenio action confirm` ausgeführt. Fehlt eine Action, nennt der
+Skill den Weg in der Comvenio-Web-App; niemals direkte HTTP-Aufrufe.
 
 ## Ziel
 
@@ -27,16 +30,22 @@ Event-Day-Befehl und keinen automatischen Rollback über mehrere Bereiche.
 
 ```bash
 comvenio whoami --json
-comvenio club info --json
-comvenio event show <event-id> --json
-comvenio event area list <event-id> --json
-comvenio event program list <event-id> --json
-comvenio event registration stats <event-id> --json
-comvenio plan list <event-id> --json
+comvenio action list --json
+comvenio action call cai.event.02.show --input '{"event_id":"<event-id>"}' --json
+comvenio action call cai.event.09.area_list_add_show_update_delete_bulk_copy \
+  --input '{"operation":"list","event_id":"<event-id>"}' --json
+comvenio action call cai.event.13.program_list_add_update_delete_reorder \
+  --input '{"operation":"list","event_id":"<event-id>"}' --json
+comvenio action call cai.event.20.registration_list_add_stats_show_update_adjust_delete_aggregate \
+  --input '{"operation":"stats","event_id":"<event-id>"}' --json
+comvenio action call cai.plan.01.list --input '{"event_id":"<event-id>"}' --json
 ```
 
-Lies zusätzlich Zuweisungen, Bereichsleitungen, Ressourcen, Anhänge, Menüs,
-Sponsoren, relevante Aufgaben, Buchungen und Dateien. Bei einem mehrtägigen
+Lies zusätzlich Zuweisungen (`cai.event.10.assignment_list_add_remove_clear`),
+Bereichsleitungen (`cai.event.11.lead_list_add_update_delete`), Ressourcen,
+Anhänge, Menüs (`cai.event.28.menu_list_assign_unassign`), Sponsoren,
+relevante Aufgaben, Buchungen und Dateien mit den `"operation":"list"`- bzw.
+Listen-Actions der Fachskills. Bei einem mehrtägigen
 Fest gehören Programm und Tagesinhalte an das jeweilige Child-Event.
 
 ## Tagescheck berichten
@@ -78,5 +87,5 @@ Block; bereits erfolgreiche andere Blöcke werden transparent genannt.
 ## Abschluss
 
 Lies Event und betroffene Fachlisten erneut und verwende
-`comvenio verify event <event-id> --json`. Melde erledigte, geprüfte und offene
+`comvenio action call cai.verify.02.event --input '{"event_id":"<event-id>"}' --json`. Melde erledigte, geprüfte und offene
 Punkte als Einsatzübersicht.

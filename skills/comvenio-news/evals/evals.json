@@ -8,7 +8,7 @@
       "files": [],
       "expectations": [
         "Liest vorhandene News und Event-Medien zuerst.",
-        "Verwendet Vorschau und anschließend --draft.",
+        "Verwendet cai.news.07.preview und anschließend cai.news.06.apply mit operation draft.",
         "Veröffentlicht trotz öffentlicher Zielgruppe noch nicht."
       ]
     },

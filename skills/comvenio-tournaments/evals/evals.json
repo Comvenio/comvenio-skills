@@ -8,8 +8,8 @@
       "files": [],
       "expectations": [
         "Trennt Turnierserie und konkrete Ausführung.",
-        "Zeigt Gruppen- und Qualifikationsregeln vor draw-confirm.",
-        "Verwendet schedule-generate zuerst mit --dry-run und --json."
+        "Zeigt Gruppen- und Qualifikationsregeln vor cai.tournament.27.draw_confirm.",
+        "Verwendet cai.tournament.28.schedule_generate zuerst mit dry_run true und --json."
       ]
     },
     {
@@ -20,7 +20,7 @@
       "expectations": [
         "Liest Teilnehmer und bestehende Spiele vor der Änderung.",
         "Klären Absagewirkung und schützt vor separatem unkontrolliertem Löschen.",
-        "Verwendet redraw erst nach Bestätigung."
+        "Verwendet cai.tournament.23.redraw erst nach Bestätigung über comvenio action confirm."
       ]
     },
     {

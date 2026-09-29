@@ -9,13 +9,16 @@ description: >
 
 # Comvenio Sponsoring
 
-## Verbindlicher OAuth-Pfad
+## Verbindlicher Arbeitsweg
 
-Im Standardmodus zuerst `comvenio whoami --json` und `comvenio action list
---json` ausführen. Fachoperationen ausschließlich mit der dort sichtbaren
-kanonischen Action-ID und ihrem `input_schema` über `comvenio action call`
-aufrufen. Die Domain-Aliase in den Beispielen gelten nur für den expliziten
-Device-Token-Kompatibilitätsmodus; niemals durch direkte HTTP-Aufrufe ersetzen.
+Zuerst `comvenio whoami --json` und `comvenio action list --json` ausführen.
+Fachoperationen laufen ausschließlich über
+`comvenio action call <action-id> --input '<json>' --json` mit einer dort
+sichtbaren Action-ID und ihrem `input_schema`; Teilaktionen wählt das Feld
+`"operation"`. `club_id` gehört nie in `--input`, der Verein kommt aus der
+Anmeldung. Kritische Actions liefern eine Vorschau und werden erst nach
+Freigabe mit `comvenio action confirm` ausgeführt. Fehlt eine Action, nennt der
+Skill den Weg in der Comvenio-Web-App; niemals direkte HTTP-Aufrufe.
 
 ## Ziel
 
@@ -26,13 +29,15 @@ Pflege Sponsorenbeziehungen nachvollziehbar, ohne Vertragsstände zu
 
 ```bash
 comvenio whoami --json
-comvenio club info --json
-comvenio sponsor --help
-comvenio sponsor list --json
+comvenio action list --json
+comvenio action call cai.sponsor.01.list --input '{"limit":50}' --json
 ```
 
-Lies je nach Auftrag Sponsor, Produkte, Vertragsversionen, Zuordnungen,
-Dokumente und Verantwortliche. Ermittle Abteilungen und Mitglieder anhand von
+Lies je nach Auftrag Sponsor (`cai.sponsor.02.show`), Produkte
+(`cai.sponsor.07.product_list`), Vertragsversionen
+(`cai.sponsor.11.contract_list`), Zuordnungen (`cai.sponsor.15.assignment_list`),
+Dokumente (`cai.sponsor.19.doc_list`) und Verantwortliche
+(`cai.sponsor.21.responsible_list`). Ermittle Abteilungen und Mitglieder anhand von
 Namen. Verantwortliche benötigen eine Member-ID, nicht die User-ID.
 
 ## Stammdaten, Produkte und Verträge
@@ -54,8 +59,10 @@ unterschriebene Zuordnungsdokumente bleiben privat.
 
 ## Event-Verknüpfungen
 
-Sponsor-Stammdaten werden mit `comvenio sponsor` gepflegt. Die Zuordnung zu
-einer Veranstaltung erfolgt getrennt über `comvenio event sponsor`. Zeige Event,
+Sponsor-Stammdaten werden mit den `cai.sponsor.*`-Actions gepflegt. Die
+Zuordnung zu einer Veranstaltung erfolgt getrennt über
+`cai.event.18.sponsor_and_sponsor_program_workflows` (Teilaktionen `link_*`,
+`tier_*` und `program_*`). Zeige Event,
 Bereich, Paket und Sortierung vor der Änderung.
 
 ## Schutzregeln

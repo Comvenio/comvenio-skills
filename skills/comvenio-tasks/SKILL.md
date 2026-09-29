@@ -10,13 +10,16 @@ description: >
 
 # Comvenio Aufgaben
 
-## Verbindlicher OAuth-Pfad
+## Verbindlicher Arbeitsweg
 
-Im Standardmodus zuerst `comvenio whoami --json` und `comvenio action list
---json` ausführen. Fachoperationen ausschließlich mit der dort sichtbaren
-kanonischen Action-ID und ihrem `input_schema` über `comvenio action call`
-aufrufen. Die Domain-Aliase in den Beispielen gelten nur für den expliziten
-Device-Token-Kompatibilitätsmodus; niemals durch direkte HTTP-Aufrufe ersetzen.
+Zuerst `comvenio whoami --json` und `comvenio action list --json` ausführen.
+Fachoperationen laufen ausschließlich über
+`comvenio action call <action-id> --input '<json>' --json` mit einer dort
+sichtbaren Action-ID und ihrem `input_schema`; Teilaktionen wählt das Feld
+`"operation"`. `club_id` gehört nie in `--input`, der Verein kommt aus der
+Anmeldung. Kritische Actions liefern eine Vorschau und werden erst nach
+Freigabe mit `comvenio action confirm` ausgeführt. Fehlt eine Action, nennt der
+Skill den Weg in der Comvenio-Web-App; niemals direkte HTTP-Aufrufe.
 
 ## Ziel
 
@@ -27,10 +30,10 @@ Verantwortlichkeit, Fälligkeit und Fortschritt für den Verein verständlich.
 
 ```bash
 comvenio whoami --json
-comvenio club info --json
-comvenio schema task --json
-comvenio task --help
-comvenio task context list --json
+comvenio action list --json
+comvenio action call cai.schema.02.show_domain_schema --input '{"domain":"task"}' --json
+comvenio action call cai.task.11.context_list_show_create_update_delete \
+  --input '{"operation":"list","limit":50,"offset":0}' --json
 ```
 
 Kläre:
@@ -42,7 +45,8 @@ Kläre:
 - Checkliste oder Unteraufgaben,
 - Einzelaufgabe oder mehrere Aufgaben im Schwung.
 
-Ermittle Mitglieder- und Kontext-IDs über lesende CLI-Befehle. Eine
+Ermittle Mitglieder- und Kontext-IDs über lesende Actions
+(`cai.member.01.list`, `cai.task.11.context_list_show_create_update_delete`). Eine
 Aufgabenzuweisung benötigt eine Member-ID, nicht die Benutzer-ID.
 
 ## Kontext richtig verwenden
@@ -51,50 +55,47 @@ Jede Aufgabe braucht einen Task-Kontext. Prüfe zuerst, ob ein passender Kontext
 existiert:
 
 ```bash
-comvenio task context list --json
+comvenio action call cai.task.11.context_list_show_create_update_delete \
+  --input '{"operation":"list","limit":50,"offset":0}' --json
 ```
 
 Nur wenn keiner passt:
 
 ```bash
-comvenio task context create \
-  --context-type <typ> \
-  --ref-id <fach-id> \
-  --json
+comvenio action call cai.task.11.context_list_show_create_update_delete \
+  --input '{"operation":"create","context":{"context_type":"<typ>","context_id":"<fach-id>","is_default":false}}' --json
 ```
 
-Die zurückgegebene Context-ID wird bei der Aufgabe als `--context-id`
+Die zurückgegebene Context-ID wird bei der Aufgabe als `task_context_id`
 verwendet. Verwechsle sie nicht mit der referenzierten Veranstaltung oder
 Sitzung.
 
 ## Aufgabe anlegen und zuweisen
 
 ```bash
-comvenio task create \
-  --title "<titel>" \
-  --context-id <task-context-id> \
-  --description "<beschreibung>" \
-  --priority <priorität> \
-  --due-date <iso> \
-  --json
+comvenio action call cai.task.05.create \
+  --input '{"task":{"title":"<titel>","task_context_id":"<task-context-id>","description":"<beschreibung>","priority":"<priorität>","due_date":"<iso>"}}' --json
 
-comvenio task assign <task-id> \
-  --member-id <member-id> \
-  --responsible \
-  --json
+comvenio action call cai.task.08.assign \
+  --input '{"task_id":"<task-id>","assignment":{"member_id":"<member-id>","is_responsible":true}}' --json
 ```
 
 Lies die Aufgabe anschließend erneut:
 
 ```bash
-comvenio task show <task-id> --json
+comvenio action call cai.task.02.show --input '{"task_id":"<task-id>"}' --json
 ```
 
-Für mehrere Aufgaben mit Checklisten und Zuweisungen kann eine geprüfte
-Bulk-Datei verwendet werden:
+Für mehrere Aufgaben mit Checklisten und Zuweisungen gibt es eine geprüfte
+Sammelanlage; sie ist kritisch und läuft über Vorschau und Freigabe:
 
 ```bash
-comvenio task bulk --file tasks.json --json
+comvenio action call cai.task.06.bulk \
+  --input '{"items":[{"task":{"title":"<titel>","task_context_id":"<task-context-id>"},"checklist_items":[],"assignments":[]}]}' --json
+comvenio action confirm \
+  --preview-id <preview-id> \
+  --confirmation-token <confirmation-token> \
+  --idempotency-key <idempotency-key>
 ```
 
 Zeige dem Nutzer vor dem Bulk-Aufruf Anzahl, Titel, Verantwortliche und
@@ -103,18 +104,25 @@ Fälligkeiten.
 ## Fortschritt, Notizen und Checklisten
 
 ```bash
-comvenio task note list <task-id> --json
-comvenio task note add <task-id> --file note.json --json
-comvenio task checklist list <task-id> --json
-comvenio task checklist add <task-id> --file checklist-item.json --json
-comvenio task checklist toggle <item-id> --json
-comvenio task update <task-id> --status in_progress --json
+comvenio action call cai.task.13.note_list_add_update_delete \
+  --input '{"operation":"list","task_id":"<task-id>"}' --json
+comvenio action call cai.task.13.note_list_add_update_delete \
+  --input '{"operation":"add","task_id":"<task-id>","content":"<notiz>"}' --json
+comvenio action call cai.task.14.checklist_list_add_update_toggle_delete_reorder \
+  --input '{"operation":"list","task_id":"<task-id>"}' --json
+comvenio action call cai.task.14.checklist_list_add_update_toggle_delete_reorder \
+  --input '{"operation":"add","task_id":"<task-id>","item":{"title":"<punkt>","order_index":0}}' --json
+comvenio action call cai.task.14.checklist_list_add_update_toggle_delete_reorder \
+  --input '{"operation":"toggle","item_id":"<item-id>"}' --json
+comvenio action call cai.task.07.update \
+  --input '{"task_id":"<task-id>","changes":{"status":"in_progress"}}' --json
 ```
 
-Schließe eine Aufgabe mit dem vorgesehenen Befehl ab:
+Schließe eine Aufgabe mit der vorgesehenen Action ab:
 
 ```bash
-comvenio task done <task-id> --json
+comvenio action call cai.task.09.done \
+  --input '{"task_id":"<task-id>","completed_at":"<iso>"}' --json
 ```
 
 Abgeschlossene oder abgebrochene Aufgaben werden nicht ohne Prüfung wieder auf
@@ -132,7 +140,7 @@ schon eindeutig beauftragt hat, vor:
 
 Weitere Regeln:
 
-- Vor Änderungen immer `task show` oder die passende Unterliste lesen.
+- Vor Änderungen immer `cai.task.02.show` oder die passende Unterliste lesen.
 - Namen statt IDs kommunizieren.
 - Nur `comvenio` CLI verwenden.
 - Für Agentenaufrufe `--json` setzen.

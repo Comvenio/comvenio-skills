@@ -8,7 +8,7 @@
       "files": [],
       "expectations": [
         "Prüft Club und fachlichen Ablagekontext.",
-        "Verwendet data search oder list, show und download mit --json.",
+        "Verwendet cai.data.18.search oder cai.data.01.list, cai.data.02.show und cai.data.05.download mit --json.",
         "Gibt keine vertraulichen Rohdaten oder URLs unnötig aus."
       ]
     },

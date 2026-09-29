@@ -15,11 +15,15 @@ Infrastruktur- oder Backend-Betriebsanweisungen.
 
 ## Autoritative Quellen
 
-1. Laufzeit: `comvenio <domain> --help` und
-   `comvenio schema <domain> --json`
+1. Laufzeit: `comvenio action list --json` (Action-IDs, Teilaktionen und
+   `input_schema` für die aktuelle Anmeldung)
 2. Öffentliches CLI-Repository: `comvenio-cli/AGENTS.md`,
-   `comvenio-cli/docs/cli-reference.md` und die jeweilige Domain-Dokumentation
-3. Dieser Skill-Text
+   `comvenio-cli/docs/cli-reference.md` und die jeweilige Themen-Dokumentation
+   mit ihrem Abschnitt „Befehle und Actions“
+3. Der Action-Katalog `catalog/actions.json` in diesem Repository (Kopie aus
+   diesem Abschnitt, erneuert mit
+   `node scripts/sync-action-catalog.mjs <pfad-zu-comvenio-cli> --ref origin/main`)
+4. Dieser Skill-Text
 
 Ein Skill darf keine Felder, Enum-Werte oder Aktionen erfinden. Ändert sich das
 CLI, werden Skill und Eval-Fälle im selben Arbeitsgang nachgezogen.
@@ -30,11 +34,18 @@ CLI, werden Skill und Eval-Fälle im selben Arbeitsgang nachgezogen.
 - Keine direkten HTTP-Aufrufe oder versteckten Backend-Schnittstellen.
 - Für Agentenbefehle `--json` verwenden; Fehlercodes nicht als leere Ergebnisse
   behandeln.
-- Standard ist der browserbasierte OAuth-Login. Im OAuth-Modus werden
-  Fachoperationen über `comvenio action list|call|confirm` und nur über die dort
-  sichtbaren kanonischen Action-IDs ausgeführt. Die älteren
-  menschenfreundlichen Domain-Aliase sind ausschließlich Beispiele für den
-  expliziten Device-Token-Kompatibilitätsmodus.
+- Einziger Anmeldeweg ist der browserbasierte OAuth-Login mit `comvenio login`.
+  Fachoperationen laufen ausschließlich über `comvenio action list|call|confirm`
+  und nur über die dort sichtbaren kanonischen Action-IDs; Teilaktionen wählt
+  das Feld `"operation"` in `--input`.
+- Skills nennen nur die Befehlsfläche des CLI: `login`, `logout`, `whoami`,
+  `action list|call|confirm`, `agent chat`, `finance` und `help`. Klassische
+  Domänenbefehle sind entfallen. `club_id` und `confirmation` stehen nie in
+  `--input`; kritische Actions werden mit `comvenio action confirm
+  --preview-id … --confirmation-token … --idempotency-key …` bestätigt.
+- Ein Beispiel, das einen alten Befehl absichtlich als falsch zeigt, steht in
+  einem Block „nicht mehr verfügbar“ direkt nach der Marke
+  `<!-- klassisch-beispiel -->`.
 - Zugriffstoken nie lesen, protokollieren, committen oder im Chat anfordern.
 - Vor Mutationen den aktuellen Zustand lesen.
 - Bei Löschen, Zurücksetzen, Vollersatz, öffentlicher Freischaltung oder
@@ -42,6 +53,8 @@ CLI, werden Skill und Eval-Fälle im selben Arbeitsgang nachgezogen.
   verlangen, sofern der Auftrag dies nicht bereits ausdrücklich umfasst.
 - Vorschau, Trockenlauf und Verifier verwenden, wenn die Domain sie anbietet.
 - Fehlende CLI-Funktionen werden als Lücke benannt, nicht technisch umgangen.
+  Hat ein Schritt keine passende Action, beschreibt der Skill den Weg in der
+  Comvenio-Web-App mit Menüpfad statt eines Befehls.
 
 ## Skill-Struktur
 
@@ -59,6 +72,7 @@ skills/<skill-name>/
 - `README.md` erklärt Kundennutzen, Beispiele, Sicherheitsgrenzen und bekannte
   Einschränkungen ohne Backend- oder Infrastrukturdetails.
 - Jeder Skill enthält mindestens drei realistische Kunden-Testfälle.
+- `SKILL.md` beginnt mit `comvenio whoami --json` und `comvenio action list`.
 - Fachdetails gehören nur in den betroffenen Skill.
 
 ## Änderung prüfen
@@ -73,5 +87,9 @@ prüfen:
 
 1. normaler Lese- oder Anlageworkflow,
 2. öffentlicher oder destruktiver Workflow mit Freigabe,
-3. Grenzfall mit fehlendem Recht, fehlendem CLI-Befehl oder unvollständigen
+3. Grenzfall mit fehlendem Recht, fehlender Action oder unvollständigen
    Kundendaten.
+
+`npm test` prüft zusätzlich jeden `comvenio`-Aufruf gegen die Befehlsfläche und
+jede genannte Action-ID gegen `catalog/actions.json`. Fehlt der Katalog, endet
+die Prüfung mit Exit 2.
